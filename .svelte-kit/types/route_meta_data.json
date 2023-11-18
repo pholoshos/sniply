@@ -10,6 +10,7 @@
 	"/gettingStarted": [],
 	"/join/[[company]]": [],
 	"/landing": [],
+	"/pages/[slug]": [],
 	"/profile": [],
 	"/reset-password": [],
 	"/settings": [],

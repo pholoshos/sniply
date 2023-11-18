@@ -16,6 +16,8 @@
   let zIndex = 1; // Initial z-index value
   let isDragging = false;
   let isDraggable = true;
+  let isResizable = true;
+  export let onDelete = () => {};
   let isHidden = false;
   export let width = "full";
   let isConfiguring = false;
@@ -176,8 +178,8 @@
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
-  style="position: {isDraggable?"absolute":"relative"}  absolute;;left:  {x}px; top: {y}px; color: {textColor}; padding: {padding}"
-  class="draggable  w-{width} "
+  style="width:{width};position: {isDraggable?"absolute":"relative"}  absolute;;left:  {x}px; top: {y}px; color: {textColor}; padding: {padding}"
+  class="draggable"
   on:mousedown={handleMouseDown}
 >
   <div class="toolbar flex">
@@ -187,7 +189,7 @@
     <Button size="xs" color="alternative" on:click={handleButtonClick}>
       <FileCopyOutline size="xs" /></Button
     >
-    <Button size="xs" color="alternative" on:click={handleButtonClick}
+    <Button size="xs" color="alternative" on:click={onDelete}
       ><TrashBinOutline size="xs" /></Button
     >
 
