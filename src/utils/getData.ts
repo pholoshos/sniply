@@ -1,6 +1,6 @@
 import { api, generalApi } from "."
 
-interface IGetData {
+export interface IGetData {
     modelName: string;
     filters?: any;
     sortField?: string;

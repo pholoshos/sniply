@@ -1,5 +1,5 @@
 <script>
-// @ts-nocheck
+  // @ts-nocheck
 
   import {
     Button,
@@ -12,85 +12,70 @@
     TableHeadCell,
     TableSearch,
   } from "flowbite-svelte";
+  import { onMount } from "svelte";
+  import { getData } from "../../utils/getData";
+
   let searchTerm = "";
 
-   export let onAdd;
-   export let onDelete;
-   export let onEdit;
+  export let onAdd;
+  export let onDelete;
+  export let onEdit;
+  export let modelName = "";
+  export const data = [];
+  export const dataId = "";
 
+  onMount(() => {
+    getData(modelName).then((data) => {
+      items = data;
+    })
+  });
+  
+  const seletedData = null;
 
-
-   const seletedData = null;
-
-
-  let items = [
-    { id: 1, maker: "Toyota", type: "ABC", make: 2017 },
-    { id: 2, maker: "Ford", type: "CDE", make: 2018 },
-    { id: 3, maker: "Volvo", type: "FGH", make: 2019 },
-    { id: 4, maker: "Saab", type: "IJK", make: 2020 },
-    { id: 1, maker: "Toyota", type: "ABC", make: 2017 },
-    { id: 2, maker: "Ford", type: "CDE", make: 2018 },
-    { id: 3, maker: "Volvo", type: "FGH", make: 2019 },
-    { id: 4, maker: "Saab", type: "IJK", make: 2020 },
-    { id: 1, maker: "Toyota", type: "ABC", make: 2017 },
-    { id: 2, maker: "Ford", type: "CDE", make: 2018 },
-    { id: 3, maker: "Volvo", type: "FGH", make: 2019 },
-    { id: 4, maker: "Saab", type: "IJK", make: 2020 },
-    { id: 1, maker: "Toyota", type: "ABC", make: 2017 },
-    { id: 2, maker: "Ford", type: "CDE", make: 2018 },
-    { id: 3, maker: "Volvo", type: "FGH", make: 2019 },
-    { id: 4, maker: "Saab", type: "IJK", make: 2020 },
-    { id: 1, maker: "Toyota", type: "ABC", make: 2017 },
-    { id: 2, maker: "Ford", type: "CDE", make: 2018 },
-    { id: 3, maker: "Volvo", type: "FGH", make: 2019 },
-    { id: 4, maker: "Saab", type: "IJK", make: 2020 },
-    { id: 1, maker: "Toyota", type: "ABC", make: 2017 },
-    { id: 2, maker: "Ford", type: "CDE", make: 2018 },
-    { id: 3, maker: "Volvo", type: "FGH", make: 2019 },
-    { id: 4, maker: "Saab", type: "IJK", make: 2020 },
-    { id: 1, maker: "Toyota", type: "ABC", make: 2017 },
-    { id: 2, maker: "Ford", type: "CDE", make: 2018 },
-    { id: 3, maker: "Volvo", type: "FGH", make: 2019 },
-    { id: 4, maker: "Saab", type: "IJK", make: 2020 },
-  ];
-  $: filteredItems = items.filter(
-    (item) => item.maker.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
-  );
 </script>
+
 <div class="h-screen">
-<div>
-    <Button on:click={()=>onAdd()} color="alternative">Add</Button>
-    <Button on:click={()=>onDelete(seletedData)}  color="alternative"> Delete</Button>
-    <Button on:click={()=>onEdit(seletedData)}  color="alternative">Edit</Button>
-</div>
-<TableSearch
-  shadow
-  placeholder="Search by maker name"
-  style='height:450px'
-  hoverable={true}
-  bind:inputValue={searchTerm}
->
-  <TableHead>
-    <TableHeadCell>
-      <Checkbox />
-    </TableHeadCell>
-    <TableHeadCell>ID</TableHeadCell>
-    <TableHeadCell>Maker</TableHeadCell>
-    <TableHeadCell>Type</TableHeadCell>
-    <TableHeadCell>Make</TableHeadCell>
-  </TableHead>
-  <TableBody class="divide-y">
-    {#each filteredItems as item}
-      <TableBodyRow>
-        <TableBodyCell>
-          <Checkbox />
-        </TableBodyCell>
-        <TableBodyCell>{item.id}</TableBodyCell>
-        <TableBodyCell>{item.maker}</TableBodyCell>
-        <TableBodyCell>{item.type}</TableBodyCell>
-        <TableBodyCell>{item.make}</TableBodyCell>
-      </TableBodyRow>
-    {/each}
-  </TableBody>
-</TableSearch>
+  <div>
+    <Button on:click={() => onAdd()} color="alternative">Add</Button>
+    <Button on:click={() => onDelete(seletedData)} color="alternative">
+      Delete</Button
+    >
+    <Button on:click={() => onEdit(seletedData)} color="alternative"
+      >Edit</Button
+    >
+  </div>
+  <TableSearch
+    shadow
+    placeholder="Search by maker name"
+    hoverable={true}
+    bind:inputValue={searchTerm}
+  >
+    <TableHead>
+      <TableHeadCell>
+        <Checkbox />
+      </TableHeadCell>
+      <TableHeadCell>ID</TableHeadCell>
+      <TableHeadCell>Maker</TableHeadCell>
+      <TableHeadCell>Type</TableHeadCell>
+      <TableHeadCell>Make</TableHeadCell>
+    </TableHead>
+    <TableBody class="divide-y">
+      {#each data as item}
+        <TableBodyRow>
+          <TableBodyCell>
+            <Checkbox />
+          </TableBodyCell>
+          <TableBodyCell>{item.id}</TableBodyCell>
+          <TableBodyCell>{item.maker}</TableBodyCell>
+          <TableBodyCell>{item.type}</TableBodyCell>
+          <TableBodyCell>{item.make}</TableBodyCell>
+        </TableBodyRow>
+      {/each}
+    </TableBody>
+  </TableSearch>
+  {#if !data.length}
+    <div class=" m-auto">
+      <img class=" w-96 mx-auto" alt="" src="https://i.pinimg.com/originals/52/4c/6c/524c6c3d7bd258cd165729ba9b28a9a2.png">
+    </div>
+  {/if}
 </div>
