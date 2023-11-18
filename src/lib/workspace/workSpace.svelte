@@ -3,15 +3,7 @@
   import ComponentsList from "$lib/ComponentsList/ComponentsList.svelte";
   import DraggableComponent from "$lib/DraggableComponent/DraggableComponent.svelte";
   import { SidebarItem } from "flowbite-svelte";
-
-  // Array of component names
-  const componentNames = [
-    "Toolbar",
-    "Table",
-    "SideNav",
-    "Button"
-    // Add more component names as needed
-  ];
+  import { componentNames } from "./Components";
 
   // Array to store dynamically loaded components
   let dynamicComponents = [];
@@ -42,11 +34,14 @@
   </div>
   <div class="flex-2">
     <AppContainer />
-    {#each dynamicComponents as dynamicComponent}<DraggableComponent width="96">
-        <div>
-          <svelte:component this={dynamicComponent} />
-        </div>
-      </DraggableComponent>
-    {/each}
+    <div class="w-full ">
+        {#each dynamicComponents as dynamicComponent}<DraggableComponent width="96">
+            <div>
+              <svelte:component this={dynamicComponent} />
+            </div>
+          </DraggableComponent>
+        {/each}
+    </div>
+
   </div>
 </div>

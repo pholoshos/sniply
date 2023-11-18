@@ -176,8 +176,8 @@
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
-  style="left:  {x}px; top: {y}px; color: {textColor}; padding: {padding}"
-  class="draggable w-{width} "
+  style="position: {isDraggable?"absolute":"relative"}  absolute;;left:  {x}px; top: {y}px; color: {textColor}; padding: {padding}"
+  class="draggable  w-{width} "
   on:mousedown={handleMouseDown}
 >
   <div class="toolbar flex">
