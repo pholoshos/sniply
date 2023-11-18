@@ -1,0 +1,43 @@
+{
+  "name": "sprintlearn",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+  },
+  "devDependencies": {
+    "@skeletonlabs/skeleton": "^1.10.0",
+    "@sveltejs/adapter-auto": "^2.0.0",
+    "@sveltejs/kit": "^1.20.4",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "postcss-load-config": "^4.0.1",
+    "svelte": "^4.0.5",
+    "svelte-check": "^3.4.3",
+    "svelte-prism": "^1.1.6",
+    "tailwindcss": "^3.3.2",
+    "tslib": "^2.4.1",
+    "typescript": "^5.0.0",
+    "vite": "^4.4.2"
+  },
+  "type": "module",
+  "dependencies": {
+    "@svelteuidev/composables": "^0.14.0",
+    "@svelteuidev/core": "^0.14.0",
+    "@svelteuidev/prism": "^0.14.0",
+    "@vercel/analytics": "^1.0.2",
+    "apisauce": "^3.0.1",
+    "flowbite": "^2.1.1",
+    "flowbite-svelte": "^0.44.19",
+    "flowbite-svelte-icons": "^0.4.5",
+    "moment": "^2.29.4",
+    "prism-svelte": "^0.5.0",
+    "prismjs": "^1.29.0",
+    "radix-icons-svelte": "^1.2.1",
+    "svelte-form": "^0.0.1"
+  }
+}
