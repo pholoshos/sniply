@@ -13,7 +13,8 @@ export const componentNames = [
     "Video",
     "TextField",
     "Image",
-    "Collapse"
+    "Collapse",
+    "Form",
     // Add more component names as needed
 ];
 

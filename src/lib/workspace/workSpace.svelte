@@ -59,7 +59,7 @@
       // Add the dynamically loaded component to the array
       dynamicComponents = [
         ...dynamicComponents,
-        { component: module.default, id: id,config : },
+        { component: module.default, id: id },
       ];
     });
   };

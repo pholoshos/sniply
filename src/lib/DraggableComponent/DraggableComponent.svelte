@@ -248,7 +248,7 @@
 <div
   style="width:{width};position: {isDraggable
     ? 'absolute'
-    : 'relative'}  absolute;;left:  {x}px; top: {y}px; color: {textColor}; padding: {padding}"
+    : 'relative'}  absolute;;left:  {x}px; top: {y}px; color: {textColor}"
   class="draggable"
   on:mousedown={handleMouseDown}
 >
