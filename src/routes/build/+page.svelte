@@ -2,6 +2,7 @@
   import AppContainer from "$lib/AppContainer/AppContainer.svelte";
 import DraggableComponent from "$lib/DraggableComponent/DraggableComponent.svelte";
   import WorkSpace from "$lib/workspace/workSpace.svelte";
+  import { Badge } from "flowbite-svelte";
     
 </script>
 

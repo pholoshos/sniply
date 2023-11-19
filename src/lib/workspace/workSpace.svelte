@@ -93,7 +93,6 @@
     </div>
     {/if}
     
-    <Badge color="green">Mode: WorkSpace</Badge>
     <DraggableComponent isEditor={true} width="1">
       <div class="flex">
         <ComponentsList>
