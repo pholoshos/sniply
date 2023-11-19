@@ -8,14 +8,21 @@
   import TableConfig from "$lib/Table/TableConfig.svelte";
 
   // Array to store dynamically loaded components
+  /**
+   * @type {any[]}
+   */
   let dynamicComponents = [];
   let isChangingProperties = false;
+  /**
+   * @type {{ id: any; } | null}
+   */
   let selectedOnProject = null;
   let isSelectedProjectComponent = false;
 
-  const changeProperties = (component) => {
+  const changeProperties = (/** @type {{ id: any; } | null} */ component) => {
     isSelectedProjectComponent = true;
     console.log(component);
+    // @ts-ignore
     if (component.id === selectedOnProject?.id) {
       isChangingProperties = false;
       isSelectedProjectComponent = false;
@@ -35,7 +42,7 @@
   let configSetting1 = "Default Setting 1";
   let configSetting2 = "Default Setting 2";
 
-  const onDelete = (id) => {
+  const onDelete = (/** @type {any} */ id) => {
     console.log("LOG:::dynamic", dynamicComponents);
     dynamicComponents = dynamicComponents.filter(
       (component) => component.id !== id
@@ -44,12 +51,12 @@
 
   let defaultModal = false;
 
-  const handleSelectComponent = (component) => {
+  const handleSelectComponent = (/** @type {string} */ component) => {
     createDynamicComponent(component);
     console.log(component);
   };
 
-  const createDynamicComponent = (component) => {
+  const createDynamicComponent = (/** @type {string} */ component) => {
     const id = randomString(10);
     projectComponents = [
       ...projectComponents,
