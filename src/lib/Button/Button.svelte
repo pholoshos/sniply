@@ -1,5 +1,10 @@
 <script>
+// @ts-nocheck
+
   import { Button } from "flowbite-svelte";
 
+  export let label = ""
+  export let color = "primary";
+
 </script>
-<Button>Click Me</Button>
+<Button   color={color}>{label}</Button>

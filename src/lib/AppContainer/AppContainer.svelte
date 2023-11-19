@@ -1,9 +1,10 @@
 <script>
-  import DraggableComponent from "$lib/DraggableComponent/DraggableComponent.svelte";
+  import ConfigurationTab from "$lib/ConfigurationTab/ConfigurationTab.svelte";
+import DraggableComponent from "$lib/DraggableComponent/DraggableComponent.svelte";
   import AppNavbar from "$lib/navbar/AppNavbar.svelte";
 
 </script>
-<DraggableComponent>
+<DraggableComponent >
     <div class="w-screen ">
         <AppNavbar></AppNavbar>
         <div class=" h-screen w-screen">

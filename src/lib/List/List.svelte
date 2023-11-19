@@ -1,5 +1,6 @@
 <script>
   import { Listgroup } from "flowbite-svelte";
+  export let width = "100%"
   let buttons = [
     { name: "Profile", mycustomfield: "data1", current: true },
     { name: "Settings", mycustomfield: "data2" },
@@ -14,10 +15,11 @@
 </script>
 
 <Listgroup
+  style="width:{width}"
   active
   items={buttons}
   let:item
-  class="w-48"
+  class="w-96"
   on:click={(e) => alert(Object.entries(e.detail))}
 >
   {item.name}
