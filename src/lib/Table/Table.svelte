@@ -12,8 +12,11 @@
     TableHeadCell,
     TableSearch,
   } from "flowbite-svelte";
+  
+
   import { onMount } from "svelte";
   import { getData } from "../../utils/getData";
+  
 
   let searchTerm = "";
 
@@ -75,7 +78,8 @@
   </TableSearch>
   {#if !data.length}
     <div class=" m-auto">
-      <img class=" w-96 mx-auto" alt="" src="https://i.pinimg.com/originals/52/4c/6c/524c6c3d7bd258cd165729ba9b28a9a2.png">
+      <img class=" w-96 mx-auto" alt="" src="https://www.kreuzbergkinder.com/_nuxt/img/search_no.1ddc8c4.jpg">
+      <p>No data</p>
     </div>
   {/if}
 </div>

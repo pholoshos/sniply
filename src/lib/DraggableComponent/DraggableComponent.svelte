@@ -1,10 +1,10 @@
 <!-- DraggableDiv.svelte -->
 <script>
-// @ts-nocheck
+  // @ts-nocheck
 
   import { Button, Dropdown, DropdownItem, Input } from "flowbite-svelte";
   import {
-  BookOutline,
+    BookOutline,
     CalendarWeekSolid,
     EditOutline,
     EyeOutline,
@@ -12,15 +12,30 @@
     FileCopyOutline,
     TrashBinOutline,
   } from "flowbite-svelte-icons";
+
   import { createEventDispatcher } from "svelte";
   import { colorOptions } from "../../utils/Colors";
+  import JabDB from "jabulane-db";
+
+  // Create an instance of JabDB with the appropriate API base URL and API key
+  const jabdb = new JabDB("http://localhost:3000/jabdb/", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDlkYWI2ZjM5NjI3YzAwMjg1MzdlMjMiLCJpYXQiOjE2OTI2MTI3MTQsImV4cCI6MTcyNDE3MDMxNH0.M_8BU3-Etq6SPH79asslRvEbgo9U8b7vGp_ih9qBxU8");
+
+  // Example: Get all collection names
+  jabdb
+    .getAllCollections()
+    .then((collections) => {
+      console.log("All Collections:", collections);
+    })
+    .catch((error) => {
+      console.error("Error:", error.message);
+    });
 
   let x = 0;
   let y = 0;
   let zIndex = 1; // Initial z-index value
   let isDragging = false;
   let isDraggable = true;
-  export let isEditor = false
+  export let isEditor = false;
   let label = "My Component";
   export let dynamicComponent = null;
   let isResizable = true;
@@ -46,13 +61,13 @@
     isHidden = !isHidden;
   }
 
-  function handleMouseDown(event) {
+  const handleMouseDown = (event)=> {
     isDragging = true;
 
     const offsetX = event.clientX - x;
     const offsetY = event.clientY - y;
 
-    function handleMouseMove(event) {
+    const handleMouseMove =(event)  =>{
       if (isDragging && isDraggable) {
         x = isSnapping
           ? Math.round(event.clientX - offsetX)
@@ -63,7 +78,7 @@
       }
     }
 
-    function handleMouseUp() {
+    const handleMouseUp =()=> {
       isDragging = false;
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
@@ -85,7 +100,7 @@
     span,
   };
 
-  function handleButtonClick() {
+  const handleButtonClick =() =>{
     isConfiguring = true;
     dispatch("configure", {
       width,
@@ -112,14 +127,14 @@
     };
   }
 
-  function increaseZIndex() {
+  const increaseZIndex =() =>{
     zIndex += 1;
   }
 
-  function decreaseZIndex() {
+  const decreaseZIndex = () =>{
     zIndex -= 1;
   }
-  function appendClasses(classes) {
+  const appendClasses = (classes)=> {
     return classes.join(" ");
   }
 </script>
@@ -213,12 +228,16 @@
         on:change={handleButtonClick}
         on:selected={(value) => (color = value)}
         bind:value={color}
-        class="mt-1 p-2 border rounded-md w-full">
-        {#each colorOptions as colorOption }
-              <DropdownItem on:click={()=>{color =colorOption;handleButtonClick()}}>{colorOption}</DropdownItem>
+        class="mt-1 p-2 border rounded-md w-full"
+      >
+        {#each colorOptions as colorOption}
+          <DropdownItem
+            on:click={() => {
+              color = colorOption;
+              handleButtonClick();
+            }}>{colorOption}</DropdownItem
+          >
         {/each}
-    
-      
       </Dropdown>
     </div>
     <div class="config-Input">
@@ -264,8 +283,8 @@
     >
 
     <Button size="xs" color="alternative" on:click={onDelete}
-    ><BookOutline size="xs" /></Button
-  >
+      ><BookOutline size="xs" /></Button
+    >
     <Button size="xs" color="alternative" on:click={onHide}>
       {#if isHidden}
         <EyeSlashOutline size="xs" />

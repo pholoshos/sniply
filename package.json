@@ -34,6 +34,7 @@
     "flowbite": "^2.1.1",
     "flowbite-svelte": "^0.44.19",
     "flowbite-svelte-icons": "^0.4.5",
+    "jabulane-db": "^1.0.4",
     "moment": "^2.29.4",
     "prism-svelte": "^0.5.0",
     "prismjs": "^1.29.0",
