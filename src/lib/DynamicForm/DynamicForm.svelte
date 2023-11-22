@@ -26,9 +26,12 @@
         <br />
     </div>
     {/each}
+
+    <slot></slot>
     <div class="flex">
         <Button color="alternative"  on:click={onSave}>Save</Button>
     </div>
+
     
   </form>
 {/if}

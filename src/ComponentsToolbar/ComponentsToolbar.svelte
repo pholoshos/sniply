@@ -1,15 +1,40 @@
 <script>
   import { Button } from "flowbite-svelte";
-  import { GearSolid } from "flowbite-svelte-icons";
+  import {
+    DownloadOutline,
+    GearSolid,
+    TrashBinOutline,
+  } from "flowbite-svelte-icons";
 
   export let onConfig = () => {};
+  export let onDelete = () => {};
+  export let onDownload = () => {};
 </script>
 
 <div class="container">
   <div class="toolbar">
-    <Button on:click={onConfig} class="Button" size="xs" color="alternative"
-      ><GearSolid size="xs" /></Button
-    >
+    {#if onConfig}
+      <Button on:click={onConfig} class="Button" size="xs" color="alternative"
+        ><GearSolid size="xs" /></Button
+      >
+    {/if}
+
+    {#if onDownload}
+      <Button
+        on:click={onDownload}
+        class="Button"
+        size="xs"
+        color="alternative"
+      >
+        <DownloadOutline />
+      </Button>
+    {/if}
+
+    {#if onDelete}
+      <Button on:click={onDelete} class="Button" size="xs" color="alternative"
+        ><TrashBinOutline size="xs" /></Button
+      >
+    {/if}
   </div>
 </div>
 
