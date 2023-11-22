@@ -18,7 +18,10 @@
   import JabDB from "jabulane-db";
 
   // Create an instance of JabDB with the appropriate API base URL and API key
-  const jabdb = new JabDB("http://localhost:3000/jabdb/", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDlkYWI2ZjM5NjI3YzAwMjg1MzdlMjMiLCJpYXQiOjE2OTI2MTI3MTQsImV4cCI6MTcyNDE3MDMxNH0.M_8BU3-Etq6SPH79asslRvEbgo9U8b7vGp_ih9qBxU8");
+  const jabdb = new JabDB(
+    "http://localhost:3000/jabdb/",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDlkYWI2ZjM5NjI3YzAwMjg1MzdlMjMiLCJpYXQiOjE2OTI2MTI3MTQsImV4cCI6MTcyNDE3MDMxNH0.M_8BU3-Etq6SPH79asslRvEbgo9U8b7vGp_ih9qBxU8"
+  );
 
   // Example: Get all collection names
   jabdb
@@ -61,13 +64,13 @@
     isHidden = !isHidden;
   }
 
-  const handleMouseDown = (event)=> {
+  const handleMouseDown = (event) => {
     isDragging = true;
 
     const offsetX = event.clientX - x;
     const offsetY = event.clientY - y;
 
-    const handleMouseMove =(event)  =>{
+    const handleMouseMove = (event) => {
       if (isDragging && isDraggable) {
         x = isSnapping
           ? Math.round(event.clientX - offsetX)
@@ -76,17 +79,17 @@
           ? Math.round(event.clientY - offsetY)
           : event.clientY - offsetY;
       }
-    }
+    };
 
-    const handleMouseUp =()=> {
+    const handleMouseUp = () => {
       isDragging = false;
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
-    }
+    };
 
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseup", handleMouseUp);
-  }
+  };
   let config = {
     width,
     x,
@@ -100,7 +103,7 @@
     span,
   };
 
-  const handleButtonClick =() =>{
+  const handleButtonClick = () => {
     isConfiguring = true;
     dispatch("configure", {
       width,
@@ -125,18 +128,18 @@
       label,
       span,
     };
-  }
+  };
 
-  const increaseZIndex =() =>{
+  const increaseZIndex = () => {
     zIndex += 1;
-  }
+  };
 
-  const decreaseZIndex = () =>{
+  const decreaseZIndex = () => {
     zIndex -= 1;
-  }
-  const appendClasses = (classes)=> {
+  };
+  const appendClasses = (classes) => {
     return classes.join(" ");
-  }
+  };
 </script>
 
 {#if isConfiguring}
