@@ -1,38 +1,32 @@
-# create-svelte
+# SvelteFlow - No-Code Platform
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+SvelteFlow is a powerful and intuitive no-code platform built on the Svelte framework, designed to empower users to create web applications without writing a single line of code. Whether you're a designer, entrepreneur, or hobbyist, SvelteFlow provides a seamless and efficient way to bring your ideas to life.
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **Svelte-Powered:** Built on the robust and reactive Svelte framework, ensuring high performance and a delightful development experience.
+  
+- **Drag-and-Drop Interface:** Easily design and arrange components with a user-friendly drag-and-drop interface, making application creation a breeze.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+- **Extensive Component Library:** Choose from a rich library of pre-built components to add functionality to your application, from UI elements to advanced data processing.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+- **Real-Time Preview:** Instantly see the changes you make in real-time, allowing for quick iterations and a more efficient development process.
 
-## Developing
+- **Responsive Design:** Build applications that look great on any device with SvelteFlow's responsive design capabilities.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+- **One-Click Deployment:** Deploy your creations with a single click, making it easy to share your applications with the world.
 
-```bash
-npm run dev
+## Components
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+### Jabulane DB Integration
 
-## Building
+SvelteFlow makes use of Jabulane DB, a lightweight and fast NoSQL database, for storing the application context. This allows users to persistently store and retrieve data within their applications.
 
-To create a production version of your app:
+To integrate Jabulane DB into your components, follow these steps:
 
-```bash
-npm run build
-```
+1. Install Jabulane DB: `npm install jabulane-db`
 
-You can preview the production build with `npm run preview`.
+2. Import Jabulane DB into your Svelte components:
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+   ```javascript
+   import jabulane from 'jabulane-db';
