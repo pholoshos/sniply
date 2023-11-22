@@ -2,8 +2,12 @@
   import { Button,Label,Input } from "flowbite-svelte";
   import { GearSolid } from "flowbite-svelte-icons";
   import ComponentsToolbar from "../../ComponentsToolbar/ComponentsToolbar.svelte";
+  import DynamicForm from "$lib/DynamicForm/DynamicForm.svelte";
+  import { FormConfig } from "./config";
 
     export let padding = "4px";
+    export let isConfig = false;
+    export let width = "100px";
 
     export let formData  = [
       {
@@ -34,6 +38,11 @@
       console.log(formValues);
       // Handle form submission or further processing here
     }
+
+    const onConfig = ()=>{
+      isConfig = !isConfig;
+    }
+
   </script>
   
   <style>
@@ -42,8 +51,17 @@
     }
   </style>
 
-  <ComponentsToolbar/>
-  <form style="padding: {padding};" on:submit|preventDefault={submitForm}>
+  <ComponentsToolbar onConfig={onConfig}/>
+
+  <div class="flex w-screen">
+    {#if isConfig}
+    <div class=" h-screen p-8 rounded-lg bg-gray-300" style="width: 300px;">
+      <h2>Form Congiguration</h2>
+      <DynamicForm formData={FormConfig}/>
+    </div>
+    {/if}
+
+  <form style="padding: {padding}; width:{width}" on:submit|preventDefault={submitForm}>
     {#each formData as { name, placeholder, value }}
       <div class="form-field">
         <Label for={name}>{name}</Label>
@@ -53,4 +71,6 @@
   
     <Button type="submit">Submit</Button>
   </form>
+  </div>
+
   
