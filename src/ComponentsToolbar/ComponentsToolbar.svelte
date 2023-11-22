@@ -6,9 +6,18 @@
     TrashBinOutline,
   } from "flowbite-svelte-icons";
 
-  export let onConfig = () => {};
-  export let onDelete = () => {};
-  export let onDownload = () => {};
+  /**
+   * @type {(() => void) | null | undefined}
+   */
+  export let onConfig = null;
+  /**
+   * @type {(() => void) | null | undefined}
+   */
+  export let onDelete = null;
+  /**
+   * @type {(() => void) | null | undefined}
+   */
+  export let onDownload = null;
 </script>
 
 <div class="container">

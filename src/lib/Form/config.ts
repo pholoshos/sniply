@@ -16,4 +16,5 @@ export const FormConfig = [
         "type": "select",
         "options": ["user", "detail", "class", "apps"]
     }
+    
 ]
