@@ -1,4 +1,4 @@
-# SvelteFlow - No-Code Platform
+# SvelteFlow
 
 SvelteFlow is a powerful and intuitive no-code platform built on the Svelte framework, designed to empower users to create web applications without writing a single line of code. Whether you're a designer, entrepreneur, or hobbyist, SvelteFlow provides a seamless and efficient way to bring your ideas to life.
 
