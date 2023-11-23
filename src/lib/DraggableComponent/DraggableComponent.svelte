@@ -57,9 +57,9 @@
   export let isHidden = false;
   export let width = "full";
   let isConfiguring = false;
-  export let id =  randomString(10)
+  export let id = randomString(10);
 
-  let isSnapping = false; // New: Flag for snapping
+  let isSnapping = true; // New: Flag for snapping
   export let span = "My Component"; // New: span for the component
 
   // Style properties
@@ -69,6 +69,20 @@
   export let padding = "10px";
 
   export let value = "";
+
+  let config = {
+    width,
+    x,
+    y,
+    backgroundColor,
+    label,
+    textColor,
+    color,
+    padding,
+    value,
+    span,
+    id,
+  };
 
   // Create an event dispatcher for sending events to parent components
   const dispatch = createEventDispatcher();
@@ -92,6 +106,7 @@
         y = isSnapping
           ? Math.round(event.clientY - offsetY)
           : event.clientY - offsetY;
+        
       }
     };
 
@@ -99,29 +114,17 @@
       isDragging = false;
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
+   
     };
 
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseup", handleMouseUp);
   };
 
-  let config = {
-    width,
-    x,
-    y,
-    backgroundColor,
-    label,
-    textColor,
-    color,
-    padding,
-    value,
-    span,
-    id,
-  };
+  const handleButtonClick = (openBar= false) => {
+    isConfiguring = openBar;
 
-  const handleButtonClick = () => {
-    isConfiguring = true;
-    const _config = {
+    let _config = {
       width,
       x,
       y,
@@ -132,19 +135,15 @@
       padding,
       value,
       span,
-      id
+      id,
     };
 
     dispatch("configure", _config);
-    console.log("LOG:::id ", dynamicComponent?.id);
     updateComponentInConfig("home", dynamicComponent?.id, {
       ..._config,
       componentName: dynamicComponent.name,
       id: dynamicComponent?.component?.id,
     });
-
-    console.log(dynamicComponent?.component?.id);
-
     config = _config;
   };
 
@@ -293,7 +292,7 @@
   on:mousedown={handleMouseDown}
 >
   <div class="toolbar space-x-2 flex">
-    <Button size="xs" color="alternative" on:click={handleButtonClick}>
+    <Button size="xs" color="alternative" on:click={()=>handleButtonClick(true)}>
       <EditOutline size="xs" /></Button
     >
     <Button size="xs" color="alternative" on:click={handleButtonClick}>

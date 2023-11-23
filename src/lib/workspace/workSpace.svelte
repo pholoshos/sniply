@@ -122,7 +122,8 @@
         (
           /** @type {{ componentName: string; id: string | undefined; }} */ comp
         ) => {
-          createDynamicComponent(comp.componentName, comp.id, comp);
+          console.log("LOG:::comp", comp);
+          createDynamicComponent(comp.componentName, comp?.id, comp);
         }
       );
 
@@ -161,21 +162,20 @@
 
   const createDynamicComponent = (
     /** @type {string} */ component,
-    componentId = "",
+    /** @type {string | undefined} */ componentId,
     data = {}
   ) => {
-    const id = componentId;
-    addComponentToPage("home", { componentName: component, id: id,...data });
+    addComponentToPage("home", { componentName: component, id: componentId,...data });
 
     projectComponents = [
       ...projectComponents,
-      { componentName: component, id: id },
+      { componentName: component, id: componentId },
     ];
     import(`../${component}/${component}.svelte`).then((module) => {
       // Add the dynamically loaded component to the array
       dynamicComponents = [
         ...dynamicComponents,
-        { component: module.default, id: id, name: component, ...data },
+        { component: module.default, id: componentId, name: component, ...data },
       ];
 
       console.log("LOG:::cos", dynamicComponents);
@@ -259,6 +259,7 @@
           onDelete={() => onDelete(dynamicComponent.id)}
           {dynamicComponent}
           {...dynamicComponent}
+          id={dynamicComponent?.id}
         />
       {/each}
     </div>

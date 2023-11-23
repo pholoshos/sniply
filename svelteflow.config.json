@@ -16,9 +16,9 @@
           {
             "componentName": "LoginView",
             "width": "50%",
-            "x": 57,
-            "y": 156,
-            "id": "124",
+            "x": 269,
+            "y": 147,
+            "id": "2121",
             "backgroundColor": "",
             "label": "My Component",
             "textColor": "#000",
@@ -26,6 +26,20 @@
             "padding": "10px",
             "value": "",
             "span": "My Component"
+          },
+          {
+            "componentName": "SideNav",
+            "id": "124124",
+            "width": "",
+            "x": -12,
+            "y": 79,
+            "backgroundColor": "white",
+            "label": "Button",
+            "textColor": "black",
+            "color": "primary",
+            "padding": "4px",
+            "value": "Button",
+            "span": "1"
           }
         ]
       },
