@@ -64,7 +64,7 @@
 
 <div class="flex w-screen">
   {#if isConfig}
-    <div class=" h-screen p-8 rounded-lg bg-gray-300" style="width: 300px;">
+    <div class=" h-screen p-4 rounded-md bg-white border" style="width: 300px;">
       <h2>Form Congiguration</h2>
       <DynamicForm formData={FormConfig}>
         <div class="bg-white p-4 mb-4 rounded-md">
