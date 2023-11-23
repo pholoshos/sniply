@@ -12,9 +12,6 @@ sniply is a powerful and intuitive no-code platform built on the Svelte framewor
 
 - **Real-Time Preview:** Instantly see the changes you make in real-time, allowing for quick iterations and a more efficient development process.
 
-- **Responsive Design:** Build applications that look great on any device with SvelteFlow's responsive design capabilities.
-
-- **One-Click Deployment:** Deploy your creations with a single click, making it easy to share your applications with the world.
 
 ## Components
 
