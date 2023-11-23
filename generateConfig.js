@@ -16,8 +16,8 @@ const animateLoadingMessage =(message, duration) =>{
 }
 
 try {
-  // Read the configuration data from svelteflow.json
-  const configFileContent = fs.readFileSync("svelteflow.json", "utf-8");
+  // Read the configuration data from sniply.json
+  const configFileContent = fs.readFileSync("sniply.json", "utf-8");
   const appConfig = JSON.parse(configFileContent);
 
   const config = {
@@ -25,7 +25,7 @@ try {
   };
 
   const configString = JSON.stringify(config, null, 2);
-  const configFilePath = "svelteflow.config.json";
+  const configFilePath = "sniply.config.json";
 
   fs.writeFileSync(configFilePath, configString);
   
