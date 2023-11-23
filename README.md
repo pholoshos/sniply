@@ -1,7 +1,8 @@
 # sniply
 1. Install Sniply DB: `npm i -g sniply-cli`
 2. Create Sniply-ci project  `sniply-cli create <ProjectName>`
-sniply is a powerful and intuitive no-code platform built on the Svelte framework, designed to empower users to create web applications without writing a single line of code. Whether you're a designer, entrepreneur, or hobbyist, sniply provides a seamless and efficient way to bring your ideas to life.
+
+Sniply is a powerful and intuitive no-code platform built on the Svelte framework, designed to empower users to create web applications without writing a single line of code. Whether you're a designer, entrepreneur, or hobbyist, sniply provides a seamless and efficient way to bring your ideas to life.
 
 ## Features
 
