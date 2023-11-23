@@ -1,0 +1,112 @@
+{
+    "appName": "MySvelteFlowApp",
+    "layouts": {
+        "default": {
+            "background": "#f0f0f0"
+        },
+        "dashboard": {
+            "background": "#e6e6e6"
+        }
+    },
+    "pages": {
+        "home": {
+            "layout": "default",
+            "route": "/",
+            "components": [
+                {
+                    "id": "welcomeHeading",
+                    "type": "heading",
+                    "text": "Welcome to SvelteFlow!",
+                    "x": 50,
+                    "y": 20,
+                    "styles": {
+                        "fontSize": "24px",
+                        "fontWeight": "bold",
+                        "color": "#333"
+                    }
+                },
+                {
+                    "id": "introParagraph",
+                    "type": "paragraph",
+                    "text": "This is the home page.",
+                    "x": 50,
+                    "y": 50,
+                    "styles": {
+                        "fontSize": "16px",
+                        "lineHeight": "1.5",
+                        "color": "#555"
+                    }
+                },
+                {
+                    "id": "contactForm",
+                    "type": "form",
+                    "name": "contactForm",
+                    "x": 50,
+                    "y": 80,
+                    "fields": [
+                        {
+                            "id": "nameInput",
+                            "type": "text",
+                            "label": "Name",
+                            "name": "name",
+                            "styles": {
+                                "width": "100%",
+                                "padding": "10px",
+                                "marginBottom": "15px",
+                                "border": "1px solid #ddd"
+                            }
+                        },
+                        {
+                            "id": "emailInput",
+                            "type": "email",
+                            "label": "Email",
+                            "name": "email",
+                            "styles": {
+                                "width": "100%",
+                                "padding": "10px",
+                                "marginBottom": "15px",
+                                "border": "1px solid #ddd"
+                            }
+                        },
+                        {
+                            "id": "submitBtn",
+                            "type": "submit",
+                            "label": "Submit",
+                            "action": "submitForm",
+                            "styles": {
+                                "padding": "10px 15px",
+                                "backgroundColor": "#4caf50",
+                                "color": "#fff",
+                                "border": "none",
+                                "cursor": "pointer"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dashboard": {
+            "layout": "dashboard",
+            "route": "/dashboard",
+            "components": [
+                {
+                    "id": "userTable",
+                    "type": "table",
+                    "columns": [
+                        "ID",
+                        "Name",
+                        "Email"
+                    ],
+                    "data": "/api/users",
+                    "x": 20,
+                    "y": 20,
+                    "action": "fetchUserTableData",
+                    "styles": {
+                        "width": "100%",
+                        "borderCollapse": "collapse"
+                    }
+                }
+            ]
+        }
+    }
+}

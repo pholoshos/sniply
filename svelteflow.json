@@ -1,0 +1,21 @@
+{
+    "appName" : "Starter Project",
+    "appVersion" : "",
+    "appDescription" : "",
+    "appId" : "123svelteflow",
+    "appAuthor" : "",
+    "appHomepage" : "",
+    "appLicense" : "",
+    "appRepository" : "",
+    "appSupport" : "",
+    "appDependencies" : [
+        "core"
+    ],
+    "appConflictDependencies" : [
+        "core"
+    ],
+    "appDisableForUser" : false,
+    "appDisableForGroups" : [
+        "admin"
+    ]
+}

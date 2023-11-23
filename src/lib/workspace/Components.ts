@@ -1,5 +1,6 @@
 export const componentNames = [
     "Toolbar",
+    "LoginView",
     "Table",
     "SideNav",
     "Button",

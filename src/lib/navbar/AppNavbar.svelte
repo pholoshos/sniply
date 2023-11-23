@@ -7,7 +7,7 @@ import { Navbar, NavBrand, NavLi, NavUl, NavHamburger, Button, Input, Avatar } f
   <Navbar class='bg-gray-200' >
     <NavBrand href="/">
       <img src="/pdd.png" class="mr-3 h-12 sm:h-12 rounded-lg" alt="Flowbite Logo" />
-      <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">ppd</span>
+      <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">svelteflow</span>
     </NavBrand>
     <NavHamburger  />
     <NavUl >

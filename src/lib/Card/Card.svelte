@@ -1,8 +1,9 @@
 <script>
   import { Card } from "flowbite-svelte";
+  export let backgroundColor = "white";
 </script>
 
-<Card>
+<Card style=" background-color:{backgroundColor}">
   <h5
     class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
   >

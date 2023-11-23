@@ -26,6 +26,8 @@
   export let modelName = "";
   export const data = [];
   export const dataId = "";
+  export let backgroundColor ='white';
+  export let padding = '10px'
 
   onMount(() => {
     getData(modelName).then((data) => {
@@ -37,7 +39,7 @@
 
 </script>
 
-<div class="h-screen">
+<div class="h-screen" style="background-color: {backgroundColor}; padding: {padding}">
   <div>
     <Button on:click={() => onAdd()} color="alternative">Add</Button>
     <Button on:click={() => onDelete(seletedData)} color="alternative">

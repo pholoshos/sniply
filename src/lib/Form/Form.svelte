@@ -1,7 +1,7 @@
 <script>
   import { Button, Label, Input, Select } from "flowbite-svelte";
   import { GearSolid } from "flowbite-svelte-icons";
-  import ComponentsToolbar from "../../ComponentsToolbar/ComponentsToolbar.svelte";
+  import ComponentsToolbar from "../ComponentsToolbar/ComponentsToolbar.svelte";
   import DynamicForm from "$lib/DynamicForm/DynamicForm.svelte";
   import { FormConfig } from "./config";
   import List from "$lib/List/List.svelte";

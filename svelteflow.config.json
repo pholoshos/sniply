@@ -1,0 +1,39 @@
+{
+    "appName": "MySvelteFlowApp",
+    "layouts": {
+      "default": {
+        "background": "#f0f0f0"
+      },
+      "dashboard": {
+        "background": "#e6e6e6"
+      }
+    },
+    "pages": {
+      "home": {
+        "layout": "default",
+        "route": "/",
+        "components": [
+          {
+            "componentName": "LoginView",
+            "width": "50%",
+            "x": 57,
+            "y": 156,
+            "id": "124",
+            "backgroundColor": "",
+            "label": "My Component",
+            "textColor": "#000",
+            "color": "primary",
+            "padding": "10px",
+            "value": "",
+            "span": "My Component"
+          }
+        ]
+      },
+      "dashboard": {
+        "layout": "dashboard",
+        "route": "/dashboard",
+        "components": []
+      }
+    }
+  }
+  

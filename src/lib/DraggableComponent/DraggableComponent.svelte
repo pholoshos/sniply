@@ -1,8 +1,18 @@
 <!-- DraggableDiv.svelte -->
 <script>
   // @ts-nocheck
-
-  import { Button, Dropdown, DropdownItem, Input } from "flowbite-svelte";
+  import {
+    appState,
+    updateAppState,
+    updateComponentInConfig,
+  } from "../../store/app";
+  import {
+    Badge,
+    Button,
+    Dropdown,
+    DropdownItem,
+    Input,
+  } from "flowbite-svelte";
   import {
     BookOutline,
     CalendarWeekSolid,
@@ -64,6 +74,11 @@
     isHidden = !isHidden;
   }
 
+  const unsubscribe = appState.subscribe((state) => {
+    // Handle state changes here
+    //console.log('State updated:', state);
+  });
+
   const handleMouseDown = (event) => {
     isDragging = true;
 
@@ -90,6 +105,7 @@
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseup", handleMouseUp);
   };
+
   let config = {
     width,
     x,
@@ -105,29 +121,30 @@
 
   const handleButtonClick = () => {
     isConfiguring = true;
-    dispatch("configure", {
+    const _config = {
       width,
       x,
       y,
       backgroundColor,
+      label,
       textColor,
+      color,
       padding,
       value,
-      color,
-      label,
-    });
-    config = {
-      width,
-      x,
-      color,
-      y,
-      backgroundColor,
-      textColor,
-      padding,
-      value,
-      label,
       span,
     };
+
+    dispatch("configure", _config);
+    console.log("LOG:::id ", dynamicComponent?.id);
+    updateComponentInConfig("home", dynamicComponent?.id, {
+      ..._config,
+      componentName: dynamicComponent.name,
+      id: dynamicComponent?.component?.id,
+    });
+
+    console.log(dynamicComponent?.component?.id);
+
+    config = _config;
   };
 
   const increaseZIndex = () => {
@@ -297,10 +314,9 @@
     </Button>
     <!-- Add other toolbar buttons if needed -->
   </div>
-  <div
-    class={appendClasses([`w-${width}`, isHidden ? "hidden" : " "])}
-    style={backgroundColor ? `background-color: ${backgroundColor};` : ""}
-  >
+  <!-- <Badge color='indigo'  class='mb-2 absolute'>Beta</Badge> -->
+
+  <div class={appendClasses([`w-${width}`, isHidden ? "hidden" : " "])}>
     <div>
       <svelte:component this={dynamicComponent?.component} {...config} />
       <slot />
