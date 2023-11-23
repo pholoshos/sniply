@@ -237,17 +237,7 @@
         <DraggableComponent
           onDelete={() => onDelete(dynamicComponent.id)}
           {dynamicComponent}
-          width={dynamicComponent?.width}
-          x={dynamicComponent?.x}
-          y={dynamicComponent?.y}
-          padding={dynamicComponent?.padding}
-          backgroundColor={dynamicComponent?.backgroundColor}
-          label={dynamicComponent?.label}
-          textColor={dynamicComponent?.textColor}
-          color={dynamicComponent?.color}
-          value={dynamicComponent?.value}
-          span={dynamicComponent?.span}
-          isDraggable={dynamicComponent?.isDraggable}
+          {...dynamicComponent}
         />
       {/each}
     </div>
