@@ -26,6 +26,7 @@
   import { createEventDispatcher } from "svelte";
   import { colorOptions } from "../../utils/Colors";
   import JabDB from "jabulane-db";
+  import { randomString } from "../../utils/getRandomString";
 
   // Create an instance of JabDB with the appropriate API base URL and API key
   const jabdb = new JabDB(
@@ -56,6 +57,8 @@
   export let isHidden = false;
   export let width = "full";
   let isConfiguring = false;
+  export let id =  randomString(10)
+
   let isSnapping = false; // New: Flag for snapping
   export let span = "My Component"; // New: span for the component
 
@@ -74,11 +77,7 @@
     isHidden = !isHidden;
   }
 
-  const unsubscribe = appState.subscribe((state) => {
-    // Handle state changes here
-    //console.log('State updated:', state);
-  });
-
+  // New: Handle mouse down event
   const handleMouseDown = (event) => {
     isDragging = true;
 
@@ -117,6 +116,7 @@
     padding,
     value,
     span,
+    id,
   };
 
   const handleButtonClick = () => {
@@ -132,6 +132,7 @@
       padding,
       value,
       span,
+      id
     };
 
     dispatch("configure", _config);

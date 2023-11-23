@@ -41,12 +41,7 @@
   let selectedOnProject = null;
   let isSelectedProjectComponent = false;
 
-  const unsubscribe = appState.subscribe((state) => {
-    // Handle state changes here
-    console.log("State updated:", state);
-  });
-
-  function updateState() {
+  const updateState = () => {
     const newState = {
       ...$appState, // Access the current state using the $ prefix
       projectComponents: "New Svelte App Name",
@@ -55,7 +50,7 @@
 
     // Update the state using the function from the store
     updateAppState(newState);
-  }
+  };
 
   const changeProperties = (/** @type {{ id: any; } | null} */ component) => {
     isSelectedProjectComponent = true;
@@ -88,7 +83,6 @@
   };
 
   const jsonData = {
-    message: "Hello, this data will be saved to a JSON file!",
     timestamp: new Date().toISOString(),
   };
 
@@ -120,23 +114,44 @@
   onMount(() => {
     const _c = loadConfig().then((config) => {
       //placeholder page is home for now
-      const _dynamicComponents = config.pages["home"].components.map(
+      config.pages["home"].components.map(
         (
           /** @type {{ componentName: string; id: string | undefined; }} */ comp
         ) => {
-          return createDynamicComponent(comp.componentName, comp.id, comp);
+          createDynamicComponent(comp.componentName, comp.id, comp);
         }
       );
 
-      dynamicComponents = _dynamicComponents;
-      console.log("LOG:::cos", _dynamicComponents);
+      let _dynamicComponents = config?.pages["home"]?.components?.map((val) => {
+        return {
+          ...val,
+          component: val?.componentName,
+          id: val?.id,
+        };
+      });
+
       projectConfig = config;
     });
     // projectConfig = $appState.projectConfig; // Alternatively, you can use the $ prefix directly
   });
 
   const handleSelectComponent = (/** @type {string} */ component) => {
-    createDynamicComponent(component);
+    const id =randomString(10);
+    const defaultData = {
+      width: "",
+      x: 0,
+      id,
+      y: 0,
+      backgroundColor: "white",
+      label: "Button",
+      textColor: "black",
+      color: "primary",
+      padding: "4px",
+      value: "Button",
+      span: "1",
+    };
+
+    createDynamicComponent(component,id , defaultData);
     console.log(component);
   };
 
@@ -145,8 +160,8 @@
     componentId = "",
     data = {}
   ) => {
-    const id = componentId ? componentId : randomString(10);
-    addComponentToPage("home", { componentName: component, id: id });
+    const id = componentId;
+    addComponentToPage("home", { componentName: component, id: id,...data });
 
     projectComponents = [
       ...projectComponents,
@@ -158,6 +173,8 @@
         ...dynamicComponents,
         { component: module.default, id: id, name: component, ...data },
       ];
+
+      console.log("LOG:::cos", dynamicComponents);
     });
   };
 </script>
