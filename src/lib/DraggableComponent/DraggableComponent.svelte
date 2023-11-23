@@ -43,29 +43,29 @@
       console.error("Error:", error.message);
     });
 
-  let x = 0;
-  let y = 0;
+  export let x = 0;
+  export let y = 0;
   let zIndex = 1; // Initial z-index value
   let isDragging = false;
-  let isDraggable = true;
+  export let isDraggable = true;
   export let isEditor = false;
-  let label = "My Component";
+  export let label = "My Component";
   export let dynamicComponent = null;
   let isResizable = true;
   export let onDelete = () => {};
-  let isHidden = false;
+  export let isHidden = false;
   export let width = "full";
   let isConfiguring = false;
   let isSnapping = false; // New: Flag for snapping
-  let span = "My Component"; // New: span for the component
+  export let span = "My Component"; // New: span for the component
 
   // Style properties
-  let backgroundColor = "";
-  let color = "primary";
-  let textColor = "#000";
-  let padding = "10px";
+  export let backgroundColor = "";
+  export let color = "primary";
+  export let textColor = "#000";
+  export let padding = "10px";
 
-  let value = "";
+  export let value = "";
 
   // Create an event dispatcher for sending events to parent components
   const dispatch = createEventDispatcher();

@@ -119,18 +119,20 @@
   // Fetch projectConfig when the component mounts
   onMount(() => {
     const _c = loadConfig().then((config) => {
-
       //placeholder page is home for now
-      const _dynamicComponents = config.pages["home"].components.map((/** @type {{ componentName: string; id: string | undefined; }} */ comp)=>{
-        return createDynamicComponent(comp.componentName,comp.id)
-      });
-      
+      const _dynamicComponents = config.pages["home"].components.map(
+        (
+          /** @type {{ componentName: string; id: string | undefined; }} */ comp
+        ) => {
+          return createDynamicComponent(comp.componentName, comp.id, comp);
+        }
+      );
+
       dynamicComponents = _dynamicComponents;
       console.log("LOG:::cos", _dynamicComponents);
       projectConfig = config;
-      
     });
-   // projectConfig = $appState.projectConfig; // Alternatively, you can use the $ prefix directly
+    // projectConfig = $appState.projectConfig; // Alternatively, you can use the $ prefix directly
   });
 
   const handleSelectComponent = (/** @type {string} */ component) => {
@@ -138,8 +140,12 @@
     console.log(component);
   };
 
-  const createDynamicComponent = (/** @type {string} */ component,componentId="") => {
-    const id =  componentId? componentId: randomString(10);
+  const createDynamicComponent = (
+    /** @type {string} */ component,
+    componentId = "",
+    data = {}
+  ) => {
+    const id = componentId ? componentId : randomString(10);
     addComponentToPage("home", { componentName: component, id: id });
 
     projectComponents = [
@@ -150,7 +156,7 @@
       // Add the dynamically loaded component to the array
       dynamicComponents = [
         ...dynamicComponents,
-        { component: module.default, id: id, name: component },
+        { component: module.default, id: id, name: component, ...data },
       ];
     });
   };
@@ -191,7 +197,7 @@
       </div>
     {/if}
 
-    <DraggableComponent isEditor={true} width="1">
+    <DraggableComponent x={934} y={67} isEditor={true} width="1">
       <div class="flex">
         <ComponentsList>
           <div>
@@ -231,7 +237,17 @@
         <DraggableComponent
           onDelete={() => onDelete(dynamicComponent.id)}
           {dynamicComponent}
-          width="96"
+          width={dynamicComponent?.width}
+          x={dynamicComponent?.x}
+          y={dynamicComponent?.y}
+          padding={dynamicComponent?.padding}
+          backgroundColor={dynamicComponent?.backgroundColor}
+          label={dynamicComponent?.label}
+          textColor={dynamicComponent?.textColor}
+          color={dynamicComponent?.color}
+          value={dynamicComponent?.value}
+          span={dynamicComponent?.span}
+          isDraggable={dynamicComponent?.isDraggable}
         />
       {/each}
     </div>
