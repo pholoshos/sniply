@@ -22,6 +22,7 @@
   import {
     addComponentToPage,
     appState,
+    deleteComponentFromPage,
     updateAppState,
     updateComponentInConfig,
     updateProjectConfig,
@@ -77,9 +78,12 @@
 
   const onDelete = (/** @type {any} */ id) => {
     console.log("LOG:::dynamic", dynamicComponents);
+    
     dynamicComponents = dynamicComponents.filter(
       (component) => component.id !== id
     );
+    deleteComponentFromPage("home", id);
+    
   };
 
   const jsonData = {

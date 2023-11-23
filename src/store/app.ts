@@ -108,3 +108,26 @@ export const addComponentToPage = (pageId:any,component:any) => {
     return updatedState;
   });
 };
+
+
+// Function to delete a component from a page
+export const deleteComponentFromPage = (pageId:any, componentId:any) => {
+  appState.update((currentState) => {
+    const updatedState :any= { ...currentState };
+
+    // Find the specified page by ID
+    const pageToUpdate = updatedState.projectConfig.pages[pageId];
+
+    // Find the index of the component by ID within the page
+    const componentIndex = pageToUpdate.components.findIndex(
+      (component:any) => component.id === componentId
+    );
+
+    // Remove the component if found
+    if (componentIndex !== -1) {
+      pageToUpdate.components.splice(componentIndex, 1);
+    }
+
+    return updatedState;
+  });
+};
