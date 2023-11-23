@@ -119,6 +119,8 @@
   // Fetch projectConfig when the component mounts
   onMount(() => {
     const _c = loadConfig().then((config) => {
+
+      //placeholder page is home for now
       const _dynamicComponents = config.pages["home"].components.map((/** @type {{ componentName: string; id: string | undefined; }} */ comp)=>{
         return createDynamicComponent(comp.componentName,comp.id)
       });
