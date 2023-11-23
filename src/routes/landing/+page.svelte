@@ -1,276 +1,647 @@
-<script>
-  import { goto } from "$app/navigation";
-
-  let title = "Welcome to Splearn";
-
-  let isMobileMenuOpen = false;
-
-  function toggleMobileMenu() {
-    isMobileMenuOpen = !isMobileMenuOpen;
-  }
-
-  let selectedCompany = ""; // Initialize the selected company
-
-  // List of companies (you can customize this list)
-  let companies = [
-    "Softmore Mo",
-    "Nutag",
-    "Afriven Data Group",
-    // Add more companies as needed
-  ];
-
-  function handleCompanyChange(event) {
-    selectedCompany = event.target.value; // Update the selected company when the dropdown changes
-  }
-
-  const getStarted = ()=>{
-    if(selectedCompany){
-      goto('/sign-up/'+selectedCompany);
-    }
-  
-  }
-</script>
-
-<main
-  class="bg-gray-100 min-h-screen flex flex-col items-center justify-center"
->
-  <nav class="bg-white w-full p-4">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
-      <div class="flex">
-        <img alt="splearn" class="w-10 h-10" src="/logo.jpeg"> 
-        <a class="text-2xl font-bold " href="https://splearn.co.za/landing">Splearn</a>
+<!-- svelte-ignore a11y-missing-attribute -->
+<html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Scribbler - a codding landing page template for codrops</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css">
+      <link rel="stylesheet" href="scribbler-global.css">
+      <link rel="stylesheet" href="scribbler-landing.css">
+      <link rel="author" href="humans.txt">
+  </head>
+  <body>
+    <nav>
+      <div class="logo"></div>
+      <ul class="menu">
+        <div class="menu__item toggle"><span></span></div>
+        <li class="menu__item"><a href="doc.html" class="link link--dark"><i class="fa fa-book"></i> Documentation</a></li>
+        <!-- svelte-ignore a11y-invalid-attribute -->
+        <li class="menu__item"><a href="" class="link link--dark"><i class="fa fa-github"></i> Github</a></li>
+      </ul>
+    </nav>
+    <div class="hero">
+      <h1 class="hero__title">Scribbler</h1>
+      <p class="hero__description">Take your markdown notes in terminal</p>
+    </div>
+    <div class="hero__terminal">
+      <pre>
+        <!-- Place your demo code here -->
+        <code class="shell-session demo">svelteflow .. . </code>
+      </pre>
+    </div>
+    <div class="wrapper">
+      <div class="installation">
+        <h3 class="section__title">Installation</h3>
+        <div class="tab__container">
+          <ul class="tab__menu">
+            <li class="tab active" data-tab="mac">mac</li>
+            <li class="tab" data-tab="linux">linux</li>
+            <li class="tab" data-tab="win">win</li>
+          </ul>
+          <pre class="nohighlight code">
+            <code class="tab__pane active mac">$  brew install scribbler</code>
+            <code class="tab__pane linux">$  apt-get install scribbler</code>
+            <code class="tab__pane win">$  gem install scribbler</code>
+          </pre>
+        </div>
       </div>
-      <div class="hidden md:flex space-x-4">
-        <a href="/" class="hover:text-green-500">Home</a>
-        <a href="/sign-in" class="hover:text-green-500">Login</a>
-        <a href="/sign-up" class="hover:text-green-500">Register</a>
-        <!-- Add more navigation links as needed -->
+      <div class="feature">
+        <div class="feature__item">
+          <h3 class="section__title">Fast & Light</h3>
+          <p>Start writing your notes immediately in any terminal! No more time wasted on navigating and opening your text editor.</p>
+        </div>
+        <div class="feature__item">
+          <h3 class="section__title">File Syncing</h3>
+          <p>Save your file in Dropbox then you can access to it from anywhere.</p>
+        </div>
+        <div class="feature__item">
+          <h3 class="section__title">Secure</h3>
+          <p>Encrypt your notes optionally. No one can get to your secrets! </p>
+        </div>
+        <div class="feature__item">
+          <h3 class="section__title">Configuration</h3>
+          <p>Maintain all your settings in a single <span class="code code--inline">config.json</span> file. Never need to redo the setting every single time jotting down a note.</p>
+        </div>
+        <div class="feature__item">
+          <h3 class="section__title">Highlightings</h3>
+          <p>For better readability, scribbler has a clean, beautiful color scheme allow you to scan files fast.</p>
+        </div>
+        <div class="feature__item">
+          <h3 class="section__title">Keybindings</h3>
+          <p>You can expect common keybindings for scribbler. Customize <span class="code code--inline">bindings.json</span> for your own liking! </p>
+        </div>
       </div>
-
-      <div class="md:hidden">
-        <button
-          class="text-green-500 hover:text-green-600"
-          on:click={toggleMobileMenu}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16m-7 6h7"
-            />
-          </svg>
-        </button>
+      <div class="keybinding">
+        <ul class="keybinding__detail">
+          <h3 class="keybinding__title">Default Keybindings</h3>
+          <li>Quit without saving <span class="keybinding__label">Ctrl+C</span></li>
+          <li>Save <span class="keybinding__label">Cmd+S</span></li>
+          <li>Save and Quit <span class="keybinding__label">Ctrl+D</span></li>
+          <li>Undo <span class="keybinding__label">Cmd+Z</span></li>
+        </ul>
+        <ul class="keybinding__detail">
+          <h3 class="keybinding__title">Markdown Keybindings</h3>
+          <li><span class="keybinding__label">Ctrl+A</span> Insert Link Markdown</li>
+          <li><span class="keybinding__label">Ctrl+I</span> Insert Image Markdown</li>
+          <li><span class="keybinding__label">Ctrl+V</span> Insert YouTube Video</li>
+          <li><span class="keybinding__label">Ctrl+T</span> Insert Table</li>
+        </ul>
       </div>
-
-      <!-- Mobile Menu (shown when isMobileMenuOpen is true) -->
-      {#if isMobileMenuOpen}
-        <div class="md:hidden">
-          <div class="bg-white w-full py-2">
-            <a href="#" class="block text-center py-2 hover:text-green-500"
-              >Home</a
-            >
-            <a href="#" class="block text-center py-2 hover:text-green-500"
-              >About</a
-            >
-            <a href="#" class="block text-center py-2 hover:text-green-500"
-              >Features</a
-            >
-            <a href="#" class="block text-center py-2 hover:text-green-500"
-              >Contact</a
-            >
-            <!-- Add more mobile menu links as needed -->
+      <div class="callout">
+        <p>Read our documentation for advanced keybindings and customization</p>
+        <a href="doc.html" class="button--primary">Documentation</a>
+      </div>
+    </div>
+    <div class="changelog">
+      <div class="wrapper">
+        <h3 class="section__title">Changelog</h3>
+        <div class="changelog__item">
+          <div class="changelog__meta">
+            <h4 class="changelog__title">v0.7</h4>
+            <small class="changelog__date">10/12/2017</small>
+          </div>
+          <div class="changelog__detail">
+            <ul>
+              <li>Improving the writing workflow with better key bindings</li>
+              <li>Design updates</li>
+              <li>SSL Verification for web hooks</li>
+              <li>Render Emoji</li>
+            </ul>
           </div>
         </div>
-      {/if}
-    </div>
-  </nav>
-  <div class="jumb w-full">
-    <div class="text-center mt-10">
-      <h1 class="text-4xl text-gray-900 font-bold mb-4">{title}</h1>
-      <p class="text-lg text-gray-800 mb-8">Learn, explore and create</p>
-      <a
-        href="/sign-up"
-        class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
-        >Get Started</a
-      >
-    </div>
-
-    <!-- Add an image with floating animation -->
-    <img
-      src="/logo.jpeg"
-      alt="Pola Rides"
-      class="w-52 h-52 mx-auto animate-float mt-10"
-    />
-  </div>
-
-  <!--  -->
-
-  <section class="bg-white text-black py-16 px-8 w-full">
-    <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-8">
-        Choose one of our company partner's to join under
-      </h2>
-      <p>
-        Welcome to SPLEARN, where your journey to enhanced education and
-        professional growth begins. We are proud to offer our registered partner
-        companies access to a diverse range of educational training and courses
-        through strategic collaborations. Please choose your registered company
-        from the list below to explore the benefits of our partnerships and
-        start your learning journey:
-      </p>
-
-      <!-- Dropdown for Companies -->
-      <select
-        class="bg-gray-500 text-white p-3 rounded-lg"
-        bind:value={selectedCompany}
-        on:change={handleCompanyChange}
-      >
-        <option value="" disabled>Select a Partner</option>
-        {#each companies as company}
-          <option value={company}>{company}</option>
-        {/each}
-      </select>
-
-      <!-- Get Started Button -->
-      <button
-        class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-full mt-4 transition-all duration-300 transform hover:scale-105"
-        on:click={getStarted}
-      >
-        Get Started
-      </button>
-
-      <div
-        class=" flex mt-4"
-      >
-        <div class="w-40 h-40 mx-auto  mt-10">
-          <img class=" w-30 mx-2" alt="softmore" src="/softmorelogo.png" />
+        <div class="changelog__item">
+          <div class="changelog__meta">
+            <h4 class="changelog__title">v0.6</h4>
+            <small class="changelog__date">7/30/2017</small>
+          </div>
+          <div class="changelog__detail">
+            <ul>
+              <li>Adding Unicode support</li>
+              <li>Basic text highlighting</li>
+              <li>Fresh Design</li>
+            </ul>
+          </div>
         </div>
-        <div class="w-40 h-40 mx-auto  mt-10">
-          <img class=" w-30 mx-2" alt="softmore" src="/afrivenlogo.jpg" />
+        <div class="changelog__item">
+          <div class="changelog__meta">
+            <h4 class="changelog__title">v0.5</h4>
+            <small class="changelog__date">5/10/2017</small>
+          </div>
+          <div class="changelog__detail">
+            <ul>
+              <li>Save default md file in new folders</li>
+              <li>Ability to quick search on existing notes</li>
+            </ul>
+          </div>
         </div>
-        <div class="w-40 h-40 mx-auto  mt-10">
-          <img class=" w-30 mx-2" alt="softmore" src="/nutaglogo.jpg" />
-        </div>
-      </div>
-
-      <p class="mt-2">
-        If you do not see your company listed or have any questions, please
-        contact your company support team. Thank you for choosing SPLEARN for
-        your educational and professional development needs. We look forward to
-        helping you reach new heights in your career. Let's embark on this
-        journey together!
-      </p>
-    </div>
-  </section>
-
-  <!-- Feature Cards Section -->
-  <section class="bg-white py-16 px-8 w-full">
-    <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-8">Key Features</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Feature Card 1 -->
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-          <h3 class="text-2xl font-semibold mb-4">
-            Versatile Learning Coverage
-          </h3>
-          <p class="text-lg">
-            SPLEARN offers a diverse range of subjects to cater to learners of
-            all levels. Whether you're diving into the world of coding,
-            unraveling the mysteries of mathematics, or exploring the
-            intricacies of physics, our expert tutors are here to guide you.
-          </p>
-        </div>
-
-        <!-- Feature Card 2 -->
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-          <h3 class="text-2xl font-semibold mb-4">Online Flexibility</h3>
-          <p class="text-lg">
-            Our state-of-the-art virtual classroom is accessible anytime,
-            anywhere. You can schedule sessions to fit your busy lifestyle,
-            making learning more accessible than ever.
-          </p>
-        </div>
-
-        <!-- Feature Card 3 -->
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-          <h3 class="text-2xl font-semibold mb-4">Personalized Learning</h3>
-          <p class="text-lg">
-            At SPLEARN, we recognize that every student is unique. Our
-            experienced tutors tailor their teaching approach to suit your
-            specific needs, ensuring that you receive the personalized attention
-            required to excel.
-          </p>
+        <div class="changelog__callout">
+          <!-- svelte-ignore a11y-invalid-attribute -->
+          <a href="#" class="button--secondary">Checkout Full Log</a>
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- About Us Section -->
-  <section class="bg-white py-16 px-8 w-full">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-6">About Us</h2>
-      <p class="text-lg leading-relaxed">
-        At SPLEARN, we're not just in the business of education; we're in the
-        business of empowering individuals to reach their fullest potential.
-        Whether you're a student looking to boost your grades, a professional
-        seeking new skills, or someone simply curious about the world, SPLEARN
-        is your gateway to a brighter future. Enroll today and embark on a
-        transformative educational adventure that will shape your success for
-        years to come.
-      </p>
-    </div>
-  </section>
-
-  <!-- Download Button -->
-  <section class="bg-green-500 py-16 px-8 w-full">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-3xl text-white font-bold mb-6">
-        Become a Splearn Partner
-      </h2>
-      <a
-        href="/sign-up"
-        class="bg-white text-green-500 hover:bg-white hover:text-green-500 text-xl font-semibold px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
-        >Register as a Partner</a
-      >
-    </div>
-  </section>
-
-  <!-- Contact Information -->
-  <section class="bg-gray-200 py-16 px-8 w-full">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-6">Contact Us</h2>
-      <p class="text-lg">
-        Have questions or need assistance? Reach out to us at <a
-          href="mailto:info@splearn.co.za"
-          class="text-green-500">info@splearn.co.za</a
-        >.
-      </p>
-    </div>
-  </section>
-
-  <!-- More Sections can be added here -->
-</main>
+    <footer class="footer">Svelteflow </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="scribbler.js"></script>
+  </body>
+</html>
 
 <style>
-  /* Add floating animation to the image */
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
+  /* nav specialized to landing page */
+.logo {
+  background: url('logo.svg') no-repeat;
+  background-size: contain;
+  margin: 1rem 0 0 1rem;
+}
+
+nav {
+  background-color: var(--bg-color);
+}
+
+/* hero section */
+.hero {
+  text-align: center;
+  background-color: var(--bg-color);
+  padding: 2rem 0 10rem 0;
+}
+
+.hero__title {
+  font-weight: 900;
+  color: var(--primary-color);
+}
+
+.hero__description {
+  margin: -1rem auto 2rem auto;
+}
+
+.hero__terminal {
+  width: 60%;
+  margin: -11rem auto 3rem auto;
+  text-align: left;
+  color: white;
+  padding: 0 1rem;
+  border-radius: 4px;
+  background-color: #232323;
+  min-height: 285px;
+  animation: fadeUp 2s;
+  box-shadow: 0px 12px 36.8px 9.2px rgba(0, 0, 0, 0.1);
+}
+
+.hero__terminal pre {
+  white-space: pre-line;
+  padding-top: 1rem;
+}
+
+/* feature section */
+.feature {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.feature__item {
+  max-width: calc(33% - 20px);
+  margin: 0 20px 0 0;
+}
+
+.feature__item .section__title {
+  margin-bottom: 0;
+}
+
+.feature__item p {
+  margin-top: 0.5rem;
+}
+
+/* keybinding section */
+.keybinding {
+  margin-top: 3rem;
+  display: flex;
+}
+
+.keybinding__detail {
+  position: relative;
+  border: 1px solid var(--code-bg-color);
+  flex-basis: 50%;
+  padding: 2rem 1rem 1rem 1rem;
+  list-style: none;
+  line-height: 2rem;
+}
+
+.keybinding__detail:first-child {
+  text-align: right;
+  padding-right: 1rem;
+}
+
+.keybinding__detail:last-child {
+  padding-left: 1rem;
+  margin-left: -1px;
+}
+
+.keybinding__detail:first-child .keybinding__title {
+  position: absolute;
+  right: 0.5rem;
+  top: -2rem;
+  background-color: white;
+  padding: 0 0.5rem;
+}
+
+.keybinding__detail:last-child .keybinding__title {
+  position: absolute;
+  left: 0.5rem;
+  top: -2rem;
+  background-color: white;
+  padding: 0 0.5rem;
+}
+
+.keybinding__label {
+  background: var(--white-color);
+  border: 1px solid var(--light-gray-color);
+  box-shadow: 0 1px 0 0 var(--medium-gray-color);
+  border-radius: 3px;
+  font-family: Courier;
+  font-size: 0.7rem;
+  color: var(--dark-gray-color);
+  padding: 3px 3px 1px 3px;
+  vertical-align: middle;
+}
+
+/* callout section */
+.callout {
+  text-align: center;
+  padding: 1rem 0 3rem 0;
+}
+
+.callout .button--primary {
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+/* changelog section */
+.changelog {
+  background-color: var(--bg-color);
+  padding: 2rem 0;
+}
+
+.changelog__item {
+  display: flex;
+}
+
+.changelog__meta {
+  flex-basis: 25%;
+}
+
+.changelog__meta small {
+  color: var(--primary-color-light);
+  font-weight: 200;
+  letter-spacing: 1px;
+}
+
+.changelog__title {
+  margin-bottom: 0;
+}
+
+.changelog__callout {
+  margin: 3rem auto 2rem auto;
+  text-align: center;
+}
+
+@media (max-width: 750px) {
+  .hero__terminal {
+    width: 70%;
+  }
+  .tab__container > ul {
+    right: auto;
+    left: 0;
+    padding-left: 0;
+  }
+  .tab__container .code {
+    margin-top: 2rem;
+  }
+  .feature, .keybinding, .changelog__item {
+    flex-direction: column;
+  }
+  .feature__item {
+    max-width: 100%;
+    margin: 0;
+  }
+  .keybinding {
+    font-size: 0.8rem;
+  }
+}
+/* css variables*/
+:root {
+  --primary-color: #432E30;
+  --primary-color-light: #8E7474;
+  --accent-color: #FE6A6B;
+  --accent-color-light: #FFE4E4;
+  --accent-color-dark: #B94B4C;
+  --white-color: #FAFBFC;
+  --light-gray-color: #C6CBD1;
+  --medium-gray-color: #959DA5;
+  --dark-gray-color: #444D56; 
+  --bg-color: #F8F8FA;
+  --code-bg-color: #F0E8E8;
+}
+
+/* normalized */
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Nunito Sans', sans-serif;
+  background-color: white;
+}
+
+p {
+  font-weight: 300;
+  color: #4A4A4A;
+}
+
+a, a:hover {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+hr {
+  padding: 1rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--bg-color);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* global components */
+
+/* typography */
+.section__title {
+  color: var(--primary-color);
+}
+
+/* tabs */
+.tab__container {
+  position: relative;
+}
+
+.tab__container > ul {
+  position: absolute;
+  list-style: none;
+  margin: 0;
+  right: 1rem;
+  top: -2rem;
+  padding-left: 0;
+}
+
+.tab__container .code {
+  white-space: normal;
+  padding: 1rem 1.5rem;
+}
+
+.tab {
+  display: inline-block;
+  padding: 0.3rem 0.5rem;
+  font-weight: 200;
+  cursor: pointer;
+}
+
+.tab.active {
+  border-bottom: 1px solid var(--primary-color);
+  font-weight: 700;
+  display: inline-block;
+}
+
+.tab__pane {
+  display: none;
+}
+
+.tab__pane.active {
+  display: block;
+}
+
+/* code */
+.code {
+  border-radius: 3px;
+  font-family: Space Mono, SFMono-Regular, Menlo,Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  background: var(--bg-color);
+  border: 1px solid var(--code-bg-color);
+  color: var(--primary-color-light);
+}
+
+.code--block {
+  white-space: pre-line;
+  padding: 0 1.5rem;
+}
+
+.code--inline {
+  padding: 3px 6px;
+  font-size: 80%;
+}
+
+/* buttons */
+.button--primary {
+  padding: 10px 22px;
+  background-color: var(--accent-color);
+  color: white;
+  position: relative;
+  text-decoration: none;
+  border: 0;
+  transition: all .3s ease-out;
+}
+
+.button--primary:after {
+  position: absolute;
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--accent-color-light);
+  right: -0.4rem;
+  top: -0.4rem;
+  transition: all 0.3s ease-out;
+}
+
+.button--primary:hover {
+  text-shadow: 0px 1px 1px var(--accent-color-dark);
+  color: white;
+  transform: translate3D(0, -3px, 0);
+}
+
+.button--primary:hover::after {
+  transform: rotate(90deg);
+}
+
+.button--secondary {
+  padding: 10px 22px;
+  border: 2px solid var(--primary-color);
+  transition: all 0.5s ease-out;
+}
+
+.button--secondary:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+/* links */
+.link {
+  text-decoration: none;
+  transition: all 0.3s ease-out;
+}
+
+.link:hover {
+  color: var(--accent-color);
+}
+
+.link--dark {
+  color: var(--primary-color);
+}
+
+.link--light {
+  color: var(--accent-color);
+}
+
+/* menu */
+nav {
+  display: grid;
+  grid-template-columns: 70px auto;
+}
+
+.menu {
+  margin: 0;
+  text-align: right;
+  overflow: hidden;
+  list-style: none;
+}
+
+.toggle {
+  display: none;
+  position: relative;
+}
+
+.toggle span,
+.toggle span:before,
+.toggle span:after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 18px;
+  border-radius: 2px;
+  background: var(--primary-color);
+  display: block;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  right: 0;
+}
+
+.toggle span:before {
+  top: -6px;
+}
+
+.toggle span:after {
+  bottom: -6px;
+}
+
+.toggle.open span{
+  background-color: transparent;
+}
+
+.toggle.open span:before,
+.toggle.open span:after {
+  top: 0;
+}
+
+.toggle.open span:before {
+  transform: rotate(45deg);
+}
+
+.toggle.open span:after {
+  transform: rotate(-45deg);
+}
+
+.menu__item {
+  padding: 1rem;
+  display: inline-block;
+}
+
+.menu__item.toggle {
+  display: none;
+}
+
+/* table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  transition: color .3s ease-out;
+  margin-bottom: 2rem;
+}
+
+table td, table th {
+  border: 1px solid var(--code-bg-color);
+  padding: 0.8rem;
+  font-weight: 300;
+}
+
+table th {
+  text-align: left;
+  background-color: white;
+  border-color: white;
+  border-bottom-color: var(--code-bg-color);
+}
+
+table td:first-child {
+  background-color: var(--bg-color);
+  font-weight: 600;
+}
+
+@media screen and (max-width: 600px) {
+  nav {
+    grid-template-columns: 70px auto;
   }
 
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
+  .menu__item{
+    display: none;
   }
+
+  .menu__item.toggle {
+    display: inline-block;
+  }
+
+  .menu {
+    text-align: right;
+    padding: 0.5rem 1rem;
+  }
+
+  .toggle {
+    display: block;
+  }
+
+  .menu.responsive .menu__item:not(:first-child) {
+    display: block;
+    padding: 0 0 0.5rem 0;
+  }
+}
+
+/* layout */
+.wrapper {
+  margin: 0 auto;
+  width: 70%;
+}
+
+.footer {
+  text-align: center;
+  background-color: var(--primary-color);
+  padding: 2rem;
+  color: white;
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0,30px,0);
+  }
+  100% {
+    transform: translate3d(0,0,0);
+  }
+}
 </style>

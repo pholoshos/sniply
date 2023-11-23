@@ -1,6 +1,6 @@
-# SvelteFlow
+# sniply
 
-SvelteFlow is a powerful and intuitive no-code platform built on the Svelte framework, designed to empower users to create web applications without writing a single line of code. Whether you're a designer, entrepreneur, or hobbyist, SvelteFlow provides a seamless and efficient way to bring your ideas to life.
+sniply is a powerful and intuitive no-code platform built on the Svelte framework, designed to empower users to create web applications without writing a single line of code. Whether you're a designer, entrepreneur, or hobbyist, sniply provides a seamless and efficient way to bring your ideas to life.
 
 ## Features
 
@@ -20,7 +20,7 @@ SvelteFlow is a powerful and intuitive no-code platform built on the Svelte fram
 
 ### Jabulane DB Integration
 
-SvelteFlow makes use of Jabulane DB, a lightweight and fast NoSQL database, for storing the application context. This allows users to persistently store and retrieve data within their applications.
+sniply makes use of Jabulane DB, a lightweight and fast NoSQL database, for storing the application context. This allows users to persistently store and retrieve data within their applications.
 
 To integrate Jabulane DB into your components, follow these steps:
 
