@@ -45,6 +45,7 @@
     });
 
   export let x = 0;
+  export let pageRoute = "Home";
   export let y = 0;
   let zIndex = 1; // Initial z-index value
   let isDragging = false;
@@ -106,7 +107,6 @@
         y = isSnapping
           ? Math.round(event.clientY - offsetY)
           : event.clientY - offsetY;
-        
       }
     };
 
@@ -114,14 +114,13 @@
       isDragging = false;
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
-   
     };
 
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseup", handleMouseUp);
   };
 
-  const handleButtonClick = (openBar= false) => {
+  const handleButtonClick = (openBar = false) => {
     isConfiguring = openBar;
 
     let _config = {
@@ -138,8 +137,7 @@
       id,
     };
 
-    dispatch("configure", _config);
-    updateComponentInConfig("home", dynamicComponent?.id, {
+    updateComponentInConfig(pageRoute?.slice(1), dynamicComponent?.id, {
       ..._config,
       componentName: dynamicComponent.name,
       id: dynamicComponent?.component?.id,
@@ -292,7 +290,11 @@
   on:mousedown={handleMouseDown}
 >
   <div class="toolbar space-x-2 flex">
-    <Button size="xs" color="alternative" on:click={()=>handleButtonClick(true)}>
+    <Button
+      size="xs"
+      color="alternative"
+      on:click={() => handleButtonClick(true)}
+    >
       <EditOutline size="xs" /></Button
     >
     <Button size="xs" color="alternative" on:click={handleButtonClick}>

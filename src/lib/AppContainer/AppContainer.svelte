@@ -6,12 +6,14 @@
   import { DownloadSolid } from "flowbite-svelte-icons";
 
   export let backgroundColor = "white";
+  export let appName = "sniply";
+  export let pages = null;
 
 </script>
 
 <DraggableComponent>
   <div class="w-screen h-full" style="background-color: {backgroundColor};">
-    <AppNavbar />
+    <AppNavbar pages={pages} appName={appName} />
     <div class=" h-screen w-screen">
       <slot />
     </div>

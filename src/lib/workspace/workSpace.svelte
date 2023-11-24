@@ -3,38 +3,33 @@
   import ComponentsList from "$lib/ComponentsList/ComponentsList.svelte";
   import DraggableComponent from "$lib/DraggableComponent/DraggableComponent.svelte";
   import {
-    A,
-    Accordion,
-    Badge,
     Button,
-    Modal,
     SidebarItem,
     Input,
     Label,
-    Checkbox,
-    List,
     Listgroup,
   } from "flowbite-svelte";
   import { componentNames } from "./Components";
   import { randomString } from "../../utils/getRandomString";
-  import TableConfig from "$lib/Table/TableConfig.svelte";
   import { DownloadSolid } from "flowbite-svelte-icons";
   import {
     addComponentToPage,
     appState,
     deleteComponentFromPage,
     updateAppState,
-    updateComponentInConfig,
-    updateProjectConfig,
   } from "../../store/app";
   import { onMount } from "svelte";
   import { loadConfig } from "../../utils/loadConfig";
+  import { getAllRoutes, getPages } from "../../utils/getRoutes";
 
   // Array to store dynamically loaded components
   /**
    * @type {any[]}
    */
   let dynamicComponents = [];
+  export let pageRoute = "Home";
+  export let isPreview = true;
+
   let isChangingProperties = false;
   /**
    * @type {{ id: any; } | null}
@@ -72,24 +67,21 @@
    */
   let projectComponents = [];
 
-  // Configuration settings
-  let configSetting1 = "Default Setting 1";
-  let configSetting2 = "Default Setting 2";
-
+  // Handle the component drop event
   const onDelete = (/** @type {any} */ id) => {
     console.log("LOG:::dynamic", dynamicComponents);
-    
+
     dynamicComponents = dynamicComponents.filter(
       (component) => component.id !== id
     );
     deleteComponentFromPage("home", id);
-    
   };
 
   const jsonData = {
     timestamp: new Date().toISOString(),
   };
 
+  // Generate a JSON file
   const generateJson = () => {
     const jsonString = JSON.stringify(projectConfig, null, 2);
     const blob = new Blob([jsonString], { type: "application/json" });
@@ -103,12 +95,16 @@
     document.body.removeChild(a);
   };
 
+  /**
+   * @type {boolean}
+   */
   let defaultModal = false;
   /**
    * @type {{ appName: string; layouts: { default: { background: string; }; dashboard: { background: string; }; }; pages: { home: { layout: string; route: string; components: never[]; }; dashboard: { layout: string; route: string; components: never[]; }; }; }}
    */
   let projectConfig;
 
+  // Subscribe to the appState store
   const _state = appState.subscribe((state) => {
     // Handle state changes here
     projectConfig = state.projectConfig;
@@ -116,9 +112,11 @@
 
   // Fetch projectConfig when the component mounts
   onMount(() => {
-    const _c = loadConfig().then((config) => {
+    const _c = loadConfig()?.then((config) => {
+      if (!config) return;
+
       //placeholder page is home for now
-      config.pages["home"].components.map(
+      config?.pages[pageRoute?.slice(1)].components.map(
         (
           /** @type {{ componentName: string; id: string | undefined; }} */ comp
         ) => {
@@ -127,21 +125,14 @@
         }
       );
 
-      let _dynamicComponents = config?.pages["home"]?.components?.map((val) => {
-        return {
-          ...val,
-          component: val?.componentName,
-          id: val?.id,
-        };
-      });
-
       projectConfig = config;
     });
     // projectConfig = $appState.projectConfig; // Alternatively, you can use the $ prefix directly
   });
 
+  // Handle the component drop event
   const handleSelectComponent = (/** @type {string} */ component) => {
-    const id =randomString(10);
+    const id = randomString(10);
     const defaultData = {
       width: "",
       x: 0,
@@ -156,29 +147,41 @@
       span: "1",
     };
 
-    createDynamicComponent(component,id , defaultData);
+    createDynamicComponent(component, id, defaultData);
     console.log(component);
   };
 
+  // Create a dynamic component
   const createDynamicComponent = (
     /** @type {string} */ component,
     /** @type {string | undefined} */ componentId,
     data = {}
   ) => {
-    addComponentToPage("home", { componentName: component, id: componentId,...data });
+    //console.log("LOG:::pages",pageRoute?.slice(1))
+    addComponentToPage(pageRoute?.slice(1), {
+      componentName: component,
+      id: componentId,
+      ...data,
+    });
 
+    // Add the component name and id to the array
     projectComponents = [
       ...projectComponents,
       { componentName: component, id: componentId },
     ];
+
+    // Dynamically import the component
     import(`../${component}/${component}.svelte`).then((module) => {
       // Add the dynamically loaded component to the array
       dynamicComponents = [
         ...dynamicComponents,
-        { component: module.default, id: componentId, name: component, ...data },
+        {
+          component: module.default,
+          id: componentId,
+          name: component,
+          ...data,
+        },
       ];
-
-      console.log("LOG:::cos", dynamicComponents);
     });
   };
 </script>
@@ -252,10 +255,11 @@
   <div class="flex-2">
     <!-- Configuration Tab -->
     <!-- App Container and Dynamic Components -->
-    <AppContainer />
+    <AppContainer pages={[getPages(projectConfig)]}  appName={projectConfig?.appName}/>
     <div class="w-full">
       {#each dynamicComponents as dynamicComponent}
         <DraggableComponent
+          pageRoute={pageRoute}
           onDelete={() => onDelete(dynamicComponent.id)}
           {dynamicComponent}
           {...dynamicComponent}

@@ -1,11 +1,10 @@
 <script>
-	import {page} from '$app/stores'
-	/** @type {import('./$types').PageData} */
-	export let pageName = $page.url.pathname.substr($page.url.pathname.lastIndexOf('/'))
-	console.log(pageName)
-	export let data;
-
+  import { page } from "$app/stores";
+  import WorkSpace from "$lib/workspace/workSpace.svelte";
+  /** @type {import('./$types').PageData} */
+  export let pageRoute = $page.url.pathname.substr(
+    $page.url.pathname.lastIndexOf("/")
+  );
 </script>
 
-<h1>{data.title}</h1>
-<div>{@html data.content}</div>
+<WorkSpace isPreview={false} pageRoute={pageRoute?.toString()} />

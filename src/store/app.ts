@@ -8,6 +8,30 @@ const createEmptyComponent = () => ({
   // ... other properties
 });
 
+const defaultProjectConfig =  {
+  appName: "MySvelteFlowApp",
+  layouts: {
+    default: {
+      background: "#f0f0f0",
+    },
+    dashboard: {
+      background: "#e6e6e6",
+    },
+  },
+  pages: {
+    home: {
+      layout: "default",
+      route: "/",
+      components: [],
+    },
+    dashboard: {
+      layout: "dashboard",
+      route: "/dashboard",
+      components: [],
+    },
+  },
+}
+  
 
 // Initial state
 const initialState = {
@@ -16,29 +40,8 @@ const initialState = {
   appName: 'Svelte App',
   routes: [],
   userDetails: {},
-  projectConfig: {
-    appName: "MySvelteFlowApp",
-    layouts: {
-      default: {
-        background: "#f0f0f0",
-      },
-      dashboard: {
-        background: "#e6e6e6",
-      },
-    },
-    pages: {
-      home: {
-        layout: "default",
-        route: "/",
-        components: [],
-      },
-      dashboard: {
-        layout: "dashboard",
-        route: "/dashboard",
-        components: [],
-      },
-    },
-  },
+  tempProjectConfig: defaultProjectConfig, 
+  projectConfig: defaultProjectConfig,
   selected: null,
   currentContext: null,
   currentPage: 'home',

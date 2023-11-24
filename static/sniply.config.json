@@ -1,5 +1,5 @@
 {
-    "appName": "MySvelteFlowApp",
+    "appName": "sniply",
     "layouts": {
       "default": {
         "background": "#f0f0f0"
@@ -11,7 +11,8 @@
     "pages": {
       "home": {
         "layout": "default",
-        "route": "/",
+        "pageLabel" : "Home",
+        "route": "/pages/home",
         "components": [
           {
             "componentName": "LoginView",
@@ -44,8 +45,9 @@
         ]
       },
       "dashboard": {
+        "pageLabel" : "Dashboard",
         "layout": "dashboard",
-        "route": "/dashboard",
+        "route": "/pages/dashboard",
         "components": []
       }
     }
