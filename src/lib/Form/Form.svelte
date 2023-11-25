@@ -19,18 +19,8 @@
 
   export let formData = [
     {
-      name: "name",
-      placeholder: "Enter your name",
-      value: "",
-    },
-    {
-      name: "email",
-      placeholder: "Enter your email",
-      value: "",
-    },
-    {
-      name: "phone",
-      placeholder: "Enter your phone",
+      name: "text",
+      placeholder: "Enter your text",
       value: "",
     },
   ];
