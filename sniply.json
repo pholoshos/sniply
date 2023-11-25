@@ -1,5 +1,6 @@
 {
     "appName": "sniply",
+    "mode": "development",
     "layouts": {
       "default": {
         "background": "#f0f0f0"
