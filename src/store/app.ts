@@ -152,7 +152,6 @@ export const addEmptyPage = (data) => {
     const newEmptyPage = {
      ... data,
       layout: "default", // You can set the default layout or customize it as needed
-      route: `/${pageId.toLowerCase()}`, // Assuming the route is based on the pageId
       components: [],
     };
 
