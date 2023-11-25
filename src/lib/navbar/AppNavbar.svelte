@@ -1,16 +1,11 @@
 <script>
-  import Avater from "$lib/Avater/Avater.svelte";
   import {
     Navbar,
     NavBrand,
-    NavLi,
     NavUl,
     NavHamburger,
-    Button,
-    Input,
     Avatar,
   } from "flowbite-svelte";
-  import { SearchOutline } from "flowbite-svelte-icons";
   export let appName = "sniply";
   export let pages = {};
 
