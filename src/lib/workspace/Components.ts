@@ -17,7 +17,8 @@ export const componentNames = [
     "Collapse",
     "Header",
     "Form",
-    "Example"
+    "Example",
+    "Label"
     // Add more component names as needed
 ];
 
