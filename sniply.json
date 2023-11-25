@@ -1,112 +1,64 @@
 {
-    "appName": "MySvelteFlowApp",
+    "appName": "sniply",
     "layouts": {
-        "default": {
-            "background": "#f0f0f0"
-        },
-        "dashboard": {
-            "background": "#e6e6e6"
-        }
+      "default": {
+        "background": "#f0f0f0"
+      },
+      "dashboard": {
+        "background": "#e6e6e6"
+      }
     },
     "pages": {
-        "home": {
-            "layout": "default",
-            "route": "/",
-            "components": [
-                {
-                    "id": "welcomeHeading",
-                    "type": "heading",
-                    "text": "Welcome to SvelteFlow!",
-                    "x": 50,
-                    "y": 20,
-                    "styles": {
-                        "fontSize": "24px",
-                        "fontWeight": "bold",
-                        "color": "#333"
-                    }
-                },
-                {
-                    "id": "introParagraph",
-                    "type": "paragraph",
-                    "text": "This is the home page.",
-                    "x": 50,
-                    "y": 50,
-                    "styles": {
-                        "fontSize": "16px",
-                        "lineHeight": "1.5",
-                        "color": "#555"
-                    }
-                },
-                {
-                    "id": "contactForm",
-                    "type": "form",
-                    "name": "contactForm",
-                    "x": 50,
-                    "y": 80,
-                    "fields": [
-                        {
-                            "id": "nameInput",
-                            "type": "text",
-                            "label": "Name",
-                            "name": "name",
-                            "styles": {
-                                "width": "100%",
-                                "padding": "10px",
-                                "marginBottom": "15px",
-                                "border": "1px solid #ddd"
-                            }
-                        },
-                        {
-                            "id": "emailInput",
-                            "type": "email",
-                            "label": "Email",
-                            "name": "email",
-                            "styles": {
-                                "width": "100%",
-                                "padding": "10px",
-                                "marginBottom": "15px",
-                                "border": "1px solid #ddd"
-                            }
-                        },
-                        {
-                            "id": "submitBtn",
-                            "type": "submit",
-                            "label": "Submit",
-                            "action": "submitForm",
-                            "styles": {
-                                "padding": "10px 15px",
-                                "backgroundColor": "#4caf50",
-                                "color": "#fff",
-                                "border": "none",
-                                "cursor": "pointer"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        "dashboard": {
-            "layout": "dashboard",
-            "route": "/dashboard",
-            "components": [
-                {
-                    "id": "userTable",
-                    "type": "table",
-                    "columns": [
-                        "ID",
-                        "Name",
-                        "Email"
-                    ],
-                    "data": "/api/users",
-                    "x": 20,
-                    "y": 20,
-                    "action": "fetchUserTableData",
-                    "styles": {
-                        "width": "100%",
-                        "borderCollapse": "collapse"
-                    }
-                }
-            ]
-        }
+      "home": {
+        "layout": "default",
+        "visibility" : "public",
+        "pageLabel" : "Home",
+        "route": "/pages/home",
+        "components": [
+          {
+            "componentName": "LoginView",
+            "width": "50%",
+            "x": 269,
+            "y": 147,
+            "id": "2121",
+            "backgroundColor": "",
+            "label": "My Component",
+            "textColor": "#000",
+            "color": "primary",
+            "padding": "10px",
+            "value": "",
+            "span": "My Component"
+          },
+          {
+            "componentName": "SideNav",
+            "id": "124124",
+            "width": "",
+            "x": -12,
+            "y": 79,
+            "backgroundColor": "white",
+            "label": "Button",
+            "textColor": "black",
+            "color": "primary",
+            "padding": "4px",
+            "value": "Button",
+            "span": "1"
+          }
+        ]
+      },
+      "dashboard": {
+        "visibility" : "public",
+        "pageLabel" : "Dashboard",
+        "layout": "dashboard",
+        "route": "/pages/dashboard",
+        "components": []
+      },
+      "users": {
+        "visibility" : "hidden",
+        "pageLabel" : "users",
+        "layout": "users",
+        "route": "/pages/users",
+        "components": []
+      }
     }
-}
+  }
+  

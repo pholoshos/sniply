@@ -11,7 +11,18 @@
     SidebarWrapper,
   } from "flowbite-svelte";
   import { sideNavConfig } from "./config";
+  import { appState } from "../../store/app";
+  import { getPages } from "../../utils/getRoutes";
+  
   let spanClass = "flex-1 ml-3 whitespace-nowrap";
+
+  let pages;
+
+  appState.subscribe((state) => {
+    pages = getPages(state?.projectConfig);
+    console.log("pages",state?.projectConfig);
+  });
+
   export let pageName = "";
   export let backgroundColor = "white";
   export let isConfig = false;
@@ -36,11 +47,9 @@
   <Sidebar activeUrl={"/" + pageName.toLowerCase()}>
     <SidebarWrapper class="h-screen" style="background-color:{backgroundColor}">
       <SidebarGroup>
-        <SidebarItem label="Dashboard" href="/" />
-        <SidebarItem label="Rooms" href="/Rooms" {spanClass} />
-        <SidebarItem label="Customers" href="/Customers" {spanClass} />
-        <SidebarItem label="Billing" href="/billing" {spanClass} />
-        <SidebarItem label="Staff" href="/stuff" />
+        {#each pages[0] as page}
+        <SidebarItem label={page?.pageLabel} href={page?.route} />
+        {/each}
       </SidebarGroup>
       <SidebarGroup border>
         <SidebarItem label="Settings" href="/settings" />

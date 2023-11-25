@@ -1,5 +1,6 @@
 // store.js
 import { writable } from 'svelte/store';
+import { loadConfig } from '../utils/loadConfig';
 
 //Function to create a new, empty component
 const createEmptyComponent = () => ({
@@ -9,7 +10,7 @@ const createEmptyComponent = () => ({
 });
 
 const defaultProjectConfig =  {
-  appName: "MySvelteFlowApp",
+  appName: "default",
   layouts: {
     default: {
       background: "#f0f0f0",
@@ -31,6 +32,8 @@ const defaultProjectConfig =  {
     },
   },
 }
+
+
   
 
 // Initial state
@@ -72,8 +75,6 @@ export const updateAppState = (newState:any) => {
   appState.set(newState);
 };
 
-
-
 // Function to update projectConfig
 export const updateComponentInConfig = (pageId:any, componentId:any, newComponentData:any) => {
   appState.update((currentState) => {
@@ -111,7 +112,6 @@ export const addComponentToPage = (pageId:any,component:any) => {
     return updatedState;
   });
 };
-
 
 // Function to delete a component from a page
 export const deleteComponentFromPage = (pageId:any, componentId:any) => {
