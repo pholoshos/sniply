@@ -11,7 +11,6 @@
     SidebarWrapper,
   } from "flowbite-svelte";
   import { sideNavConfig } from "./config";
-  import { appState } from "../../store/app";
   import { getPages } from "../../utils/getRoutes";
 
   let spanClass = "flex-1 ml-3 whitespace-nowrap";
