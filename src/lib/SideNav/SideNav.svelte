@@ -13,12 +13,8 @@
   import { sideNavConfig } from "./config";
   import { getPages } from "../../utils/getRoutes";
 
-  let spanClass = "flex-1 ml-3 whitespace-nowrap";
-
   export let projectConfig = null;
   let pages = getPages(projectConfig);
-
-  console.log(pages);
 
   export let pageName = "";
   export let backgroundColor = "white";
