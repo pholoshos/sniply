@@ -14,7 +14,7 @@
   import { getPages } from "../../utils/getRoutes";
 
   export let projectConfig = null;
-  let pages = getPages(projectConfig);
+  let pages = getPages(projectConfig).filter((page) => page?.visibility  === "public");
 
   export let pageName = "";
   export let backgroundColor = "white";
@@ -46,6 +46,7 @@
     <SidebarWrapper class="h-screen" style="background-color:{backgroundColor}">
       <SidebarGroup>
         {#each pages as page}
+          
           <SidebarItem label={page?.pageLabel} href={page?.route} on:click={()=>refreshPage(page?.route)} />
         {/each}
       </SidebarGroup>

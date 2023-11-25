@@ -30,6 +30,7 @@
   export let pageRoute = "Home";
   export let isPreview = true;
 
+
   let isChangingProperties = false;
   /**
    * @type {{ id: any; } | null}
@@ -103,6 +104,7 @@
    * @type {{ appName: string; layouts: { default: { background: string; }; dashboard: { background: string; }; }; pages: { home: { layout: string; route: string; components: never[]; }; dashboard: { layout: string; route: string; components: never[]; }; }; }}
    */
   let projectConfig;
+
 
   // Subscribe to the appState store
   const _state = appState.subscribe((state) => {
@@ -255,7 +257,7 @@
   <div class="flex-2">
     <!-- Configuration Tab -->
     <!-- App Container and Dynamic Components -->
-    <AppContainer pages={[getPages(projectConfig)]}  appName={projectConfig?.appName}/>
+    <AppContainer pages={getPages(projectConfig)?.filter((page) => page?.visibility  === "public")}  appName={projectConfig?.appName}/>
     <div class="w-full">
       {#each dynamicComponents as dynamicComponent}
         <DraggableComponent

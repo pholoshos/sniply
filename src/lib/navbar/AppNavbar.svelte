@@ -32,7 +32,7 @@
   <NavHamburger />
   <NavUl>
     <Avatar border size="xs" />
-    {#each pages[0] as page }
+    {#each pages as page }
       <!-- svelte-ignore a11y-no-static-element-interactions -->
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <span class=" hover:text-white hover:cursor-pointer"  on:click={()=>refreshPage(page?.route)}>{page?.pageLabel}</span>
