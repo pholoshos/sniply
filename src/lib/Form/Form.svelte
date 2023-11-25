@@ -14,7 +14,7 @@
 
   export let width = "100px";
 
-  export formConfigs =  
+  export let formConfigs =  null;
   const inputType = ["text", "number", "checkbox", "select", "file"];
 
   export let formData = [
