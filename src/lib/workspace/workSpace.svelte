@@ -264,6 +264,7 @@
           {dynamicComponent}
           {...dynamicComponent}
           id={dynamicComponent?.id}
+          projectConfig={projectConfig}
         />
       {/each}
     </div>

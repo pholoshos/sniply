@@ -13,15 +13,13 @@
   import { sideNavConfig } from "./config";
   import { appState } from "../../store/app";
   import { getPages } from "../../utils/getRoutes";
-  
+
   let spanClass = "flex-1 ml-3 whitespace-nowrap";
 
-  let pages;
+  export let projectConfig = null;
+  let pages = getPages(projectConfig);
 
-  appState.subscribe((state) => {
-    pages = getPages(state?.projectConfig);
-    console.log("pages",state?.projectConfig);
-  });
+  console.log(pages);
 
   export let pageName = "";
   export let backgroundColor = "white";
@@ -29,6 +27,11 @@
 
   const onConfig = () => {
     isConfig = !isConfig;
+  };
+
+  const refreshPage = (url) => {
+    window.location.reload();
+    window.location.href = url.toString();
   };
 </script>
 
@@ -47,8 +50,8 @@
   <Sidebar activeUrl={"/" + pageName.toLowerCase()}>
     <SidebarWrapper class="h-screen" style="background-color:{backgroundColor}">
       <SidebarGroup>
-        {#each pages[0] as page}
-        <SidebarItem label={page?.pageLabel} href={page?.route} />
+        {#each pages as page}
+          <SidebarItem label={page?.pageLabel} href={page?.route} on:click={()=>refreshPage(page?.route)} />
         {/each}
       </SidebarGroup>
       <SidebarGroup border>

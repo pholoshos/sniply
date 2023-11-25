@@ -27,6 +27,7 @@
   import { colorOptions } from "../../utils/Colors";
   import JabDB from "jabulane-db";
   import { randomString } from "../../utils/getRandomString";
+  
 
   // Create an instance of JabDB with the appropriate API base URL and API key
   const jabdb = new JabDB(
@@ -46,6 +47,7 @@
 
   export let x = 0;
   export let pageRoute = "Home";
+  export let projectConfig = null;
   export let y = 0;
   let zIndex = 1; // Initial z-index value
   let isDragging = false;
@@ -320,7 +322,7 @@
 
   <div class={appendClasses([`w-${width}`, isHidden ? "hidden" : " "])}>
     <div>
-      <svelte:component this={dynamicComponent?.component} {...config} />
+      <svelte:component projectConfig={projectConfig} this={dynamicComponent?.component} {...config} />
       <slot />
     </div>
   </div>

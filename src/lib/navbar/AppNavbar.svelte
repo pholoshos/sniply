@@ -19,7 +19,7 @@
     window.location.reload();
     window.location.href = url.toString();
   }
-  console.log(pages[0]);
+ 
 </script>
 
 <Navbar class="bg-gray-200">
