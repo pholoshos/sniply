@@ -9,7 +9,12 @@
 
   export let padding = "4px";
   export let isConfig = false;
+  export let projectConfig = null;
+
+
   export let width = "100px";
+
+  export formConfigs =  
   const inputType = ["text", "number", "checkbox", "select", "file"];
 
   export let formData = [

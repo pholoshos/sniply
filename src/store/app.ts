@@ -135,6 +135,8 @@ export const deleteComponentFromPage = (pageId:any, componentId:any) => {
   });
 };
 
+
+
 //page interface
 export interface IPage {
   visibility? : boolean;
@@ -156,7 +158,7 @@ export const addEmptyPage = (data) => {
     };
 
     // Add the new page to projectConfig
-    updatedState.projectConfig.pages[pageId] = newEmptyPage;
+    updatedState.projectConfig.pages[addEmptyPage?.pageName] = newEmptyPage;
 
     return updatedState;
   });
