@@ -134,3 +134,31 @@ export const deleteComponentFromPage = (pageId:any, componentId:any) => {
     return updatedState;
   });
 };
+
+//page interface
+export interface IPage {
+  visibility? : boolean;
+  layout?: string;
+  route?: string;
+  components?: any[];
+}
+
+// Function to add an empty page to projectConfig
+export const addEmptyPage = (data) => {
+  appState.update((currentState) => {
+    const updatedState: any = { ...currentState };
+
+    // Create a new, empty page
+    const newEmptyPage = {
+     ... data,
+      layout: "default", // You can set the default layout or customize it as needed
+      route: `/${pageId.toLowerCase()}`, // Assuming the route is based on the pageId
+      components: [],
+    };
+
+    // Add the new page to projectConfig
+    updatedState.projectConfig.pages[pageId] = newEmptyPage;
+
+    return updatedState;
+  });
+};
