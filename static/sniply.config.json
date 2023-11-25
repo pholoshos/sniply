@@ -11,6 +11,7 @@
     "pages": {
       "home": {
         "layout": "default",
+        "visibility" : "public",
         "pageLabel" : "Home",
         "route": "/pages/home",
         "components": [
@@ -45,9 +46,17 @@
         ]
       },
       "dashboard": {
+        "visibility" : "public",
         "pageLabel" : "Dashboard",
         "layout": "dashboard",
         "route": "/pages/dashboard",
+        "components": []
+      },
+      "users": {
+        "visibility" : "hidden",
+        "pageLabel" : "users",
+        "layout": "users",
+        "route": "/pages/users",
         "components": []
       }
     }
