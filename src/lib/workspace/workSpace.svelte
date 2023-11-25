@@ -16,11 +16,10 @@
     addComponentToPage,
     appState,
     deleteComponentFromPage,
-    updateAppState,
   } from "../../store/app";
   import { onMount } from "svelte";
   import { loadConfig } from "../../utils/loadConfig";
-  import { getAllRoutes, getPages } from "../../utils/getRoutes";
+  import { getPages } from "../../utils/getRoutes";
 
   // Array to store dynamically loaded components
   /**
@@ -38,16 +37,6 @@
   let selectedOnProject = null;
   let isSelectedProjectComponent = false;
 
-  const updateState = () => {
-    const newState = {
-      ...$appState, // Access the current state using the $ prefix
-      projectComponents: "New Svelte App Name",
-      // Add or modify other properties as needed
-    };
-
-    // Update the state using the function from the store
-    updateAppState(newState);
-  };
 
   const changeProperties = (/** @type {{ id: any; } | null} */ component) => {
     isSelectedProjectComponent = true;
