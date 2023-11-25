@@ -19,6 +19,7 @@
   export let pageName = "";
   export let backgroundColor = "white";
   export let isConfig = false;
+  export let isDevelopment = false;
 
   const onConfig = () => {
     isConfig = !isConfig;
@@ -30,9 +31,9 @@
   };
 </script>
 
-<ComponentsToolbar {onConfig} />
+<ComponentsToolbar isDevelopment={isDevelopment} {onConfig} />
 
-<div class="flex w-screen">
+<div class="flex">
   {#if isConfig}
     <div class=" h-screen p-4 rounded-md bg-white border" style="width: 300px;">
       <h2>Form Congiguration</h2>

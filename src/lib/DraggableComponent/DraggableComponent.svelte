@@ -27,7 +27,6 @@
   import { colorOptions } from "../../utils/Colors";
   import JabDB from "jabulane-db";
   import { randomString } from "../../utils/getRandomString";
-  
 
   // Create an instance of JabDB with the appropriate API base URL and API key
   const jabdb = new JabDB(
@@ -46,12 +45,14 @@
     });
 
   export let x = 0;
+  export let isDevelopment = false;
   export let pageRoute = "Home";
   export let projectConfig = null;
   export let y = 0;
   let zIndex = 1; // Initial z-index value
   let isDragging = false;
-  export let isDraggable = true;
+  export let isDraggable = true && isDevelopment;
+  console.log(isDevelopment);
   export let isEditor = false;
   export let label = "My Component";
   export let dynamicComponent = null;
@@ -291,38 +292,46 @@
   class="draggable"
   on:mousedown={handleMouseDown}
 >
-  <div class="toolbar space-x-2 flex">
-    <Button
-      size="xs"
-      color="alternative"
-      on:click={() => handleButtonClick(true)}
-    >
-      <EditOutline size="xs" /></Button
-    >
-    <Button size="xs" color="alternative" on:click={handleButtonClick}>
-      <FileCopyOutline size="xs" /></Button
-    >
-    <Button size="xs" color="alternative" on:click={onDelete}
-      ><TrashBinOutline size="xs" /></Button
-    >
+  {#if isDevelopment}
+    <div class="toolbar space-x-2 z-20 flex">
+      <Button
+        size="xs"
+        color="alternative"
+        on:click={() => handleButtonClick(true)}
+      >
+        <EditOutline size="xs" /></Button
+      >
+      <Button size="xs" color="alternative" on:click={handleButtonClick}>
+        <FileCopyOutline size="xs" /></Button
+      >
+      <Button size="xs" color="alternative" on:click={onDelete}
+        ><TrashBinOutline size="xs" /></Button
+      >
 
-    <Button size="xs" color="alternative" on:click={onDelete}
-      ><BookOutline size="xs" /></Button
-    >
-    <Button size="xs" color="alternative" on:click={onHide}>
-      {#if isHidden}
-        <EyeSlashOutline size="xs" />
-      {:else}
-        <EyeOutline size="xs" />
-      {/if}
-    </Button>
-    <!-- Add other toolbar buttons if needed -->
-  </div>
+      <Button size="xs" color="alternative" on:click={onDelete}
+        ><BookOutline size="xs" /></Button
+      >
+      <Button size="xs" color="alternative" on:click={onHide}>
+        {#if isHidden}
+          <EyeSlashOutline size="xs" />
+        {:else}
+          <EyeOutline size="xs" />
+        {/if}
+      </Button>
+      <!-- Add other toolbar buttons if needed -->
+    </div>
+  {/if}
+
   <!-- <Badge color='indigo'  class='mb-2 absolute'>Beta</Badge> -->
 
   <div class={appendClasses([`w-${width}`, isHidden ? "hidden" : " "])}>
     <div>
-      <svelte:component projectConfig={projectConfig} this={dynamicComponent?.component} {...config} />
+      <svelte:component
+        this={dynamicComponent?.component}
+        isDevelopment={isDevelopment}
+        {projectConfig}
+        {...config}
+      />
       <slot />
     </div>
   </div>

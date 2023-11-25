@@ -20,6 +20,7 @@
   import { onMount } from "svelte";
   import { loadConfig } from "../../utils/loadConfig";
   import { getPages } from "../../utils/getRoutes";
+  import { isDevelopemnt } from "../../utils/getMode";
 
   // Array to store dynamically loaded components
   /**
@@ -28,8 +29,9 @@
   let dynamicComponents = [];
   export let pageRoute = "Home";
   export let isPreview = true;
-  export let  mode = "";
- 
+
+  export let mode = "loading";
+  export let _isDevelopemnt = isDevelopemnt(mode);
 
   let isChangingProperties = false;
   /**
@@ -37,7 +39,6 @@
    */
   let selectedOnProject = null;
   let isSelectedProjectComponent = false;
-
 
   const changeProperties = (/** @type {{ id: any; } | null} */ component) => {
     isSelectedProjectComponent = true;
@@ -95,7 +96,6 @@
    */
   let projectConfig;
 
-
   // Subscribe to the appState store
   const _state = appState.subscribe((state) => {
     // Handle state changes here
@@ -106,13 +106,13 @@
   onMount(() => {
     const _c = loadConfig()?.then((config) => {
       if (!config) return;
+
       mode = config?.mode;
-      //placeholder page is home for now
+      console.log(mode);
       config?.pages[pageRoute?.slice(1)].components.map(
         (
           /** @type {{ componentName: string; id: string | undefined; }} */ comp
         ) => {
-          console.log("LOG:::comp", comp);
           createDynamicComponent(comp.componentName, comp?.id, comp);
         }
       );
@@ -178,87 +178,109 @@
   };
 </script>
 
-<Button
-  class="absolute right-0 mx-8 mt-4 z-20"
-  size="xs"
-  color="alternative"
-  on:click={generateJson}><DownloadSolid size="xs" /></Button
->
-<div class="flex">
-  <!-- Sidebar -->
-  <div class="flex-1 z-10">
-    {#if defaultModal}
-      <div class="absolute w-96 h-screen bg-white p-8">
-        <h1>App Settings</h1>
-        <div class="mt-4">
-          <Label>App Name</Label>
-          <Input type="text" placeholder="App Name" />
-        </div>
+{#if mode === "loading"}
+  <div>
+    <h1>Loading...</h1>
+  </div>
+{:else}
+  <div>
+    <Button
+      class="absolute right-0 mx-8 mt-4 z-20"
+      size="xs"
+      color="alternative"
+      on:click={generateJson}><DownloadSolid size="xs" /></Button
+    >
+    <div class="flex">
+      <!-- Sidebar -->
+      <div class="flex-1 z-10">
+        {#if defaultModal}
+          <div class="absolute w-96 h-screen bg-white p-8">
+            <h1>App Settings</h1>
+            <div class="mt-4">
+              <Label>App Name</Label>
+              <Input type="text" placeholder="App Name" />
+            </div>
 
-        <div class="mt-4">
-          <Label>Routes Setup</Label>
-          <Input type="text" placeholder="App Name" />
-          <Listgroup items={["Home,About,Dashboard"]} let:item>
-            {item}
-          </Listgroup>
-        </div>
+            <div class="mt-4">
+              <Label>Routes Setup</Label>
+              <Input type="text" placeholder="App Name" />
+              <Listgroup items={["Home,About,Dashboard"]} let:item>
+                {item}
+              </Listgroup>
+            </div>
 
-        <div class="mt-4">
-          <Label>App Name</Label>
-          <Input type="text" placeholder="App Name" />
-        </div>
-        <Button on:click={() => (defaultModal = false)} class="mt-4"
-          >Close</Button
-        >
-      </div>
-    {/if}
-
-    <DraggableComponent x={934} y={67} isEditor={true} width="1">
-      <div class="flex">
-        <ComponentsList>
-          <div>
-            <h1 class="my-4">Components</h1>
-            {#each componentNames as componentName}
-              <SidebarItem
-                label={componentName}
-                on:click={() => handleSelectComponent(componentName)}
-              />
-            {/each}
+            <div class="mt-4">
+              <Label>App Name</Label>
+              <Input type="text" placeholder="App Name" />
+            </div>
+            <Button on:click={() => (defaultModal = false)} class="mt-4"
+              >Close</Button
+            >
           </div>
-        </ComponentsList>
-        <ComponentsList>
-          <h1 class="my-4">Project</h1>
-          <SidebarItem
-            on:click={() => (defaultModal = true)}
-            label="settings"
-          />
-          {#each projectComponents as component}
-            <SidebarItem
-              on:click={() => changeProperties(component)}
-              label={component.componentName}
+        {/if}
+        {#if isDevelopemnt(mode)}
+          <DraggableComponent
+            isDevelopment={isDevelopemnt(mode)}
+            x={934}
+            y={67}
+            isEditor={true}
+            width="1"
+          >
+            <div class="flex">
+              <ComponentsList>
+                <div>
+                  <h1 class="my-4">Components</h1>
+                  {#each componentNames as componentName}
+                    <SidebarItem
+                      label={componentName}
+                      on:click={() => handleSelectComponent(componentName)}
+                    />
+                  {/each}
+                </div>
+              </ComponentsList>
+              <ComponentsList>
+                <h1 class="my-4">Project</h1>
+                <SidebarItem
+                  on:click={() => (defaultModal = true)}
+                  label="settings"
+                />
+                {#each projectComponents as component}
+                  <SidebarItem
+                    on:click={() => changeProperties(component)}
+                    label={component.componentName}
+                  />
+                {/each}
+              </ComponentsList>
+            </div>
+          </DraggableComponent>
+        {/if}
+      </div>
+
+      <!-- Main Content -->
+      <div class="flex-2">
+        <!-- Configuration Tab -->
+        <!-- App Container and Dynamic Components -->
+        <AppContainer
+          pages={getPages(projectConfig)?.filter(
+            (page) => page?.visibility === "public"
+          )}
+          appName={projectConfig?.appName}
+        />
+
+        <div class="w-full">
+          {#each dynamicComponents as dynamicComponent}
+            <DraggableComponent
+              {pageRoute}
+              isDevelopment={isDevelopemnt(mode)}
+              onDelete={() => onDelete(dynamicComponent.id)}
+              {dynamicComponent}
+              {...dynamicComponent}
+              id={dynamicComponent?.id}
+              {projectConfig}
             />
           {/each}
-        </ComponentsList>
+        </div>
       </div>
-    </DraggableComponent>
-  </div>
-
-  <!-- Main Content -->
-  <div class="flex-2">
-    <!-- Configuration Tab -->
-    <!-- App Container and Dynamic Components -->
-    <AppContainer pages={getPages(projectConfig)?.filter((page) => page?.visibility  === "public")}  appName={projectConfig?.appName}/>
-    <div class="w-full">
-      {#each dynamicComponents as dynamicComponent}
-        <DraggableComponent
-          pageRoute={pageRoute}
-          onDelete={() => onDelete(dynamicComponent.id)}
-          {dynamicComponent}
-          {...dynamicComponent}
-          id={dynamicComponent?.id}
-          projectConfig={projectConfig}
-        />
-      {/each}
     </div>
   </div>
-</div>
+{/if}

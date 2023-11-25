@@ -17,20 +17,6 @@
         "route": "/pages/home",
         "components": [
           {
-            "componentName": "LoginView",
-            "width": "50%",
-            "x": 269,
-            "y": 147,
-            "id": "2121",
-            "backgroundColor": "",
-            "label": "My Component",
-            "textColor": "#000",
-            "color": "primary",
-            "padding": "10px",
-            "value": "",
-            "span": "My Component"
-          },
-          {
             "componentName": "SideNav",
             "id": "124124",
             "width": "",
@@ -43,7 +29,22 @@
             "padding": "4px",
             "value": "Button",
             "span": "1"
+          },
+          {
+            "componentName": "LoginView",
+            "width": "50%",
+            "x": 269,
+            "y": 147,
+            "id": "2121",
+            "backgroundColor": "",
+            "label": "My Component",
+            "textColor": "#000",
+            "color": "primary",
+            "padding": "10px",
+            "value": "",
+            "span": "My Component"
           }
+         
         ]
       },
       "dashboard": {

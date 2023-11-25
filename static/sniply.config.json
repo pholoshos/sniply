@@ -1,64 +1,65 @@
 {
-    "appName": "sniply",
-    "layouts": {
-      "default": {
-        "background": "#f0f0f0"
-      },
-      "dashboard": {
-        "background": "#e6e6e6"
-      }
+  "appName": "sniply",
+  "mode": "development",
+  "layouts": {
+    "default": {
+      "background": "#f0f0f0"
     },
-    "pages": {
-      "home": {
-        "layout": "default",
-        "visibility" : "public",
-        "pageLabel" : "Home",
-        "route": "/pages/home",
-        "components": [
-          {
-            "componentName": "LoginView",
-            "width": "50%",
-            "x": 269,
-            "y": 147,
-            "id": "2121",
-            "backgroundColor": "",
-            "label": "My Component",
-            "textColor": "#000",
-            "color": "primary",
-            "padding": "10px",
-            "value": "",
-            "span": "My Component"
-          },
-          {
-            "componentName": "SideNav",
-            "id": "124124",
-            "width": "",
-            "x": -12,
-            "y": 79,
-            "backgroundColor": "white",
-            "label": "Button",
-            "textColor": "black",
-            "color": "primary",
-            "padding": "4px",
-            "value": "Button",
-            "span": "1"
-          }
-        ]
-      },
-      "dashboard": {
-        "visibility" : "public",
-        "pageLabel" : "Dashboard",
-        "layout": "dashboard",
-        "route": "/pages/dashboard",
-        "components": []
-      },
-      "users": {
-        "visibility" : "hidden",
-        "pageLabel" : "users",
-        "layout": "users",
-        "route": "/pages/users",
-        "components": []
-      }
+    "dashboard": {
+      "background": "#e6e6e6"
+    }
+  },
+  "pages": {
+    "home": {
+      "layout": "default",
+      "visibility" : "public",
+      "pageLabel" : "Home",
+      "route": "/pages/home",
+      "components": [
+        {
+          "componentName": "SideNav",
+          "id": "124124",
+          "width": "",
+          "x": -12,
+          "y": 79,
+          "backgroundColor": "white",
+          "label": "Button",
+          "textColor": "black",
+          "color": "primary",
+          "padding": "4px",
+          "value": "Button",
+          "span": "1"
+        },
+        {
+          "componentName": "LoginView",
+          "width": "50%",
+          "x": 269,
+          "y": 147,
+          "id": "2121",
+          "backgroundColor": "",
+          "label": "My Component",
+          "textColor": "#000",
+          "color": "primary",
+          "padding": "10px",
+          "value": "",
+          "span": "My Component"
+        }
+       
+      ]
+    },
+    "dashboard": {
+      "visibility" : "public",
+      "pageLabel" : "Dashboard",
+      "layout": "dashboard",
+      "route": "/pages/dashboard",
+      "components": []
+    },
+    "users": {
+      "visibility" : "hidden",
+      "pageLabel" : "users",
+      "layout": "users",
+      "route": "/pages/users",
+      "components": []
     }
   }
-  
+}

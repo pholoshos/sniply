@@ -6,10 +6,12 @@
   import { FormConfig } from "./config";
   import List from "$lib/List/List.svelte";
   import AppContainer from "$lib/AppContainer/AppContainer.svelte";
+ 
 
   export let padding = "4px";
   export let isConfig = false;
   export let projectConfig = null;
+  export let isDevelopment = false;
 
 
   export let width = "100px";
@@ -55,7 +57,7 @@
   };
 </script>
 
-<ComponentsToolbar {onConfig} />
+<ComponentsToolbar isDevelopment={isDevelopment} {onConfig} />
 
 <div class="flex w-screen">
   {#if isConfig}
