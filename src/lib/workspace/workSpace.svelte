@@ -28,7 +28,8 @@
   let dynamicComponents = [];
   export let pageRoute = "Home";
   export let isPreview = true;
-
+  export let  mode = "";
+ 
 
   let isChangingProperties = false;
   /**
@@ -105,7 +106,7 @@
   onMount(() => {
     const _c = loadConfig()?.then((config) => {
       if (!config) return;
-
+      mode = config?.mode;
       //placeholder page is home for now
       config?.pages[pageRoute?.slice(1)].components.map(
         (
