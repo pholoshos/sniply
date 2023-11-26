@@ -111,7 +111,6 @@
           alt=""
           src="https://www.kreuzbergkinder.com/_nuxt/img/search_no.1ddc8c4.jpg"
         />
-        <p>No data</p>
       </div>
     {/if}
   </div>
