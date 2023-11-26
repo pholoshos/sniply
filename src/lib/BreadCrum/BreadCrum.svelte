@@ -1,9 +1,16 @@
 <script>
-    import { Breadcrumb, BreadcrumbItem } from 'flowbite-svelte';
-  </script>
+  import { page } from "$app/stores";
+  import { Breadcrumb, BreadcrumbItem } from "flowbite-svelte";
+
+  export let pageRoute = $page.url.pathname.substr(
+    $page.url.pathname.lastIndexOf("/")
+  );
+
+  let pagesArray = pageRoute.split("/").filter((item) => item !== "");
+</script>
 
 <Breadcrumb class="bg-white" aria-label="Default breadcrumb example">
-    <BreadcrumbItem href="/" home>Home</BreadcrumbItem>
-    <BreadcrumbItem href="/">Projects</BreadcrumbItem>
-    <BreadcrumbItem>Flowbite Svelte</BreadcrumbItem>
+  {#each pagesArray as route}
+    <BreadcrumbItem home>{route}</BreadcrumbItem>
+  {/each}
 </Breadcrumb>
