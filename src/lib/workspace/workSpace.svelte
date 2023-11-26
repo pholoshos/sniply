@@ -29,10 +29,8 @@
    */
   let dynamicComponents = [];
   export let pageRoute = "Home";
-  export let isPreview = true;
 
   export let mode = "loading";
-  export let _isDevelopemnt = isDevelopemnt(mode);
 
   let isChangingProperties = false;
   /**
