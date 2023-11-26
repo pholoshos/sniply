@@ -18,7 +18,7 @@
     deleteComponentFromPage,
     updateAppState,
   } from "../../store/app";
-  import { onMount } from "svelte";
+  import { afterUpdate, onMount } from "svelte";
   import { loadConfig } from "../../utils/loadConfig";
   import { getPages } from "../../utils/getRoutes";
   import { isDevelopemnt } from "../../utils/getMode";
@@ -64,7 +64,7 @@
     dynamicComponents = dynamicComponents.filter(
       (component) => component.id !== id
     );
-    deleteComponentFromPage("home", id);
+    deleteComponentFromPage(pageRoute?.slice(1), id);
   };
 
   const jsonData = {
@@ -104,7 +104,7 @@
   onMount(() => {
     const _c = loadConfig()?.then((config) => {
       if (!config) return;
-    
+
       mode = config?.mode;
       updateAppState({ projectConfig: config });
       console.log(mode);
@@ -125,7 +125,6 @@
   const handleSelectComponent = (/** @type {string} */ component) => {
     const id = randomString(10);
     createDynamicComponent(component, id);
-  
   };
 
   // Create a dynamic component
@@ -161,10 +160,16 @@
       ];
     });
   };
+
+  afterUpdate(() => {
+    // Update the appState store
+    
+    updateAppState({ projectConfig });
+  });
 </script>
 
 {#if mode === "loading"}
-  <div class=" mx-auto my-96 text-center ">
+  <div class=" mx-auto my-96 text-center">
     <Spinner />
     <p>loading...</p>
   </div>
