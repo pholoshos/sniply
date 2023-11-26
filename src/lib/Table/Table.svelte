@@ -41,6 +41,10 @@
   export let padding = "10px";
   let isConfig = false;
 
+  const onSave = (/** @type {any} */ settings)=>{
+    console.log("LOG:::",settings)
+  }
+
   onMount(() => {});
 
   const onConfig = () => {
@@ -56,7 +60,7 @@
   {#if isConfig}
     <div class=" h-screen p-4 rounded-md bg-white border" style="width: 300px;">
       <h2>Form Congiguration</h2>
-      <DynamicForm formData={TableConfig}>
+      <DynamicForm onSave={onSave} formData={TableConfig}>
         <div class="bg-white p-4 mb-4 rounded-md"></div>
       </DynamicForm>
     </div>

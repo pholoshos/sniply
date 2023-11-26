@@ -2,18 +2,21 @@ export const TableConfig = [
     {
         "label": "Form name",
         "name": "formName",
-        "type": "text"
+        "type": "text",
+        "value": "",
     },
     {
         "label": "description",
         "name": "description",
-        "type": "text"
+        "type": "checkbox",
+        "value": true,
     },
 
     {
         "label": "Select Action",
         "name": "action",
         "type": "select",
+        "value": "user",
         "options": ["user", "detail", "class", "apps"]
     }
     
