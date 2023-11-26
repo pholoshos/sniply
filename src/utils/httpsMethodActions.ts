@@ -17,7 +17,7 @@ export let setAppappApiBaseUrl = (url: string) => {
 }
 
 //generic method for fetching data from a service using appApiSauce
-export const fetchData = async ({url}: any, params: any) => {
+export const fetchData = async (url: string, params  ={}) => {
     try {
         const response = await appApi.get(url, params);
         return response.data;
@@ -92,3 +92,9 @@ export const httpMethod = async ({url}: any, params: any, method: string) => {
         console.log(error);
     }
 }
+
+export const getCollectionUrl = (collectionName: string,services:any) => {
+    let service = services?.find((serv:any) => serv?.name === collectionName);
+    return service?.url;
+}
+

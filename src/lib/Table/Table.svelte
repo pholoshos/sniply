@@ -11,13 +11,14 @@
     TableSearch,
   } from "flowbite-svelte";
 
-  import { onMount } from "svelte";
+  import { afterUpdate, onMount } from "svelte";
   import { getData } from "../../utils/getData";
   import ComponentsToolbar from "$lib/ComponentsToolbar/ComponentsToolbar.svelte";
   import DynamicForm from "$lib/DynamicForm/DynamicForm.svelte";
   import { TableConfig } from "./TableConfig";
   import { appState } from "../../store/app";
   import { mapServicesToOptions } from "../../utils/mapServicesToOptions";
+  import { fetchData, getCollectionUrl } from "../../utils/httpsMethodActions";
 
   let searchTerm = "";
 
@@ -43,9 +44,15 @@
   export let padding = "10px";
   let isConfig = false;
 
-  export let projectConfig = null;
+  /**
+   * @type {any[]}
+   */
+  let tableSettings = [];
 
-  console.log("LOG:::", projectConfig.services);
+  export let projectConfig = null;
+  export let services = projectConfig?.services || [];
+
+  console.log("LOG:::", services);
 
   let extendedTableConifig = [
     ...TableConfig,
@@ -53,12 +60,13 @@
       name: "collection",
       type: "select",
       label: "Select Collection",
-      options: mapServicesToOptions(projectConfig.services),
+      options: mapServicesToOptions(projectConfig?.services),
     },
   ];
 
   const onSave = (/** @type {any} */ settings) => {
     console.log("LOG:::", settings);
+    tableSettings = settings;
   };
 
   onMount(() => {});
@@ -66,6 +74,19 @@
   const onConfig = () => {
     isConfig = !isConfig;
   };
+
+  afterUpdate(() => {
+    if (!!services) {
+      let collectionName = tableSettings?.find(
+        (c) => c.name === "collection"
+      )?.value;
+      let url = getCollectionUrl(collectionName, services);
+
+      fetchData(url).then((res) => {
+        console.log("LOG::: res", res);
+      });
+    }
+  });
 
   const seletedData = null;
 </script>
