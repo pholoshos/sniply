@@ -60,12 +60,10 @@
 
   // Handle the component drop event
   const onDelete = (/** @type {any} */ id) => {
-    console.log("LOG:::dynamic", dynamicComponents);
-
     dynamicComponents = dynamicComponents.filter(
       (component) => component.id !== id
     );
-    deleteComponentFromPage("home", id);
+    //deleteComponentFromPage("home", id);
   };
 
   const jsonData = {

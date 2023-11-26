@@ -22,7 +22,7 @@
             "width": "",
             "x": -12,
             "y": 79,
-            "backgroundColor": "white",
+            "backgroundColor": "gray",
             "label": "Button",
             "textColor": "black",
             "color": "primary",
