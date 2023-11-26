@@ -184,12 +184,14 @@
   </div>
 {:else}
   <div>
-    <Button
-      class="absolute right-0 mx-8 mt-4 z-20"
-      size="xs"
-      color="alternative"
-      on:click={generateJson}><DownloadSolid size="xs" /></Button
-    >
+    {#if isDevelopemnt(mode)}
+      <Button
+        class="absolute right-0 mx-8 mt-4 z-20"
+        size="xs"
+        color="alternative"
+        on:click={generateJson}><DownloadSolid size="xs" /></Button
+      >
+    {/if}
     <div class="flex">
       <!-- Sidebar -->
       <div class="flex-1 z-10">
