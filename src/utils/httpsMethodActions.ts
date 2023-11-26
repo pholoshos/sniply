@@ -17,9 +17,9 @@ export let setAppappApiBaseUrl = (url: string) => {
 }
 
 //generic method for fetching data from a service using appApiSauce
-export const fetchData = async (service: any, params: any) => {
+export const fetchData = async ({url}: any, params: any) => {
     try {
-        const response = await appApi.get('', params);
+        const response = await appApi.get(url, params);
         return response.data;
     }
     catch (error) {
@@ -28,9 +28,9 @@ export const fetchData = async (service: any, params: any) => {
 }
 
 //generic method for posting data to a service using appApiSauce
-export const postData = async (service: any, params: any) => {
+export const postData = async ({url}: any, params: any) => {
     try {
-        const response = await appApi.post('', params);
+        const response = await appApi.post(url, params);
         return response.data;
     }
     catch (error) {
@@ -39,9 +39,9 @@ export const postData = async (service: any, params: any) => {
 }
 
 //generic method for updating data to a service using appApiSauce
-export const updateData = async (service: any, params: any) => {
+export const updateData = async ({url}: any, params: any) => {
     try {
-        const response = await appApi.put('', params);
+        const response = await appApi.put(url, params);
         return response.data;
     }
     catch (error) {
@@ -50,9 +50,9 @@ export const updateData = async (service: any, params: any) => {
 }
 
 //generic method for deleting data from a service using appApiSauce
-export const deleteData = async (service: any, params: any) => {
+export const deleteData = async ({url}: any, params: any) => {
     try {
-        const response = await appApi.delete('', params);
+        const response = await appApi.delete(url, params);
         return response.data;
     }
     catch (error) {
@@ -61,9 +61,9 @@ export const deleteData = async (service: any, params: any) => {
 }
 
 //generic method for patching data to a service using appApiSauce
-export const patchData = async (service: any, params: any) => {
+export const patchData = async ({url}: any, params: any) => {
     try {
-        const response = await appApi.patch('', params);
+        const response = await appApi.patch(url, params);
         return response.data;
     }
     catch (error) {
@@ -72,9 +72,20 @@ export const patchData = async (service: any, params: any) => {
 }
 
 //generic method for head data to a service using appApiSauce
-export const headData = async (service: any, params: any) => {
+export const headData = async ({url}: any, params: any) => {
     try {
-        const response = await appApi.head('', params);
+        const response = await appApi.head(url, params);
+        return response.data;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+//one generaric method for all http methods
+export const httpMethod = async ({url}: any, params: any, method: string) => {
+    try {
+        const response = await appApi[method](url, params);
         return response.data;
     }
     catch (error) {
