@@ -5,8 +5,8 @@ export const videoConfig = [
         "type": "text"
     },
     {
-        "label": "description",
-        "name": "description",
+        "label": "src",
+        "name": "src",
         "type": "text"
     },
 

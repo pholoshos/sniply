@@ -127,11 +127,9 @@
     const id = randomString(10);
     const defaultData = {
       width: "",
-      x: 0,
       id,
-      y: 0,
       backgroundColor: "white",
-      label: "Button",
+      label: "",
       textColor: "black",
       color: "primary",
       padding: "4px",
@@ -140,7 +138,7 @@
     };
 
     createDynamicComponent(component, id, defaultData);
-    console.log(component);
+  
   };
 
   // Create a dynamic component
