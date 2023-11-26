@@ -1,6 +1,73 @@
 {
   "appName": "sniply",
   "mode": "development",
+  "services": [
+    {
+      "name": "users",
+      "url": "/users",
+      "methods": [
+        {
+          "name": "get",
+          "url": "/users",
+          "type": "get"
+        },
+        {
+          "name": "post",
+          "url": "/users",
+          "type": "post"
+        }
+      ]
+    },
+    {
+      "name": "sniply",
+      "url": "/sniply",
+      "methods": [
+        {
+          "name": "get",
+          "url": "/sniply",
+          "type": "get"
+        },
+        {
+          "name": "post",
+          "url": "/sniply",
+          "type": "post"
+        }
+      ]
+    },
+    {
+      "name": "customers",
+      "url": "/customers",
+      "methods": [
+        {
+          "name": "get",
+          "url": "/customers",
+          "type": "get"
+        },
+        {
+          "name": "post",
+          "url": "/customers",
+          "type": "post"
+        }
+      ]
+    },
+    {
+      "name": "logs",
+      "url": "/logs",
+      "isExternal" : true,
+      "methods": [
+        {
+          "name": "get",
+          "url": "/logs",
+          "type": "get"
+        },
+        {
+          "name": "post",
+          "url": "/logs",
+          "type": "post"
+        }
+      ]
+    }
+  ],
   "layouts": {
     "default": {
       "background": "#f0f0f0"
@@ -12,8 +79,8 @@
   "pages": {
     "home": {
       "layout": "default",
-      "visibility" : "public",
-      "pageLabel" : "Home",
+      "visibility": "public",
+      "pageLabel": "Home",
       "route": "/pages/home",
       "components": [
         {
@@ -44,19 +111,18 @@
           "value": "",
           "span": "My Component"
         }
-       
       ]
     },
     "dashboard": {
-      "visibility" : "public",
-      "pageLabel" : "Dashboard",
+      "visibility": "public",
+      "pageLabel": "Dashboard",
       "layout": "dashboard",
       "route": "/pages/dashboard",
       "components": []
     },
     "users": {
-      "visibility" : "hidden",
-      "pageLabel" : "users",
+      "visibility": "hidden",
+      "pageLabel": "users",
       "layout": "users",
       "route": "/pages/users",
       "components": []
