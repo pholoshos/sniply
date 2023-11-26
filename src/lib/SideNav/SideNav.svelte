@@ -2,9 +2,6 @@
   import ComponentsToolbar from "$lib/ComponentsToolbar/ComponentsToolbar.svelte";
   import DynamicForm from "$lib/DynamicForm/DynamicForm.svelte";
   import {
-    Button,
-    Input,
-    Select,
     Sidebar,
     SidebarGroup,
     SidebarItem,

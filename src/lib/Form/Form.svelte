@@ -1,13 +1,9 @@
 <script>
   import { Button, Label, Input, Select } from "flowbite-svelte";
-  import { GearSolid } from "flowbite-svelte-icons";
   import ComponentsToolbar from "../ComponentsToolbar/ComponentsToolbar.svelte";
   import DynamicForm from "$lib/DynamicForm/DynamicForm.svelte";
   import { FormConfig } from "./config";
-  import List from "$lib/List/List.svelte";
-  import AppContainer from "$lib/AppContainer/AppContainer.svelte";
  
-
   export let padding = "4px";
   export let isConfig = false;
   export let projectConfig = null;
