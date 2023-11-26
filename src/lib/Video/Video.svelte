@@ -1,6 +1,7 @@
 <script>
-
   import { Video } from "flowbite-svelte";
-
+  export let width = "100px";
+  export let src = "";
 </script>
-<Video src="/videos/flowbite.mp4" controls trackSrc="flowbite.mp4" />
+
+<Video style="width:{width}" {src} controls />
