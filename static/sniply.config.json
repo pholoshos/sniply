@@ -1,6 +1,7 @@
 {
   "appName": "sniply",
   "mode": "development",
+  "apiBaseUrl" : "http://localhost:3000",
   "services": [
     {
       "name": "users",
