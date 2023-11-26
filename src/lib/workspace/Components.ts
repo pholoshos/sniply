@@ -1,4 +1,6 @@
 export const componentNames = [
+    "Label",
+    "Header",
     "Toolbar",
     "LoginView",
     "Table",
@@ -15,10 +17,7 @@ export const componentNames = [
     "TextField",
     "Image",
     "Collapse",
-    "Header",
     "Form",
-    "Example",
-    "Label"
     // Add more component names as needed
 ];
 

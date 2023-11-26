@@ -1,1 +1,5 @@
-<h1>Header</h1>
+<script>
+  export let value = "";
+</script>
+
+<h1>{value}</h1>
