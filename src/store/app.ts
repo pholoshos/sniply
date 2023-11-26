@@ -22,11 +22,15 @@ const defaultProjectConfig =  {
   },
   pages: {
     home: {
+      visibility : "hidden",
+      pageLabel : "users",
       layout: "default",
       route: "/",
       components: [],
     },
     dashboard: {
+      visibility : "hidden",
+      pageLabel : "users",
       layout: "dashboard",
       route: "/dashboard",
       components: [],
