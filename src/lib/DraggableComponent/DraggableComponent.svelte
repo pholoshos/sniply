@@ -2,12 +2,9 @@
 <script>
   // @ts-nocheck
   import {
-    appState,
-    updateAppState,
     updateComponentInConfig,
   } from "../../store/app";
   import {
-    Badge,
     Button,
     Dropdown,
     DropdownItem,
@@ -15,7 +12,6 @@
   } from "flowbite-svelte";
   import {
     BookOutline,
-    CalendarWeekSolid,
     EditOutline,
     EyeOutline,
     EyeSlashOutline,
