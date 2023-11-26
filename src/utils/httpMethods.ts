@@ -32,8 +32,6 @@ export const hasHttpMethod = (service: any, method: string) => {
     return service.methods.includes(method);
 }
 
-
-
 //generic method to get all services with a specific http method
 export const getAllGetMethods  = (services:any) => {
     return services.filter((service:any) => hasGetMethod(service));
