@@ -16,6 +16,7 @@
     addComponentToPage,
     appState,
     deleteComponentFromPage,
+    updateAppState,
   } from "../../store/app";
   import { onMount } from "svelte";
   import { loadConfig } from "../../utils/loadConfig";
@@ -103,8 +104,9 @@
   onMount(() => {
     const _c = loadConfig()?.then((config) => {
       if (!config) return;
-
+    
       mode = config?.mode;
+      updateAppState({ projectConfig: config });
       console.log(mode);
       config?.pages[pageRoute?.slice(1)].components.map(
         (
