@@ -6,18 +6,30 @@ export const TableConfig = [
         "value": "",
     },
     {
+        "label": "Allow Add",
+        "name": "allowAdd",
+        "type": "checkbox",
+        "value": true,
+    },
+    {
+        "label": "Allow Edit",
+        "name": "allowEdit",
+        "type": "checkbox",
+        "value": true,
+
+    },
+    {
+        "label": "Allow Delete",
+        "name": "allowDelete",
+        "type": "checkbox",
+        "value": true,
+
+    },
+    {
         "label": "description",
         "name": "description",
         "type": "checkbox",
         "value": true,
     },
 
-    {
-        "label": "Select Action",
-        "name": "action",
-        "type": "select",
-        "value": "user",
-        "options": ["user", "detail", "class", "apps"]
-    }
-    
 ]

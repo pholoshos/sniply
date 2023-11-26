@@ -16,6 +16,8 @@
   import ComponentsToolbar from "$lib/ComponentsToolbar/ComponentsToolbar.svelte";
   import DynamicForm from "$lib/DynamicForm/DynamicForm.svelte";
   import { TableConfig } from "./TableConfig";
+  import { appState } from "../../store/app";
+  import { mapServicesToOptions } from "../../utils/mapServicesToOptions";
 
   let searchTerm = "";
 
@@ -41,9 +43,23 @@
   export let padding = "10px";
   let isConfig = false;
 
-  const onSave = (/** @type {any} */ settings)=>{
-    console.log("LOG:::",settings)
-  }
+  export let projectConfig = null;
+
+  console.log("LOG:::", projectConfig.services);
+
+  let extendedTableConifig = [
+    ...TableConfig,
+    {
+      name: "collection",
+      type: "select",
+      label: "Select Collection",
+      options: mapServicesToOptions(projectConfig.services),
+    },
+  ];
+
+  const onSave = (/** @type {any} */ settings) => {
+    console.log("LOG:::", settings);
+  };
 
   onMount(() => {});
 
@@ -60,7 +76,7 @@
   {#if isConfig}
     <div class=" h-screen p-4 rounded-md bg-white border" style="width: 300px;">
       <h2>Form Congiguration</h2>
-      <DynamicForm onSave={onSave} formData={TableConfig}>
+      <DynamicForm {onSave} formData={extendedTableConifig}>
         <div class="bg-white p-4 mb-4 rounded-md"></div>
       </DynamicForm>
     </div>

@@ -325,7 +325,7 @@
       <svelte:component
         this={dynamicComponent?.component}
         isDevelopment={isDevelopment}
-        {projectConfig}
+        projectConfig={projectConfig}
         {...config}
       />
       <slot />
