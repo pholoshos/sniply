@@ -21,6 +21,7 @@
   import { loadConfig } from "../../utils/loadConfig";
   import { getPages } from "../../utils/getRoutes";
   import { isDevelopemnt } from "../../utils/getMode";
+  import Spinner from "$lib/Spinner/Spinner.svelte";
 
   // Array to store dynamically loaded components
   /**
@@ -177,8 +178,9 @@
 </script>
 
 {#if mode === "loading"}
-  <div>
-    <h1>Loading...</h1>
+  <div class=" mx-auto my-96 text-center ">
+    <Spinner />
+    <p>loading...</p>
   </div>
 {:else}
   <div>
