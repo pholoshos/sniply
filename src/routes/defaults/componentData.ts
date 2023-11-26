@@ -5,7 +5,7 @@ export interface IDefaultData {
     x: number;
     id: string;
     y: number;
-    backgroundColor: string;
+    backgroundColor?: string;
     label: string;
     textColor: string;
     color: string;
@@ -19,7 +19,6 @@ export const defaultData: IDefaultData = {
     x: 0,
     id: randomString(10),
     y: 0,
-    backgroundColor: "white",
     label: "Button",
     textColor: "black",
     color: "primary",

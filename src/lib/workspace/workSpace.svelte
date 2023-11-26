@@ -63,7 +63,7 @@
     dynamicComponents = dynamicComponents.filter(
       (component) => component.id !== id
     );
-    //deleteComponentFromPage("home", id);
+    deleteComponentFromPage("home", id);
   };
 
   const jsonData = {
@@ -122,19 +122,7 @@
   // Handle the component drop event
   const handleSelectComponent = (/** @type {string} */ component) => {
     const id = randomString(10);
-    const defaultData = {
-      width: "",
-      id,
-      backgroundColor: "white",
-      label: "",
-      textColor: "black",
-      color: "primary",
-      padding: "4px",
-      value: "Button",
-      span: "1",
-    };
-
-    createDynamicComponent(component, id, defaultData);
+    createDynamicComponent(component, id);
   
   };
 
@@ -270,7 +258,7 @@
             <DraggableComponent
               {pageRoute}
               isDevelopment={isDevelopemnt(mode)}
-              onDelete={() => onDelete(dynamicComponent.id)}
+              onDelete={() => onDelete(dynamicComponent?.id)}
               {dynamicComponent}
               {...dynamicComponent}
               id={dynamicComponent?.id}

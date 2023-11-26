@@ -10,8 +10,8 @@ const createEmptyComponent = () => ({
 });
 
 const defaultProjectConfig =  {
-  appName: "default",
-  mode : "default",
+  appName: "app",
+  mode : "development",
   layouts: {
     default: {
       background: "#f0f0f0",
