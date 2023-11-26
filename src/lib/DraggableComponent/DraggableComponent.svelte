@@ -363,11 +363,6 @@
     pointer-events: none;
     transition: opacity 0.3s; /* Add a transition for smooth fade-in/out */
   }
-
-  .toolbar button {
-    margin-right: 10px;
-  }
-
   .config-Input {
     margin-bottom: 10px;
   }
