@@ -75,7 +75,7 @@
     isConfig = !isConfig;
   };
 
-  afterUpdate(() => {
+  const loadTableData = ()=>{
     if (!!services) {
       let collectionName = tableSettings?.find(
         (c) => c.name === "collection"
@@ -86,6 +86,14 @@
         console.log("LOG::: res", res);
       });
     }
+  }
+
+  afterUpdate(() => {
+    loadTableData();
+  });
+
+  onMount(() => {
+    loadTableData();
   });
 
   const seletedData = null;
