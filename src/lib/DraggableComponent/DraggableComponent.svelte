@@ -48,7 +48,6 @@
   let zIndex = 1; // Initial z-index value
   let isDragging = false;
   export let isDraggable = true && isDevelopment;
-  console.log(isDevelopment);
   export let isEditor = false;
   export let label = "My Component";
   export let dynamicComponent = null;
@@ -282,9 +281,7 @@
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
-  style="width:{width};position: {isDraggable
-    ? 'absolute'
-    : 'relative'}  absolute;;left:  {x}px; top: {y}px; color: {textColor}"
+  style="width:{width};left:{x}px; top:{y}px; color: {textColor}"
   class="draggable"
   on:mousedown={handleMouseDown}
 >

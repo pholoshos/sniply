@@ -260,7 +260,7 @@
           appName={projectConfig?.appName}
         />
 
-        <div class="w-full">
+        <div class="w-screen">
           {#each dynamicComponents as dynamicComponent}
             <DraggableComponent
               {pageRoute}

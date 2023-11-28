@@ -19,6 +19,8 @@
   import { appState } from "../../store/app";
   import { mapServicesToOptions } from "../../utils/mapServicesToOptions";
   import { fetchData, getCollectionUrl } from "../../utils/httpsMethodActions";
+  import { randomString } from "../../utils/getRandomString";
+  import { createArrayOfComponents } from "../../utils/components";
 
   let searchTerm = "";
 
@@ -27,21 +29,49 @@
    */
   export let onAdd;
   /**
-   * @type {(arg0: null) => void}
+   * @type {(arg0?: null) => void}
    */
   export let onDelete;
   /**
-   * @type {(arg0: null) => void}
+   * @type {(arg0?: null) => void}
    */
   export let onEdit;
   /**
    * @type {string | any[]}
    */
   export const data = [];
+  export let width = "70%";
   export const dataId = "";
   export let backgroundColor = "white";
   export let isDevelopment = false;
   export let padding = "10px";
+  let toolbarComponents = [
+    {
+      componentName: "Button",
+      label: "Add",
+      isHidden: false,
+      onClick: () => {
+        onAdd();
+      },
+    },
+    {
+      componentName: "Button",
+      label: "Edit",
+      isHidden: false,
+      onClick: () => {
+        onEdit();
+      },
+    },
+    {
+      componentName: "Button",
+      label: "Delete",
+      isHidden: true,
+      onClick: () => {
+        onDelete();
+      },
+    },
+  ];
+
   let isConfig = false;
 
   /**
@@ -75,7 +105,7 @@
     isConfig = !isConfig;
   };
 
-  const loadTableData = ()=>{
+  const loadTableData = () => {
     if (!!services) {
       let collectionName = tableSettings?.find(
         (c) => c.name === "collection"
@@ -86,7 +116,7 @@
         console.log("LOG::: res", res);
       });
     }
-  }
+  };
 
   afterUpdate(() => {
     loadTableData();
@@ -113,16 +143,16 @@
 
   <div
     class="h-screen"
-    style="background-color: {backgroundColor}; padding: {padding}"
+    style="background-color: {backgroundColor};width:{width}; padding: {padding}"
   >
-    <div>
-      <Button on:click={() => onAdd()} color="alternative">Add</Button>
-      <Button on:click={() => onDelete(seletedData)} color="alternative">
-        Delete</Button
-      >
-      <Button on:click={() => onEdit(seletedData)} color="alternative"
-        >Edit</Button
-      >
+    <div class=" space-x-2">
+      {#each toolbarComponents as toolbarComponent}
+        {#if !toolbarComponent?.isHidden}
+          <Button on:click={() => toolbarComponent?.onClick} color="alternative"
+            >{toolbarComponent?.label}</Button
+          >
+        {/if}
+      {/each}
     </div>
     <TableSearch
       shadow
