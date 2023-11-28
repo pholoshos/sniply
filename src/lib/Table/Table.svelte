@@ -2,7 +2,6 @@
   import {
     Button,
     Checkbox,
-    Table,
     TableBody,
     TableBodyCell,
     TableBodyRow,
@@ -12,15 +11,11 @@
   } from "flowbite-svelte";
 
   import { afterUpdate, onMount } from "svelte";
-  import { getData } from "../../utils/getData";
   import ComponentsToolbar from "$lib/ComponentsToolbar/ComponentsToolbar.svelte";
   import DynamicForm from "$lib/DynamicForm/DynamicForm.svelte";
   import { TableConfig } from "./TableConfig";
-  import { appState } from "../../store/app";
   import { mapServicesToOptions } from "../../utils/mapServicesToOptions";
   import { fetchData, getCollectionUrl } from "../../utils/httpsMethodActions";
-  import { randomString } from "../../utils/getRandomString";
-  import { createArrayOfComponents } from "../../utils/components";
 
   let searchTerm = "";
 
@@ -45,6 +40,7 @@
   export let backgroundColor = "white";
   export let isDevelopment = false;
   export let padding = "10px";
+
   let toolbarComponents = [
     {
       componentName: "Button",
