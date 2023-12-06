@@ -1,5 +1,5 @@
 {
-  "appName": "sniply",
+  "appName": "example",
   "mode": "development",
   "apiBaseUrl" : "http://localhost:3000",
   "services": [

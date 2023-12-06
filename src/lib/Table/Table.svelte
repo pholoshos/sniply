@@ -41,40 +41,13 @@
   export let isDevelopment = false;
   export let padding = "10px";
 
-  let toolbarComponents = [
-    {
-      componentName: "Button",
-      label: "Add",
-      isHidden: false,
-      onClick: () => {
-        onAdd();
-      },
-    },
-    {
-      componentName: "Button",
-      label: "Edit",
-      isHidden: false,
-      onClick: () => {
-        onEdit();
-      },
-    },
-    {
-      componentName: "Button",
-      label: "Delete",
-      isHidden: true,
-      onClick: () => {
-        onDelete();
-      },
-    },
-  ];
-
-  let isConfig = false;
-
-  /**
+    /**
    * @type {any[]}
    */
-  let tableSettings = [];
+   let tableSettings = [];
 
+
+  let isConfig = false;
   export let projectConfig = null;
   export let services = projectConfig?.services || [];
 
@@ -89,6 +62,39 @@
       options: mapServicesToOptions(projectConfig?.services),
     },
   ];
+
+  let findSettingsOptions = (/** @type {string} */ settingsName) => {
+    return tableSettings?.find((c) => c?.name == settingsName);
+  };
+
+  let toolbarComponents = [
+    {
+      componentName: "Button",
+      label: "Add",
+      isHidden: false,
+      onClick: () => {
+        onAdd();
+      },
+    },
+    {
+      componentName: "Button",
+      label: "Edit",
+      isHidden: findSettingsOptions("allowEdit") || false,
+      onClick: () => {
+        onEdit();
+      },
+    },
+    {
+      componentName: "Button",
+      label: "Delete",
+      isHidden: true,
+      onClick: () => {
+        onDelete();
+      },
+    },
+  ];
+
+  console.log("LOG::: toolbarComponents", findSettingsOptions("allowEdit"));
 
   const onSave = (/** @type {any} */ settings) => {
     console.log("LOG:::", settings);
