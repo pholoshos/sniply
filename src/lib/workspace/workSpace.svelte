@@ -14,7 +14,6 @@
   import {
     CloseCircleSolid,
     DownloadSolid,
-    GearSolid,
   } from "flowbite-svelte-icons";
   import {
     addComponentToPage,
