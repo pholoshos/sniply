@@ -128,6 +128,9 @@
     // projectConfig = $appState.projectConfig; // Alternatively, you can use the $ prefix directly
   });
 
+  const routes  = getPages(projectConfig);
+
+  console.log("LOG:::routes", routes);
   // Handle the component drop event
   const handleSelectComponent = (/** @type {string} */ component) => {
     const id = randomString(10);
@@ -218,11 +221,11 @@
               </div>
               <Listgroup
                 class="mt-2 mb-4"
-                items={["Home","About","Dashboard"]}
+                items={routes}
                 let:item
               >
                 <div>
-                  <Button size="xs" color="light" class="ml-2">{item}</Button>
+                  <Button size="xs" color="light" class="ml-2">{item?.pageLabel}</Button>
                   <Button size="xs" color="light" class="ml-2"><EditOutline/></Button>
                   <Button size="xs" color="light" class="ml-2"><TrashBinSolid/></Button>
                 </div>
