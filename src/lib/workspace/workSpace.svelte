@@ -15,7 +15,9 @@
   import {
     CloseCircleSolid,
     DownloadSolid,
+    EditOutline,
     PlusSolid,
+    TrashBinSolid,
   } from "flowbite-svelte-icons";
   import {
     addComponentToPage,
@@ -216,10 +218,15 @@
               </div>
               <Listgroup
                 class="mt-2 mb-4"
-                items={["Home,About,Dashboard"]}
+                items={["Home","About","Dashboard"]}
                 let:item
               >
-                {item}
+                <div>
+                  <Button size="xs" color="light" class="ml-2">{item}</Button>
+                  <Button size="xs" color="light" class="ml-2"><EditOutline/></Button>
+                  <Button size="xs" color="light" class="ml-2"><TrashBinSolid/></Button>
+                </div>
+      
               </Listgroup>
             </div>
 
