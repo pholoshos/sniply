@@ -8,6 +8,7 @@
     Input,
     Label,
     Listgroup,
+    Alert,
   } from "flowbite-svelte";
   import { componentNames } from "./Components";
   import { randomString } from "../../utils/getRandomString";
@@ -194,6 +195,12 @@
         {#if defaultModal}
           <div class="absolute w-96 h-screen bg-white p-8">
             <h1>App Settings</h1>
+
+            <Alert color="blue">
+              <span class="font-medium">Configure app</span>
+              on this panel, this settings are used by all components
+            </Alert>
+
             <div class="mt-4">
               <Label>App Name</Label>
               <Input type="text" placeholder="App Name" />
