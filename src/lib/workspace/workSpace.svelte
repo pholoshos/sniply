@@ -161,11 +161,18 @@
     });
   };
 
+  const setFormDetails = ()=>{
+
+  }
+
   afterUpdate(() => {
     // Update the appState store
-    
     updateAppState({ projectConfig });
   });
+
+
+
+
 </script>
 
 {#if mode === "loading"}
@@ -196,8 +203,8 @@
 
             <div class="mt-4">
               <Label>Routes Setup</Label>
-              <Input type="text" placeholder="App Name" />
-              <Listgroup items={["Home,About,Dashboard"]} let:item>
+              <Input type="text" placeholder="enter route here" />
+              <Listgroup class="mt-2 mb-4" items={["Home,About,Dashboard"]} let:item>
                 {item}
               </Listgroup>
             </div>
@@ -207,10 +214,6 @@
               <Input type="text" placeholder="enter base backend api url here" />
             </div>
 
-            <div class="mt-4">
-              <Label>App Name</Label>
-              <Input type="text" placeholder="App Name" />
-            </div>
             <Button on:click={() => (defaultModal = false)} class="mt-4"
               >Close</Button
             >
