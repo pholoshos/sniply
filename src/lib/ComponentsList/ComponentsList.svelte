@@ -1,13 +1,24 @@
 <script>
-    import { Badge, Sidebar, SidebarGroup, SidebarItem, SidebarWrapper } from 'flowbite-svelte';
+  import {
+    Badge,
+    Sidebar,
+    Button,
+    Listgroup,
+    SidebarGroup,
+    SidebarItem,
+    SidebarWrapper,
+  } from "flowbite-svelte";
 
-  </script>
-  
-  <Sidebar>
-    <SidebarWrapper class="h-screen w-64 bg-gray-300">
-      <SidebarGroup>
-        <slot></slot>
-      </SidebarGroup>
-    </SidebarWrapper>
-  </Sidebar>
-  
+  /**
+   * @type {never[]}
+   */
+  export let items = [];
+
+  export let onSelect;
+</script>
+
+<Listgroup class="mt-2 mb-4 w-96 mx-2" {items} let:item>
+  <div class="flex">
+    <Button color="light" on:click={() => onSelect(item)}>{item}</Button>
+  </div>
+</Listgroup>

@@ -253,31 +253,9 @@
             isEditor={true}
             width="1"
           >
-            <div class="flex">
-              <ComponentsList>
-                <div>
-                  <h1 class="my-4">Components</h1>
-                  {#each componentNames as componentName}
-                    <SidebarItem
-                      label={componentName}
-                      on:click={() => handleSelectComponent(componentName)}
-                    />
-                  {/each}
-                </div>
-              </ComponentsList>
-              <ComponentsList>
-                <h1 class="my-4">Project</h1>
-                <SidebarItem
-                  on:click={() => (defaultModal = true)}
-                  label="App Settings"
-                />
-                {#each projectComponents as component}
-                  <SidebarItem
-                    on:click={() => changeProperties(component)}
-                    label={component.componentName}
-                  />
-                {/each}
-              </ComponentsList>
+            <div class="flex w-96 overflow-y-scroll h-screen">
+              <ComponentsList items={componentNames} onSelect={handleSelectComponent}></ComponentsList>
+              <ComponentsList items={projectComponents.map((c)=>c?.componentName)} onSelect={changeProperties}></ComponentsList>
             </div>
           </DraggableComponent>
         {/if}
