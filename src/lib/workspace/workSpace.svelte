@@ -11,7 +11,11 @@
   } from "flowbite-svelte";
   import { componentNames } from "./Components";
   import { randomString } from "../../utils/getRandomString";
-  import { DownloadSolid } from "flowbite-svelte-icons";
+  import {
+    CloseCircleSolid,
+    DownloadSolid,
+    GearSolid,
+  } from "flowbite-svelte-icons";
   import {
     addComponentToPage,
     appState,
@@ -161,18 +165,12 @@
     });
   };
 
-  const setFormDetails = ()=>{
-
-  }
+  const setFormDetails = () => {};
 
   afterUpdate(() => {
     // Update the appState store
     updateAppState({ projectConfig });
   });
-
-
-
-
 </script>
 
 {#if mode === "loading"}
@@ -204,18 +202,25 @@
             <div class="mt-4">
               <Label>Routes Setup</Label>
               <Input type="text" placeholder="enter route here" />
-              <Listgroup class="mt-2 mb-4" items={["Home,About,Dashboard"]} let:item>
+              <Listgroup
+                class="mt-2 mb-4"
+                items={["Home,About,Dashboard"]}
+                let:item
+              >
                 {item}
               </Listgroup>
             </div>
 
             <div class="mt-4">
               <Label>base backend Url</Label>
-              <Input type="text" placeholder="enter base backend api url here" />
+              <Input
+                type="text"
+                placeholder="enter base backend api url here"
+              />
             </div>
 
             <Button on:click={() => (defaultModal = false)} class="mt-4"
-              >Close</Button
+              ><CloseCircleSolid size="md" class="mr-2" /> Close Settings</Button
             >
           </div>
         {/if}
