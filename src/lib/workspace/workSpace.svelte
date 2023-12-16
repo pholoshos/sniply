@@ -9,6 +9,7 @@
     Label,
     Listgroup,
     Alert,
+    Badge,
   } from "flowbite-svelte";
   import { componentNames } from "./Components";
   import { randomString } from "../../utils/getRandomString";
@@ -258,7 +259,7 @@
           >
             <div class="flex w-96 overflow-y-scroll h-screen bg-white p-2 rounded-lg" >
               <div>
-                <h1 class="">Component List</h1>
+                <h1 class=" bg-gray-100 p-2 rounded-lg mx-2">Component List <Badge color='green'>{componentNames?.length}</Badge></h1>
                 <ComponentsList
                   items={componentNames}
                   onSelect={handleSelectComponent}
@@ -266,7 +267,7 @@
               </div>
 
               <div>
-                <h1 class="">Project</h1>
+                <h1 class=" bg-gray-100 p-2 rounded-lg">Project <Badge color='green'>{projectComponents?.length}</Badge></h1>
                 <ComponentsList
                   items={projectComponents.map((c) => c?.componentName)}
                   onSelect={changeProperties}
