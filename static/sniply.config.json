@@ -1,7 +1,7 @@
 {
   "appName": "example",
   "mode": "development",
-  "apiBaseUrl" : "http://localhost:3000",
+  "apiBaseUrl" : "https://ola-api.onrender.com",
   "services": [
     {
       "name": "users",

@@ -203,6 +203,11 @@
             </div>
 
             <div class="mt-4">
+              <Label>base backend Url</Label>
+              <Input type="text" placeholder="enter base backend api url here" />
+            </div>
+
+            <div class="mt-4">
               <Label>App Name</Label>
               <Input type="text" placeholder="App Name" />
             </div>

@@ -16,6 +16,7 @@
   import { TableConfig } from "./TableConfig";
   import { mapServicesToOptions } from "../../utils/mapServicesToOptions";
   import { fetchData, getCollectionUrl } from "../../utils/httpsMethodActions";
+  import { api } from "../../utils";
 
   let searchTerm = "";
 
@@ -114,9 +115,14 @@
       )?.value;
       let url = getCollectionUrl(collectionName, services);
 
-      fetchData(url).then((res) => {
-        console.log("LOG::: res", res);
-      });
+      api
+        .get('/datasp')
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
