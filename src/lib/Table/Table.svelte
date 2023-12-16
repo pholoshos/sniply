@@ -142,7 +142,7 @@
 <div class="flex">
   {#if isConfig}
     <div class=" h-screen p-4 rounded-md bg-white border" style="width: 300px;">
-      <h2>Form Congiguration</h2>
+      <h2>Form Stuff</h2>
       <DynamicForm {onSave} formData={extendedTableConifig}>
         <div class="bg-white p-4 mb-4 rounded-md"></div>
       </DynamicForm>

@@ -1,10 +1,12 @@
 <script>
-// @ts-nocheck
+  // @ts-nocheck
 
   import { Button } from "flowbite-svelte";
 
-  export let label = ""
+  export let label = "";
   export let color = "primary";
 
+  export const onClick = () => {};
 </script>
-<Button   color={color}>{label}</Button>
+
+<Button on:click={onClick} {color}>{label}</Button>
