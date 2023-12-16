@@ -128,7 +128,7 @@
     // projectConfig = $appState.projectConfig; // Alternatively, you can use the $ prefix directly
   });
 
-  const routes  = getPages(projectConfig);
+  const routes = getPages(projectConfig);
 
   // Handle the component drop event
   const handleSelectComponent = (/** @type {string} */ component) => {
@@ -212,23 +212,26 @@
 
             <div class="mt-4">
               <Label>Routes Setup</Label>
-      
+
               <div class=" space-y-2">
                 <Input type="text" placeholder="enter route here" />
                 <Input type="text" placeholder="enter path" />
-                <Button size='md' class="mt-2"><PlusSolid class="mr-2"/> Add Route</Button>
+                <Button size="md" class="mt-2"
+                  ><PlusSolid class="mr-2" /> Add Route</Button
+                >
               </div>
-              <Listgroup
-                class="mt-2 mb-4"
-                items={routes}
-                let:item
-              >
+              <Listgroup class="mt-2 mb-4" items={routes} let:item>
                 <div>
-                  <Button size="xs" color="light" class="ml-2">{item?.pageLabel}</Button>
-                  <Button size="xs" color="light" class="ml-2"><EditOutline/></Button>
-                  <Button size="xs" color="light" class="ml-2"><TrashBinSolid/></Button>
+                  <Button size="xs" color="light" class="ml-2"
+                    >{item?.pageLabel}</Button
+                  >
+                  <Button size="xs" color="light" class="ml-2"
+                    ><EditOutline /></Button
+                  >
+                  <Button size="xs" color="light" class="ml-2"
+                    ><TrashBinSolid /></Button
+                  >
                 </div>
-      
               </Listgroup>
             </div>
 
@@ -253,9 +256,22 @@
             isEditor={true}
             width="1"
           >
-            <div class="flex w-96 overflow-y-scroll h-screen">
-              <ComponentsList items={componentNames} onSelect={handleSelectComponent}></ComponentsList>
-              <ComponentsList items={projectComponents.map((c)=>c?.componentName)} onSelect={changeProperties}></ComponentsList>
+            <div class="flex w-96 overflow-y-scroll h-screen bg-white p-2 rounded-lg" >
+              <div>
+                <h1 class="">Component List</h1>
+                <ComponentsList
+                  items={componentNames}
+                  onSelect={handleSelectComponent}
+                ></ComponentsList>
+              </div>
+
+              <div>
+                <h1 class="">Project</h1>
+                <ComponentsList
+                  items={projectComponents.map((c) => c?.componentName)}
+                  onSelect={changeProperties}
+                ></ComponentsList>
+              </div>
             </div>
           </DraggableComponent>
         {/if}

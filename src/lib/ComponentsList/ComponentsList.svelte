@@ -17,8 +17,8 @@
   export let onSelect;
 </script>
 
-<Listgroup class="mt-2 mb-4 w-96 mx-2" {items} let:item>
+<Listgroup class="mt-2 mb-4 mx-2" {items} let:item>
   <div class="flex">
-    <Button color="light" on:click={() => onSelect(item)}>{item}</Button>
+    <Button color="light" on:click={() => onSelect(item)}>  {item}</Button>
   </div>
 </Listgroup>
