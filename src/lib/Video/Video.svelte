@@ -3,6 +3,8 @@
   import { Video } from "flowbite-svelte";
   import { videoConfig } from "./videoConfig";
   import ComponentsToolbar from "$lib/ComponentsToolbar/ComponentsToolbar.svelte";
+  import { onMount } from "svelte";
+  import { api } from "../../utils";
   export let width = "100px";
   export let src = "";
 
@@ -11,6 +13,19 @@
   const onConfig = () => {
     isConfig = !isConfig;
   };
+
+  const loadVideoContent = ()=>{
+    api.get("/video1").then((res) => {
+      console.log(res);
+      src = res.data?.url;
+    });
+  }
+
+  onMount(() => {
+    loadVideoContent();
+  });
+
+
 </script>
 
 <div class="flex">
