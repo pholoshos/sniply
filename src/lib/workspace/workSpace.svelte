@@ -14,6 +14,7 @@
   import {
     CloseCircleSolid,
     DownloadSolid,
+    PlusSolid,
   } from "flowbite-svelte-icons";
   import {
     addComponentToPage,
@@ -200,7 +201,11 @@
 
             <div class="mt-4">
               <Label>Routes Setup</Label>
-              <Input type="text" placeholder="enter route here" />
+      
+              <div>
+                <Input type="text" placeholder="enter route here" />
+                <Button size='md' class="mt-2"><PlusSolid class="mr-2"/> Add Route</Button>
+              </div>
               <Listgroup
                 class="mt-2 mb-4"
                 items={["Home,About,Dashboard"]}
