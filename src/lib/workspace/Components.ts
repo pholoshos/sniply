@@ -17,6 +17,7 @@ export const componentNames = [
     "TextField",
     "Image",
     "Collapse",
+    "PieChart",
     "Form",
     // Add more component names as needed
 ];
