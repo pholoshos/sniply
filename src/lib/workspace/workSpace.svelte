@@ -130,7 +130,6 @@
 
   const routes  = getPages(projectConfig);
 
-  console.log("LOG:::routes", routes);
   // Handle the component drop event
   const handleSelectComponent = (/** @type {string} */ component) => {
     const id = randomString(10);
