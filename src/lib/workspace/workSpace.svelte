@@ -209,8 +209,9 @@
             <div class="mt-4">
               <Label>Routes Setup</Label>
       
-              <div>
+              <div class=" space-y-2">
                 <Input type="text" placeholder="enter route here" />
+                <Input type="text" placeholder="enter path" />
                 <Button size='md' class="mt-2"><PlusSolid class="mr-2"/> Add Route</Button>
               </div>
               <Listgroup
@@ -259,7 +260,7 @@
                 <h1 class="my-4">Project</h1>
                 <SidebarItem
                   on:click={() => (defaultModal = true)}
-                  label="settings"
+                  label="App Settings"
                 />
                 {#each projectComponents as component}
                   <SidebarItem
