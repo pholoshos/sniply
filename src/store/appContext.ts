@@ -1,9 +1,6 @@
 // src/store/counter.js
 import { writable } from 'svelte/store';
 
-// Initial value
-
-
 // Create a writable store
 const initial: any = {} 
 
