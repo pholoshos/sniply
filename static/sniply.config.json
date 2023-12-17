@@ -2,6 +2,9 @@
   "appName": "example",
   "mode": "development",
   "apiBaseUrl" : "https://ola-api.onrender.com",
+  "appContext" : {
+    "properties" : []
+  },
   "services": [
     {
       "name": "users",

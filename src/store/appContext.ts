@@ -31,4 +31,14 @@ export const updateAppContext = (data: any) => {
     }));
 }
 
+export const setAppContext = (data: any) => {
+    appContext.update((currentState) => ({
+        ...currentState,
+        properties: data,
+    }
+    ));
+}
+
+
+
 export default appContext;

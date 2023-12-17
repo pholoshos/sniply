@@ -37,6 +37,7 @@
   import { isDevelopemnt } from "../../utils/getMode";
   import Spinner from "$lib/Spinner/Spinner.svelte";
   import AppContextModal from "$lib/AppContextModal/AppContextModal.svelte";
+  import { setAppContext, updateAppContext } from "../../store/appContext";
 
   // Array to store dynamically loaded components
   /**
@@ -68,6 +69,8 @@
       console.log(component);
     }
   };
+
+  
 
   /**
    * @type {any[]}
@@ -121,8 +124,8 @@
       if (!config) return;
 
       mode = config?.mode;
+      setAppContext(config?.appContext);
       updateAppState({ projectConfig: config });
-      console.log(mode);
       config?.pages[pageRoute?.slice(1)].components.map(
         (
           /** @type {{ componentName: string; id: string | undefined; }} */ comp
