@@ -6,7 +6,7 @@
   export let onClose = () => {};
 </script>
 
-<Modal  on:close={()=>onClose()} open={true}>
+<Modal  on:close={()=>onClose()} open={isOpen}>
   <div>
     <h1>App Context</h1>
   </div>
