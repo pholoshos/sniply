@@ -59,7 +59,12 @@
 
       <div>
         <span>Type</span>
-        <Input bind:value={property.type} placeholder="enter type" />
+        <Input bind:value={property.value} placeholder="enter type" />
+      </div>
+
+      <div>
+        <span>Value</span>
+        <Input bind:value={property.type} placeholder="enter default value" />
       </div>
     </div>
     <Button class="mb-8" color="light" on:click={() => addProperty()}

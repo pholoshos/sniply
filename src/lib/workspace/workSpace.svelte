@@ -124,7 +124,8 @@
       if (!config) return;
 
       mode = config?.mode;
-      setAppContext(config?.appContext);
+      //setAppContext(config?.appContext);
+      console.log("LOG:::config", config?.appContext);
       updateAppState({ projectConfig: config });
       config?.pages[pageRoute?.slice(1)].components.map(
         (
