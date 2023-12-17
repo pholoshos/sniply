@@ -9,6 +9,7 @@
     Dropdown,
     DropdownItem,
     Input,
+    Select,
   } from "flowbite-svelte";
   import {
     BookOutline,
@@ -156,11 +157,11 @@
 </script>
 
 {#if isConfiguring}
-  <div class="config-menu">
-    <h3 class="text-lg font-bold mb-4">Configuration</h3>
+  <div class="config-menu p-4">
+    <h3 class="text-lg font-bold mb-4 w-96">Configuration</h3>
 
     <div class="config-Input">
-      <span class="block text-sm font-medium text-gray-700">Graggable:</span>
+      <span class="block text-sm font-medium text-gray-700">Draggable:</span>
       <input
         type="checkbox"
         bind:checked={isDraggable}
@@ -176,6 +177,14 @@
         bind:value
         class="mt-1 p-2 border rounded-md w-full"
       />
+    </div>
+
+    <div class="config-Input">
+      <span class="block text-sm font-medium text-gray-700">Select Values property:</span>
+      <Select>
+        <option value="value">value</option>
+        <option value="label">label</option>
+      </Select>
     </div>
 
     <div class="config-Input">

@@ -6,6 +6,7 @@ export const componentNames = [
     "Table",
     "SideNav",
     "Button",
+    "Alert",
     "List",
     "Card",
     "List",
@@ -18,6 +19,7 @@ export const componentNames = [
     "Image",
     "Collapse",
     "PieChart",
+    "DatePicker",
     "Form",
     // Add more component names as needed
 ];
