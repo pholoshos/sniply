@@ -10,11 +10,15 @@
     Listgroup,
     Alert,
     Badge,
+    Modal,
+    Table,
   } from "flowbite-svelte";
   import { componentNames } from "./Components";
   import { randomString } from "../../utils/getRandomString";
   import {
     CloseCircleSolid,
+    CloseSolid,
+    DatabaseSolid,
     DownloadSolid,
     EditOutline,
     GearSolid,
@@ -32,6 +36,7 @@
   import { getPages } from "../../utils/getRoutes";
   import { isDevelopemnt } from "../../utils/getMode";
   import Spinner from "$lib/Spinner/Spinner.svelte";
+  import AppContextModal from "$lib/AppContextModal/AppContextModal.svelte";
 
   // Array to store dynamically loaded components
   /**
@@ -48,6 +53,7 @@
    */
   let selectedOnProject = null;
   let isSelectedProjectComponent = false;
+  let showAppContextModal = false;
 
   const changeProperties = (/** @type {{ id: any; } | null} */ component) => {
     isSelectedProjectComponent = true;
@@ -258,9 +264,15 @@
             isEditor={true}
             width="1"
           >
-            <div class="flex w-96 overflow-y-scroll h-screen bg-white p-2 rounded-lg" >
+            <div
+              class="flex w-96 overflow-y-scroll h-screen bg-white p-2 rounded-lg"
+            >
               <div>
-                <h1 class=" bg-gray-100 p-2 rounded-lg mx-2">Component List <Badge color='green'>{componentNames?.length}</Badge></h1>
+                <h1 class=" bg-gray-100 p-2 rounded-lg mx-2">
+                  Component List <Badge color="green"
+                    >{componentNames?.length}</Badge
+                  >
+                </h1>
                 <ComponentsList
                   items={componentNames}
                   onSelect={handleSelectComponent}
@@ -268,8 +280,25 @@
               </div>
 
               <div>
-                <h1 class=" bg-gray-100 p-2 rounded-lg">Project <Badge color='green'>{projectComponents?.length}</Badge></h1>
-                <Button on:click={()=>defaultModal= true} class="mt-4" color='light'><GearSolid class="mr-2"/>  Settings</Button>
+                <h1 class=" bg-gray-100 p-2 rounded-lg">
+                  Project <Badge color="green"
+                    >{projectComponents?.length}</Badge
+                  >
+                </h1>
+                <Button
+                  on:click={() => (defaultModal = true)}
+                  class="mt-4"
+                  color="light"><GearSolid class="mr-2" /> Settings</Button
+                >
+                <AppContextModal onClose={()=>showAppContextModal =false} isOpen={showAppContextModal}></AppContextModal>
+
+
+                <Button
+                  on:click={() => (showAppContextModal = true)}
+                  class="mt-4"
+                  color="light"
+                  ><DatabaseSolid class="mr-2" /> App context</Button
+                >
                 <ComponentsList
                   items={projectComponents.map((c) => c?.componentName)}
                   onSelect={changeProperties}

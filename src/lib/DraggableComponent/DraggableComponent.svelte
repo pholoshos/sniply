@@ -24,6 +24,10 @@
   import { colorOptions } from "../../utils/Colors";
   import JabDB from "jabulane-db";
   import { randomString } from "../../utils/getRandomString";
+  import { get } from "svelte/store";
+  import { getAppContext } from "../../store/appContext";
+
+  
 
   // Create an instance of JabDB with the appropriate API base URL and API key
   const jabdb = new JabDB(
@@ -69,6 +73,9 @@
   export let padding = "10px";
 
   export let value = "";
+  export let appContext = getAppContext();
+
+  console.log("appContext", appContext);
 
   let config = {
     width,
