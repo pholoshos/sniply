@@ -37,7 +37,7 @@
   import { isDevelopemnt } from "../../utils/getMode";
   import Spinner from "$lib/Spinner/Spinner.svelte";
   import AppContextModal from "$lib/AppContextModal/AppContextModal.svelte";
-  import { setAppContext, updateAppContext } from "../../store/appContext";
+  import appContext, { setAppContext, updateAppContext } from "../../store/appContext";
 
   // Array to store dynamically loaded components
   /**
@@ -45,6 +45,16 @@
    */
   let dynamicComponents = [];
   export let pageRoute = "Home";
+
+  /**
+   * @type {never[]}
+   */
+  let properties = [];
+
+  appContext.subscribe((state) => {
+    console.log("state", state);
+    properties = state?.properties;
+  });
 
   export let mode = "loading";
 
@@ -69,8 +79,6 @@
       console.log(component);
     }
   };
-
-  
 
   /**
    * @type {any[]}
@@ -294,8 +302,10 @@
                   class="mt-4"
                   color="light"><GearSolid class="mr-2" /> Settings</Button
                 >
-                <AppContextModal onClose={()=>showAppContextModal =false} isOpen={showAppContextModal}></AppContextModal>
-
+                <AppContextModal
+                  onClose={() => (showAppContextModal = false)}
+                  isOpen={showAppContextModal}
+                ></AppContextModal>
 
                 <Button
                   on:click={() => (showAppContextModal = true)}
@@ -327,6 +337,7 @@
         <div class="w-screen">
           {#each dynamicComponents as dynamicComponent}
             <DraggableComponent
+              properties={properties}
               {pageRoute}
               isDevelopment={isDevelopemnt(mode)}
               onDelete={() => onDelete(dynamicComponent?.id)}

@@ -1,9 +1,6 @@
 <!-- DraggableDiv.svelte -->
 <script>
-  // @ts-nocheck
-  import {
-    updateComponentInConfig,
-  } from "../../store/app";
+  import { updateComponentInConfig } from "../../store/app";
   import {
     Button,
     Dropdown,
@@ -27,8 +24,6 @@
   import { get } from "svelte/store";
   import { getAppContext } from "../../store/appContext";
 
-  
-
   // Create an instance of JabDB with the appropriate API base URL and API key
   const jabdb = new JabDB(
     "http://localhost:3000/jabdb/",
@@ -48,6 +43,13 @@
   export let x = 0;
   export let isDevelopment = false;
   export let pageRoute = "Home";
+  /**
+   * @type {never[]}
+   */
+  export let properties = [];
+  /**
+   * @type {null}
+   */
   export let projectConfig = null;
   export let y = 0;
   let zIndex = 1; // Initial z-index value
@@ -161,6 +163,23 @@
   const appendClasses = (classes) => {
     return classes.join(" ");
   };
+
+  const onSelectType = (target) => {
+    switch (type) {
+      case "string":
+        value = "";
+        break;
+      case "object":
+        value = {};
+        break;
+      case "array":
+        value = [];
+        break;
+      default:
+        value = "";
+    }
+  };
+
 </script>
 
 {#if isConfiguring}
@@ -187,10 +206,34 @@
     </div>
 
     <div class="config-Input">
-      <span class="block text-sm font-medium text-gray-700">Select Values property:</span>
-      <Select>
-        <option value="value">value</option>
-        <option value="label">label</option>
+      <span class="block text-sm font-medium text-gray-700"
+        >Select Values property:</span
+      >
+      <Select
+        on:change={({target}) => {
+          const selected = properties?.find((property) => property?.name === target?.value);
+          //to extend usage to lists and table components 
+          switch(selected?.type) {
+            case 'string':
+              value = selected?.value;
+              break;
+            case 'object':
+              value = JSON.stringify(selected?.value);
+              break;
+            case 'array':
+              value = JSON.stringify(selected?.value);
+              break;
+            default:
+              value = selected?.value;
+          }
+
+          value = target?.value;
+          handleButtonClick();
+        }}
+      >
+        {#each properties as _property}
+          <option value={_property.name}>{_property?.name}</option>
+        {/each}
       </Select>
     </div>
 
@@ -337,8 +380,9 @@
     <div>
       <svelte:component
         this={dynamicComponent?.component}
-        isDevelopment={isDevelopment}
-        projectConfig={projectConfig}
+        {isDevelopment}
+        {properties}
+        {projectConfig}
         {...config}
       />
       <slot />

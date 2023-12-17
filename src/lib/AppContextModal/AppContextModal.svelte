@@ -3,6 +3,7 @@
     Button,
     Input,
     Modal,
+    Select,
     Table,
     TableBody,
     TableBodyCell,
@@ -59,7 +60,11 @@
 
       <div>
         <span>Type</span>
-        <Input bind:value={property.value} placeholder="enter type" />
+        <Select bind:value={property.value} placeholder="enter type" >
+            <option value="value">value</option>
+            <option value="object">Object</option>
+            <option value="array">Array</option>
+        </Select>
       </div>
 
       <div>
