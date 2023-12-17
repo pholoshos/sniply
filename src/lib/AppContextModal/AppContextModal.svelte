@@ -15,6 +15,9 @@
 
   export let isOpen = false;
 
+  /**
+   * @type {any[]}
+   */
   let properties = [];
 
   appContext.subscribe((state) => {
@@ -71,12 +74,16 @@
       </TableHead>
 
       <TableBody class="divide-y">
-        <TableBodyRow>
-          <TableBodyCell>Apple MacBook Pro 17"</TableBodyCell>
-          <TableBodyCell>Sliver</TableBodyCell>
-          <TableBodyCell>Laptop</TableBodyCell>
-          <TableBodyCell>$2999</TableBodyCell>
-        </TableBodyRow>
+        {#each properties as _property}
+          <TableBodyRow>
+            {#if _property.name}
+              <TableBodyCell>{_property.name}</TableBodyCell>
+              <TableBodyCell>{_property.description}</TableBodyCell>
+              <TableBodyCell>{_property.type}</TableBodyCell>
+              <TableBodyCell>{_property.value}</TableBodyCell>
+            {/if}
+          </TableBodyRow>
+        {/each}
       </TableBody>
     </Table>
   </div>
