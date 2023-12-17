@@ -17,6 +17,7 @@
     CloseCircleSolid,
     DownloadSolid,
     EditOutline,
+    GearSolid,
     PlusSolid,
     TrashBinSolid,
   } from "flowbite-svelte-icons";
@@ -268,6 +269,7 @@
 
               <div>
                 <h1 class=" bg-gray-100 p-2 rounded-lg">Project <Badge color='green'>{projectComponents?.length}</Badge></h1>
+                <Button on:click={()=>defaultModal= true} class="mt-4" color='light'><GearSolid class="mr-2"/>  Settings</Button>
                 <ComponentsList
                   items={projectComponents.map((c) => c?.componentName)}
                   onSelect={changeProperties}
