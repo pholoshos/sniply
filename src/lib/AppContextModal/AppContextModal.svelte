@@ -11,7 +11,7 @@
     TableHead,
     TableHeadCell,
   } from "flowbite-svelte";
-  import { CloseSolid, PlusSolid } from "flowbite-svelte-icons";
+  import { CloseSolid, GearSolid, PlusSolid, TrashBinSolid } from "flowbite-svelte-icons";
   import { updateAppContext, appContext } from "../../store/appContext";
 
   export let isOpen = false;
@@ -60,10 +60,10 @@
 
       <div>
         <span>Type</span>
-        <Select bind:value={property.value} placeholder="enter type" >
-            <option value="value">value</option>
-            <option value="object">Object</option>
-            <option value="array">Array</option>
+        <Select bind:value={property.value} placeholder="enter type">
+          <option value="value">value</option>
+          <option value="object">Object</option>
+          <option value="array">Array</option>
         </Select>
       </div>
 
@@ -77,6 +77,7 @@
     >
     <Table>
       <TableHead>
+        <TableHeadCell></TableHeadCell>
         <TableHeadCell>Name</TableHeadCell>
         <TableHeadCell>Description</TableHeadCell>
         <TableHeadCell>Type</TableHeadCell>
@@ -87,6 +88,12 @@
         {#each properties as _property}
           <TableBodyRow>
             {#if _property.name}
+              <TableBodyCell>
+                <div>
+                  <Button color="light" size="xs"><GearSolid /></Button>
+                  <Button color="light" size="xs"><TrashBinSolid /></Button>
+                </div>
+              </TableBodyCell>
               <TableBodyCell>{_property.name}</TableBodyCell>
               <TableBodyCell>{_property.description}</TableBodyCell>
               <TableBodyCell>{_property.type}</TableBodyCell>
