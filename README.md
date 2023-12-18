@@ -2,8 +2,7 @@
 1. Install Sniply-cli: `npm i -g sniply-cli`
 2. Create Sniply-ci project  `sniply-cli create <ProjectName>`
 
-Sniply is a powerful and intuitive framework built on the Svelte framework, designed to empower users to create web applications without writing a single line of code. Whether you're a designer, entrepreneur, or hobbyist, sniply provides a seamless and efficient way to bring your ideas to life.
-
+Sniply is a powerful and intuitive framework built on the Svelte framework, designed to empower users to create web application.
 ## Features
 
 - **Svelte-Powered:** Built on the robust and reactive Svelte framework, ensuring high performance and a delightful development experience.
