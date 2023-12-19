@@ -116,7 +116,7 @@
       let url = getCollectionUrl(collectionName, services);
 
       api
-        .get('/dataTable/'+collectionName)
+        .get(url)
         .then((res) => {
           console.log(res);
         })
