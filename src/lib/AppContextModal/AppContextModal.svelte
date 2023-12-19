@@ -11,8 +11,17 @@
     TableHead,
     TableHeadCell,
   } from "flowbite-svelte";
-  import { CloseSolid, GearSolid, PlusSolid, TrashBinSolid } from "flowbite-svelte-icons";
-  import { updateAppContext, appContext } from "../../store/appContext";
+  import {
+    CloseSolid,
+    GearSolid,
+    PlusSolid,
+    TrashBinSolid,
+  } from "flowbite-svelte-icons";
+  import {
+    updateAppContext,
+    appContext,
+    setAppContext,
+  } from "../../store/appContext";
 
   export let isOpen = false;
 
@@ -21,8 +30,14 @@
    */
   let properties = [];
 
+  const onDelete = (data) => {
+    const newData = properties.filter((item) => item.name !== data.name);
+    setAppContext(newData);
+  };
+
+  const onEdit = (data) => {};
+
   appContext.subscribe((state) => {
-    console.log("state", state);
     properties = state?.properties;
   });
 
@@ -37,7 +52,15 @@
 
   const addProperty = () => {
     updateAppContext(property);
+    property = {
+      name: "",
+      description: "",
+      type: "",
+      value: "",
+    };
   };
+
+
 </script>
 
 <Modal on:close={() => onClose()} open={isOpen}>
@@ -90,8 +113,16 @@
             {#if _property.name}
               <TableBodyCell>
                 <div>
-                  <Button color="light" size="xs"><GearSolid /></Button>
-                  <Button color="light" size="xs"><TrashBinSolid /></Button>
+                  <Button
+                    on:click={() => onEdit(_property)}
+                    color="light"
+                    size="xs"><GearSolid /></Button
+                  >
+                  <Button
+                    on:click={() => onDelete(_property)}
+                    color="light"
+                    size="xs"><TrashBinSolid /></Button
+                  >
                 </div>
               </TableBodyCell>
               <TableBodyCell>{_property.name}</TableBodyCell>

@@ -23,6 +23,7 @@
     EditOutline,
     GearSolid,
     PlusSolid,
+    ShareAllSolid,
     TrashBinSolid,
   } from "flowbite-svelte-icons";
   import {
@@ -307,12 +308,26 @@
                   isOpen={showAppContextModal}
                 ></AppContextModal>
 
+                <AppContextModal
+                onClose={() => (showAppContextModal = false)}
+                isOpen={showAppContextModal}
+              ></AppContextModal>
+
                 <Button
                   on:click={() => (showAppContextModal = true)}
                   class="mt-4"
                   color="light"
                   ><DatabaseSolid class="mr-2" /> App context</Button
                 >
+
+
+                <Button
+                  on:click={() => (showAppContextModal = true)}
+                  class="mt-4"
+                  color="light"
+                  ><ShareAllSolid class="mr-2" />Logic Center</Button
+                >
+
                 <ComponentsList
                   items={projectComponents.map((c) => c?.componentName)}
                   onSelect={changeProperties}
