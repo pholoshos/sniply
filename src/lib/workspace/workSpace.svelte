@@ -12,6 +12,7 @@
     Badge,
     Modal,
     Table,
+    Checkbox,
   } from "flowbite-svelte";
   import { componentNames } from "./Components";
   import { randomString } from "../../utils/getRandomString";
@@ -179,8 +180,6 @@
     // projectConfig = $appState.projectConfig; // Alternatively, you can use the $ prefix directly
   });
 
-  const routes = getPages(projectConfig);
-
   // Handle the component drop event
   const handleSelectComponent = (/** @type {string} */ component) => {
     const id = randomString(10);
@@ -221,13 +220,12 @@
     });
   };
 
-  console.log("LOG:::routes", routes);
-
   const setFormDetails = () => {};
 
   let routeDetails = {
     name: "",
     path: "",
+    visibility: "public",
   };
 
   const addPage = () => {
@@ -236,7 +234,7 @@
       route: routeDetails.path,
       layout: "default",
       components: [],
-      visibility: "public",
+      visibility: routeDetails.visibility? "public" : "hidden",
     };
 
     addEmptyPage(pageInfo);
@@ -300,6 +298,15 @@
                   type="text"
                   placeholder="enter path"
                 />
+                <Label
+                  class="my-4"
+                  >Is Public Page? <Checkbox
+                    bind:value={routeDetails.visibility}
+                    type="checkbox"
+                    placeholder="enter path"
+                  /></Label
+                >
+
                 <Button
                   on:click={() => {
                     addPage();
@@ -308,7 +315,11 @@
                   class="mt-2"><PlusSolid class="mr-2" /> Add Route</Button
                 >
               </div>
-              <Listgroup class="mt-2 mb-4" items={routes} let:item>
+              <Listgroup
+                class="mt-2 mb-4"
+                items={getPages(projectConfig)}
+                let:item
+              >
                 <div>
                   <Button size="xs" color="light" class="ml-2"
                     >{item?.pageLabel}</Button
