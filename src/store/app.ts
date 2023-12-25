@@ -11,7 +11,7 @@ const createEmptyComponent = () => ({
 
 const defaultProjectConfig =  {
   appName: "app",
-  mode : "development",
+  mode : "loading",
   layouts: {
     default: {
       background: "#f0f0f0",
@@ -69,6 +69,14 @@ export const updateProjectConfig = (newConfig:any) => {
       ...currentState.projectConfig,
       ...newConfig,
     },
+  }));
+};
+
+// Function to update projectConfig
+export const loadProjectConfig = (newConfig:any) => {
+  appState.update((currentState) => ({
+    ...currentState,
+    projectConfig: newConfig
   }));
 };
 

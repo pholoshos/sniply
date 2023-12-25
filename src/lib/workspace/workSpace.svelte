@@ -18,6 +18,7 @@
   import {
     CloseCircleSolid,
     CloseSolid,
+    CodeSolid,
     DatabaseSolid,
     DownloadSolid,
     EditOutline,
@@ -28,8 +29,10 @@
   } from "flowbite-svelte-icons";
   import {
     addComponentToPage,
+    addEmptyPage,
     appState,
     deleteComponentFromPage,
+    loadProjectConfig,
     updateAppState,
   } from "../../store/app";
   import { afterUpdate, onMount } from "svelte";
@@ -38,7 +41,14 @@
   import { isDevelopemnt } from "../../utils/getMode";
   import Spinner from "$lib/Spinner/Spinner.svelte";
   import AppContextModal from "$lib/AppContextModal/AppContextModal.svelte";
-  import appContext, { setAppContext, updateAppContext } from "../../store/appContext";
+  import appContext, {
+    setAppContext,
+    updateAppContext,
+  } from "../../store/appContext";
+  import {
+    getWorkingMemory,
+    storeWorkingMemory,
+  } from "../../utils/workingMemory";
 
   // Array to store dynamically loaded components
   /**
@@ -105,11 +115,12 @@
 
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = `sveltflow${jsonData.timestamp}.json`;
 
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+    a.download = `sveltflow${jsonData.timestamp}.json`;
+    storeWorkingMemory(projectConfig);
   };
 
   /**
@@ -127,24 +138,43 @@
     projectConfig = state.projectConfig;
   });
 
+  appState.subscribe((state) => {
+    // Handle state changes here
+  });
+
+  // afterUpdate(() => {
+  //   if (projectConfig?.mode != "loading") {
+  //     storeWorkingMemory(projectConfig);
+  //   }
+  // },[projectConfig]);
+
   // Fetch projectConfig when the component mounts
+
+  const setupConfig = (config) => {
+    if (!config) return;
+
+    mode = config?.mode;
+    //setAppContext(config?.appContext);
+    loadProjectConfig(config);
+    config?.pages[pageRoute?.slice(1)].components.map(
+      (
+        /** @type {{ componentName: string; id: string | undefined; }} */ comp
+      ) => {
+        createDynamicComponent(comp.componentName, comp?.id, comp);
+      }
+    );
+
+    projectConfig = config;
+  };
+
+  const loadWorkingMemory = () => {
+    const workingMemory = getWorkingMemory();
+    setupConfig(workingMemory);
+  };
+
   onMount(() => {
     const _c = loadConfig()?.then((config) => {
-      if (!config) return;
-
-      mode = config?.mode;
-      //setAppContext(config?.appContext);
-      console.log("LOG:::config", config?.appContext);
-      updateAppState({ projectConfig: config });
-      config?.pages[pageRoute?.slice(1)].components.map(
-        (
-          /** @type {{ componentName: string; id: string | undefined; }} */ comp
-        ) => {
-          createDynamicComponent(comp.componentName, comp?.id, comp);
-        }
-      );
-
-      projectConfig = config;
+      setupConfig(config);
     });
     // projectConfig = $appState.projectConfig; // Alternatively, you can use the $ prefix directly
   });
@@ -191,7 +221,26 @@
     });
   };
 
+  console.log("LOG:::routes", routes);
+
   const setFormDetails = () => {};
+
+  let routeDetails = {
+    name: "",
+    path: "",
+  };
+
+  const addPage = () => {
+    let pageInfo = {
+      pageLabel: routeDetails.name,
+      route: routeDetails.path,
+      layout: "default",
+      components: [],
+      visibility: "public",
+    };
+
+    addEmptyPage(pageInfo);
+  };
 
   afterUpdate(() => {
     // Update the appState store
@@ -205,13 +254,19 @@
     <p>loading...</p>
   </div>
 {:else}
-  <div>
+  <div class="flex">
     {#if isDevelopemnt(mode)}
       <Button
         class="absolute right-0 mx-8 mt-4 z-20"
         size="xs"
         color="alternative"
         on:click={generateJson}><DownloadSolid size="xs" /></Button
+      >
+      <Button
+        class="absolute right-10 mx-8 mt-4 z-20"
+        size="xs"
+        color="alternative"
+        on:click={loadWorkingMemory}><CodeSolid size="xs" /></Button
       >
     {/if}
     <div class="flex">
@@ -235,10 +290,22 @@
               <Label>Routes Setup</Label>
 
               <div class=" space-y-2">
-                <Input type="text" placeholder="enter route here" />
-                <Input type="text" placeholder="enter path" />
-                <Button size="md" class="mt-2"
-                  ><PlusSolid class="mr-2" /> Add Route</Button
+                <Input
+                  bind:value={routeDetails.name}
+                  type="text"
+                  placeholder="enter route here"
+                />
+                <Input
+                  bind:value={routeDetails.path}
+                  type="text"
+                  placeholder="enter path"
+                />
+                <Button
+                  on:click={() => {
+                    addPage();
+                  }}
+                  size="md"
+                  class="mt-2"><PlusSolid class="mr-2" /> Add Route</Button
                 >
               </div>
               <Listgroup class="mt-2 mb-4" items={routes} let:item>
@@ -309,9 +376,9 @@
                 ></AppContextModal>
 
                 <AppContextModal
-                onClose={() => (showAppContextModal = false)}
-                isOpen={showAppContextModal}
-              ></AppContextModal>
+                  onClose={() => (showAppContextModal = false)}
+                  isOpen={showAppContextModal}
+                ></AppContextModal>
 
                 <Button
                   on:click={() => (showAppContextModal = true)}
@@ -319,7 +386,6 @@
                   color="light"
                   ><DatabaseSolid class="mr-2" /> App context</Button
                 >
-
 
                 <Button
                   on:click={() => (showAppContextModal = true)}
@@ -352,7 +418,7 @@
         <div class="w-screen">
           {#each dynamicComponents as dynamicComponent}
             <DraggableComponent
-              properties={properties}
+              {properties}
               {pageRoute}
               isDevelopment={isDevelopemnt(mode)}
               onDelete={() => onDelete(dynamicComponent?.id)}

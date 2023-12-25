@@ -83,7 +83,7 @@
 
       <div>
         <span>Type</span>
-        <Select bind:value={property.value} placeholder="enter type">
+        <Select bind:value={property.type} placeholder="enter type">
           <option value="value">value</option>
           <option value="object">Object</option>
           <option value="array">Array</option>
@@ -92,7 +92,7 @@
 
       <div>
         <span>Value</span>
-        <Input bind:value={property.type} placeholder="enter default value" />
+        <Input bind:value={property.value} placeholder="enter default value" />
       </div>
     </div>
     <Button class="mb-8" color="light" on:click={() => addProperty()}

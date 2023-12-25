@@ -23,6 +23,7 @@
   import { randomString } from "../../utils/getRandomString";
   import { get } from "svelte/store";
   import { getAppContext } from "../../store/appContext";
+  import { storeWorkingMemory } from "../../utils/workingMemory";
 
   // Create an instance of JabDB with the appropriate API base URL and API key
   const jabdb = new JabDB(
@@ -214,7 +215,7 @@
           const selected = properties?.find((property) => property?.name === target?.value);
           //to extend usage to lists and table components 
           switch(selected?.type) {
-            case 'string':
+            case 'value':
               value = selected?.value;
               break;
             case 'object':
@@ -226,9 +227,8 @@
             default:
               value = selected?.value;
           }
-
-          value = target?.value;
-          handleButtonClick();
+          handleButtonClick(true);
+  
         }}
       >
         {#each properties as _property}
