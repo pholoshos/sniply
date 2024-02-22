@@ -3,9 +3,7 @@ import { loadConfig } from './loadConfig';
 
 export const baseUrl = 'https://ola-api.onrender.com';
 
-const baseApiUrl = await loadConfig()?.then((config) => {
-  return config.apiBaseUrl;
-}) 
+const baseApiUrl =  ""; 
 
 console.log('baseApiUrl', baseApiUrl);
 
@@ -24,3 +22,9 @@ export const generalApi = create({
   baseURL: baseApiUrl,
   headers: { Accept: 'application/vnd.github.v3+json' },
 })
+
+export const  setBaseUrl = (url: string) => {
+  api.setBaseURL(url);
+  loginApi.setBaseURL(url);
+  generalApi.setBaseURL(url);
+}

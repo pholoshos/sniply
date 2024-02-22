@@ -1,6 +1,5 @@
 // store.js
 import { writable } from 'svelte/store';
-import { loadConfig } from '../utils/loadConfig';
 
 //Function to create a new, empty component
 const createEmptyComponent = () => ({
