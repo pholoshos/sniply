@@ -21,5 +21,6 @@ export const componentNames = [
     "PieChart",
     "DatePicker",
     "Form",
+    "DeviceMockUp"
     // Add more component names as needed
 ];

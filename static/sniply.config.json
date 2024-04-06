@@ -1,9 +1,9 @@
 {
-  "appName": "example",
+  "appName": "Business M",
   "mode": "development",
-  "apiBaseUrl" : "https://ola-api.onrender.com",
-  "appContext" : {
-    "properties" : []
+  "apiBaseUrl": "https://ola-api.onrender.com",
+  "appContext": {
+    "properties": []
   },
   "services": [
     {
@@ -57,7 +57,7 @@
     {
       "name": "logs",
       "url": "/logs",
-      "isExternal" : true,
+      "isExternal": true,
       "methods": [
         {
           "name": "get",
@@ -88,25 +88,78 @@
       "route": "/pages/home",
       "components": [
         {
-          "componentName": "SideNav",
-          "id": "124124",
-          "width": "",
-          "x": -12,
-          "y": 79,
-          "backgroundColor": "gray",
-          "label": "Button",
-          "textColor": "black",
-          "color": "primary",
-          "padding": "4px",
-          "value": "Button",
-          "span": "1"
+          "componentName": "Button",
+          "id": "gRMnF8dEj0"
         },
         {
-          "componentName": "LoginView",
-          "width": "50%",
-          "x": 269,
-          "y": 147,
-          "id": "2121",
+          "componentName": "Button",
+          "width": "full",
+          "x": 417,
+          "y": 308,
+          "backgroundColor": "",
+          "label": "My Component",
+          "textColor": "#000",
+          "color": "primary",
+          "padding": "10px",
+          "value": "",
+          "span": "My Component"
+        },
+        {
+          "componentName": "Button",
+          "width": "full",
+          "x": 233,
+          "y": 306,
+          "backgroundColor": "",
+          "label": "My Component",
+          "textColor": "#000",
+          "color": "primary",
+          "padding": "10px",
+          "value": "",
+          "span": "My Component"
+        },
+        {
+          "componentName": "Spinner",
+          "id": "Svd8fje7Ch"
+        },
+        {
+          "componentName": "Button",
+          "id": "gRMnF8dEj0"
+        },
+        {
+          "componentName": "Button",
+          "width": "full",
+          "x": 417,
+          "y": 308,
+          "backgroundColor": "",
+          "label": "My Component",
+          "textColor": "#000",
+          "color": "primary",
+          "padding": "10px",
+          "value": "",
+          "span": "My Component"
+        },
+        {
+          "componentName": "Button",
+          "width": "full",
+          "x": 233,
+          "y": 306,
+          "backgroundColor": "",
+          "label": "My Component",
+          "textColor": "#000",
+          "color": "primary",
+          "padding": "10px",
+          "value": "",
+          "span": "My Component"
+        },
+        {
+          "componentName": "Spinner",
+          "id": "Svd8fje7Ch"
+        },
+        {
+          "componentName": "DeviceMockUp",
+          "width": "full",
+          "x": 350,
+          "y": 47,
           "backgroundColor": "",
           "label": "My Component",
           "textColor": "#000",
@@ -122,6 +175,13 @@
       "pageLabel": "Dashboard",
       "layout": "dashboard",
       "route": "/pages/dashboard",
+      "components": []
+    },
+    "Rooms": {
+      "visibility": "public",
+      "pageLabel": "Rooms page",
+      "layout": "room",
+      "route": "/pages/rooms",
       "components": []
     },
     "users": {
