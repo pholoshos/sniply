@@ -4,7 +4,10 @@
 
   export let backgroundColor = "white";
   export let appName = "sniply";
-  export let pages = null;
+  /**
+   * @type {any}
+   */
+   export let pages = null;
 
 </script>
 
